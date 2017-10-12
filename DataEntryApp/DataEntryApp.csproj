@@ -99,10 +99,82 @@
     <Content Include="buttons.html" />
     <Content Include="charts.html" />
     <Content Include="compose.html" />
+    <Content Include="css\animate.css" />
+    <Content Include="css\atlas.css" />
+    <Content Include="css\barchart.css" />
+    <Content Include="css\bootstrap-material-datetimepicker.css" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\custom.css" />
+    <Content Include="css\demo-page.css" />
+    <Content Include="css\examples.css" />
+    <Content Include="css\fabochart.css" />
+    <Content Include="css\font-awesome.css" />
+    <Content Include="css\hover.css" />
+    <Content Include="css\jqcandlestick.css" />
+    <Content Include="css\jqvmap.css" />
+    <Content Include="css\style.css" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="grid.html" />
+    <Content Include="images\1.png" />
+    <Content Include="images\2.png" />
+    <Content Include="images\3.png" />
+    <Content Include="images\a.png" />
+    <Content Include="images\grid.png" />
+    <Content Include="images\i1.png" />
+    <Content Include="images\i2.png" />
+    <Content Include="images\i3.png" />
+    <Content Include="images\i4.png" />
+    <Content Include="images\icon_sprite.png" />
+    <Content Include="images\l4.jpg" />
+    <Content Include="images\loader_bg.png" />
+    <Content Include="images\lock.png" />
+    <Content Include="images\logo1.png" />
+    <Content Include="images\p1.png" />
+    <Content Include="images\slider_handle.png" />
+    <Content Include="images\tick.png" />
+    <Content Include="images\user.png" />
     <Content Include="inbox.html" />
     <Content Include="index.html" />
     <Content Include="inputs.html" />
+    <Content Include="js\arbor.js" />
+    <Content Include="js\atlas.js" />
+    <Content Include="js\barchart.jquery.js" />
+    <Content Include="js\bootstrap-material-datetimepicker.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\Chart.Core.js" />
+    <Content Include="js\Chart.Doughnut.js" />
+    <Content Include="js\Chart.js" />
+    <Content Include="js\classie.js" />
+    <Content Include="js\custom.js" />
+    <Content Include="js\datamaps-all.js" />
+    <Content Include="js\dev-layout-default.js" />
+    <Content Include="js\dev-loaders.js" />
+    <Content Include="js\fabochart.js" />
+    <Content Include="js\gmaps.js" />
+    <Content Include="js\jquery-1.11.1.min.js" />
+    <Content Include="js\jquery.flot.errorbars.js" />
+    <Content Include="js\jquery.flot.js" />
+    <Content Include="js\jquery.flot.navigate.js" />
+    <Content Include="js\jquery.flot.pie.js" />
+    <Content Include="js\jquery.fn.gantt.js" />
+    <Content Include="js\jquery.jqcandlestick.min.js" />
+    <Content Include="js\jquery.marquee.js" />
+    <Content Include="js\jquery.nicescroll.js" />
+    <Content Include="js\jquery.vmap.js" />
+    <Content Include="js\jquery.vmap.usa.js" />
+    <Content Include="js\map.js" />
+    <Content Include="js\material.min.js" />
+    <Content Include="js\metisMenu.min.js" />
+    <Content Include="js\modernizr.custom.js" />
+    <Content Include="js\moment-with-locales.min.js" />
+    <Content Include="js\pie-chart.js" />
+    <Content Include="js\plugins.js" />
+    <Content Include="js\prettymaps.js" />
+    <Content Include="js\scripts.js" />
+    <Content Include="js\valida.2.1.6.min.js" />
+    <Content Include="js\validator.min.js" />
+    <Content Include="js\wow.min.js" />
     <Content Include="login.html" />
     <Content Include="maps.html" />
     <Content Include="packages.config" />
@@ -115,6 +187,20 @@
     <Content Include="typography.html" />
     <Content Include="validation.html" />
     <Content Include="widgets.html" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="images\.DS_Store" />
+    <Content Include="maps\africa.json" />
+    <Content Include="maps\america.json" />
+    <Content Include="maps\asia.json" />
+    <Content Include="maps\europe.json" />
+    <Content Include="maps\mideast.json" />
+    <Content Include="maps\risk.json" />
+    <Content Include="maps\usofa.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -131,13 +217,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="css\" />
-    <Folder Include="fonts\" />
-    <Folder Include="images\" />
-    <Folder Include="js\" />
-    <Folder Include="maps\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
