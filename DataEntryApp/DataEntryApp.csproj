@@ -94,10 +94,27 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="404.html" />
+    <Content Include="blank-page.html" />
+    <Content Include="buttons.html" />
+    <Content Include="charts.html" />
+    <Content Include="compose.html" />
+    <Content Include="grid.html" />
+    <Content Include="inbox.html" />
+    <Content Include="index.html" />
+    <Content Include="inputs.html" />
+    <Content Include="login.html" />
+    <Content Include="maps.html" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="progressbar.html" />
+    <Content Include="signup.html" />
+    <Content Include="tables.html" />
+    <Content Include="typography.html" />
+    <Content Include="validation.html" />
+    <Content Include="widgets.html" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -108,10 +125,18 @@
   <ItemGroup>
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="w3layouts-License.txt" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="css\" />
+    <Folder Include="fonts\" />
+    <Folder Include="images\" />
+    <Folder Include="js\" />
+    <Folder Include="maps\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
