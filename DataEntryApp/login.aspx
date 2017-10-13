@@ -1,4 +1,6 @@
-﻿<!--
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="DataEntryApp.login" %>
+
+<!--
 Author: W3layouts
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
@@ -7,11 +9,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Baxster an Admin Panel Category Flat Bootstrap Responsive Website Template | Login :: w3layouts</title>
+<title>Best Offers - Data Entry</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Baxster Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<meta name="keywords" content="Best Offers - Data Entry" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
@@ -27,6 +28,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <!--//webfonts--> 
 <!-- js -->
 <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
 <!-- //js -->
 </head> 
 <body class="login-bg">
@@ -34,10 +37,10 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 			<div class="login-heading">
 				<h1>Login</h1>
 			</div>
-			<div class="login-info">
-				<form>
-					<input type="text" class="user" name="email" placeholder="Email" required="">
-					<input type="password" name="password" class="lock" placeholder="Password">
+			<div class="login-info" >
+				<form id="loginForm" method="post">
+					<input id="userNameTxt" type="text" class="user" name="username" data-validation="required  alphanumeric" placeholder="Enter username" required="">
+					<input id="passwordTxt" type="password" name="password" class="lock" data-validation="required  alphanumeric" placeholder="Enter Password" required="" >
 					<!--<div class="forgot-top-grids">
 						<div class="forgot-grid">
 							<ul>
@@ -52,7 +55,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 						</div>
 						<div class="clearfix"> </div>
 					</div>-->
-					<input type="submit" name="Sign In" value="Login">
+                    <input id="submitButton" type="submit" name="Sign In" value="Login"  />
 					<!--<div class="signup-text">
 						<a href="signup.html">Don't have an account? Create one now</a>
 					</div>

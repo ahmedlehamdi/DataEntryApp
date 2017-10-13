@@ -2527,7 +2527,7 @@ button#default-map-btn, button#green-map-btn, button#blue-map-btn,button#grey-ma
     background: #FFFFFF;
     margin: 0em 0em 1.5em 0em;
 }
-.login-info input[type="submit"] {
+.login-info input[type="submit"], #submitButton {
 	border: none;
     outline: none;
     cursor: pointer;
