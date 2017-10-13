@@ -44,7 +44,7 @@ namespace DataEntryApp.Pages
                         }
                     }
                     else
-                        HttpContext.Current.Response.Write("alert('Error in username or password');");
+                        HttpContext.Current.Response.Write("alert('"+ output.returnObj+"');");
                     HttpContext.Current.Response.Flush();
                     HttpContext.Current.ApplicationInstance.CompleteRequest();
                     HttpContext.Current.Response.SuppressContent = true;

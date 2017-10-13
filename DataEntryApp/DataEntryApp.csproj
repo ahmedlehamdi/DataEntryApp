@@ -117,6 +117,7 @@
     <Content Include="css\font-awesome.css" />
     <Content Include="css\hover.css" />
     <Content Include="css\jqcandlestick.css" />
+    <Content Include="css\jquery-loading.min.css" />
     <Content Include="css\jqvmap.css" />
     <Content Include="css\style.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -159,6 +160,7 @@
     <Content Include="js\fabochart.js" />
     <Content Include="js\gmaps.js" />
     <Content Include="js\jquery-1.11.1.min.js" />
+    <Content Include="js\jquery-loading.js" />
     <Content Include="js\jquery.flot.errorbars.js" />
     <Content Include="js\jquery.flot.js" />
     <Content Include="js\jquery.flot.navigate.js" />

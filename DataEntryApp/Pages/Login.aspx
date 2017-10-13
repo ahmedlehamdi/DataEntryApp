@@ -22,15 +22,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- font CSS -->
 <link rel="icon" href="favicon.ico" type="image/x-icon" >
 <!-- font-awesome icons -->
-<link href="../../css/font-awesome.css" rel="stylesheet"> 
+<link href="../css/font-awesome.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <!--webfonts-->
 <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
 <!--//webfonts--> 
+<link href='../css/jquery-loading.min.css' rel='stylesheet' type='text/css'>
+<!--//Spinner--> 
 <!-- js -->
 <script src="../js/jquery-1.11.1.min.js"></script>
-    <script src="../js/app.js"></script>
-    <script src="../js/jquery.form-validator.min.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/jquery.form-validator.min.js"></script>
+<script src="../js/jquery-loading.js"></script>
+
 <!-- //js -->
 </head> 
 <body class="login-bg">
