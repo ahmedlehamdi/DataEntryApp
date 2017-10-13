@@ -164,6 +164,7 @@
     <Content Include="js\jquery.flot.navigate.js" />
     <Content Include="js\jquery.flot.pie.js" />
     <Content Include="js\jquery.fn.gantt.js" />
+    <Content Include="js\jquery.form-validator.min.js" />
     <Content Include="js\jquery.jqcandlestick.min.js" />
     <Content Include="js\jquery.marquee.js" />
     <Content Include="js\jquery.nicescroll.js" />
@@ -181,12 +182,12 @@
     <Content Include="js\valida.2.1.6.min.js" />
     <Content Include="js\validator.min.js" />
     <Content Include="js\wow.min.js" />
-    <Content Include="login.aspx" />
     <Content Include="maps.html" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Pages\Login.aspx" />
     <Content Include="progressbar.html" />
     <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
     <None Include="Service References\ServiceReference1\configuration.svcinfo" />
@@ -234,12 +235,12 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="login.aspx.cs">
-      <DependentUpon>login.aspx</DependentUpon>
+    <Compile Include="Pages\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="login.aspx.designer.cs">
-      <DependentUpon>login.aspx</DependentUpon>
+    <Compile Include="Pages\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\ServiceReference1\Reference.cs">

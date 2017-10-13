@@ -31,7 +31,7 @@ $(document).ready(function () {
     $("#submitButton").on('click', function () {
         if ($.trim($("#userNameTxt").val()) != '' && $("#userNameTxt").val() != null) {
             if ($.trim($("#passwordTxt").val()) != '' && $("#passwordTxt").val() != null) {
-                AjaxCall("../login.aspx/doLogin?username=" + $("#userNameTxt").val() + "&password=" + $("#passwordTxt").val() + "&fnID=1"
+                AjaxCall("../Pages/Login.aspx?username=" + $("#userNameTxt").val() + "&password=" + $("#passwordTxt").val() + "&fnID=1"
                     , function (data) {
                             
                             eval(data);

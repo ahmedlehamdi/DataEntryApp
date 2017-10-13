@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="DataEntryApp.login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="DataEntryApp.Pages.Login" %>
+
 
 <!--
 Author: W3layouts
@@ -15,21 +16,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta name="keywords" content="Best Offers - Data Entry" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->
-<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="../css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- Custom CSS -->
-<link href="css/style.css" rel='stylesheet' type='text/css' />
+<link href="../css/style.css" rel='stylesheet' type='text/css' />
 <!-- font CSS -->
 <link rel="icon" href="favicon.ico" type="image/x-icon" >
 <!-- font-awesome icons -->
-<link href="css/font-awesome.css" rel="stylesheet"> 
+<link href="../../css/font-awesome.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <!--webfonts-->
-<link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
 <!--//webfonts--> 
 <!-- js -->
-<script src="js/jquery-1.11.1.min.js"></script>
-    <script src="js/app.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+<script src="../js/jquery-1.11.1.min.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/jquery.form-validator.min.js"></script>
 <!-- //js -->
 </head> 
 <body class="login-bg">
@@ -76,7 +77,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<a href="index.html">Go To Home</a>
 			</div>-->
 		<div class="copyright login-copyright">
-           <p>© 2018 Best Offer . All Rights Reserved . Design by <a href="http://w3layouts.com/">W3layouts</a></p>    
+           <p>© 2018 Best Offers . All Rights Reserved . Design by <a href="http://w3layouts.com/">W3layouts</a></p>    
 		</div>
 </body>
 </html>

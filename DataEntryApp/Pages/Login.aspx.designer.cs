@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataEntryApp {
+namespace DataEntryApp.Pages {
     
     
-    public partial class login {
+    public partial class Login {
     }
 }

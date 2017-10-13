@@ -8,13 +8,13 @@ using DataEntryApp.ServiceReference1;
 using DataEntryApp.ServiceIntegration;
 using DataEntryApp.ServiceIntegration.ServiceObjects;
 
-namespace DataEntryApp
+namespace DataEntryApp.Pages
 {
-    public partial class login : System.Web.UI.Page
+    public partial class Login : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(this.Request.QueryString["fnID"]  != null && this.Request.QueryString["fnID"] == "1")
+            if (this.Request.QueryString["fnID"] != null && this.Request.QueryString["fnID"] == "1")
             {
                 doLogin();
             }
