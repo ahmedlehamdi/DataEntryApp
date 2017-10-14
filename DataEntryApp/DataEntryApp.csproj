@@ -189,6 +189,8 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Pages\FlyerDetails.aspx" />
+    <Content Include="Pages\Home.aspx" />
     <Content Include="Pages\Login.aspx" />
     <Content Include="progressbar.html" />
     <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
@@ -237,6 +239,20 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\FlyerDetails.aspx.cs">
+      <DependentUpon>FlyerDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\FlyerDetails.aspx.designer.cs">
+      <DependentUpon>FlyerDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -251,6 +267,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="ServiceIntegration\ReturnObject.cs" />
+    <Compile Include="ServiceIntegration\ServiceObjects\FLyer.cs" />
     <Compile Include="ServiceIntegration\ServiceObjects\User.cs" />
     <Compile Include="ServiceIntegration\ServiceResponseUnMarshaller.cs" />
   </ItemGroup>

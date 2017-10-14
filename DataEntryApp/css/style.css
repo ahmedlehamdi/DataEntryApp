@@ -117,7 +117,7 @@ button#showLeftPush {
 	transition: all 0.3s ease;
 }
 .cbp-spmenu-push div#page-wrapper {
-    margin: 0em 19.3em 0 0;
+   /* margin: 0em 19.3em 0 0;*/
     transition: .3s all;
     -webkit-transition: .3s all;
     -moz-transition: .3s all;
@@ -571,7 +571,7 @@ i.icon_6{
 	font-size:4em;
 	margin:0;
 }
-.book-icon .fa-book,.book-icon .fa-rocket,.book-icon .fa-bar-chart,.book-icon .fa-user{
+.book-icon .fa-book,.book-icon .fa-rocket,.book-icon .fa-bar-chart,.book-icon .fa-user, .book-icon .fa-sign-out{
     font-size: 3.5em !important;
     width: 105px;
     height: 105px;
@@ -594,7 +594,7 @@ i.icon_6{
 	background:#FF9554;
 	color:#FFFFFF;
 }
-.book-icon .fa-user{
+.book-icon .fa-user, .book-icon .fa-sign-out{
     color: #FFC575;
     background: #495275;
 }
@@ -3133,21 +3133,21 @@ ul.nofitications-dropdown {
 	.fn-gantt .navigate .nav-slider-content {
 		width: 115px;
 	}
-	.book-icon .fa-book, .book-icon .fa-rocket, .book-icon .fa-bar-chart, .book-icon .fa-user {
+	.book-icon .fa-book, .book-icon .fa-rocket, .book-icon .fa-bar-chart, .book-icon .fa-user, .book-icon .fa-sign-out {
 		font-size: 3em !important;
 		width: 90px;
 		height: 90px;
 		line-height: 95px;
 	}
 	.grid-right p {
-		font-size: 3em;
+		font-size: 2em;
 	}
 	.header-left {
 		width: 33%;
 	}
 }
 @media (max-width:1366px){
-	.book-icon .fa-book, .book-icon .fa-rocket, .book-icon .fa-bar-chart, .book-icon .fa-user {
+	.book-icon .fa-book, .book-icon .fa-rocket, .book-icon .fa-bar-chart, .book-icon .fa-user, .book-icon .fa-sign-out {
 		font-size: 3em !important;
 		width: 80px;
 		height: 80px;
@@ -3190,7 +3190,7 @@ ul.nofitications-dropdown {
 	.ticket-grid{
 		width:50%;
 	}
-	.book-icon .fa-book, .book-icon .fa-rocket, .book-icon .fa-bar-chart, .book-icon .fa-user {
+	.book-icon .fa-book, .book-icon .fa-rocket, .book-icon .fa-bar-chart, .book-icon .fa-user , .book-icon .fa-sign-out{
 		font-size: 3.5em !important;
 		width: 105px;
 		height: 105px;
@@ -3349,7 +3349,7 @@ ul.nofitications-dropdown {
 	.search-box {
 		width: 25%;
 	}
-	.book-icon .fa-book, .book-icon .fa-rocket, .book-icon .fa-bar-chart, .book-icon .fa-user {
+	.book-icon .fa-book, .book-icon .fa-rocket, .book-icon .fa-bar-chart, .book-icon .fa-user , .book-icon .fa-sign-out{
 		font-size: 3em !important;
 		width: 85px;
 		height: 85px;
@@ -3877,4 +3877,17 @@ ul.nofitications-dropdown {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+
+.tickets
+{
+    cursor: pointer;
+}
+
+.view-icon{
+    width: 45px !important;
+    height: 45px !important;
+    font-size: 1.7em !important;
+    line-height: 46px !important;
 }

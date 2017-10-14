@@ -33,14 +33,14 @@ namespace DataEntryApp.Pages
                     if (output.statusCode == 0)
                     {
                         User user = ServiceResponseUnMarshaller<User>.deserializer(output.returnObj.ToString());
-                        this.Session["UserID"] = user.USER_ID;
+                        Session["UserID"] = user.USER_ID;
                         if (user.USER_TYPE == "Admin")
                         {
-                            HttpContext.Current.Response.Write("localStorage.setItem('UType', 'admin');localStorage.setItem('username', '" + user.USER_NAME + "');window.location = '../index.html';");
+                            HttpContext.Current.Response.Write("localStorage.setItem('UType', 'admin');localStorage.setItem('username', '" + user.USER_NAME + "');window.location = 'Home.aspx';");
                         }
                         else if (user.USER_TYPE == "DataEntry")
                         {
-                            HttpContext.Current.Response.Write("localStorage.setItem('UType', 'entry');localStorage.setItem('username', '" + user.USER_NAME + "');window.location = '../index.html';");
+                            HttpContext.Current.Response.Write("localStorage.setItem('UType', 'entry');localStorage.setItem('username', '" + user.USER_NAME + "');window.location = 'Home.aspx';");
                         }
                     }
                     else

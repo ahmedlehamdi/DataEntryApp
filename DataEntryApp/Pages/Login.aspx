@@ -83,5 +83,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<div class="copyright login-copyright">
            <p>© 2018 Best Offers . All Rights Reserved . Design by <a href="http://w3layouts.com/">W3layouts</a></p>    
 		</div>
+    <script>
+        $(document).ready(function () {
+            $.validate({
+                lang: 'en'
+            });
+        });
+    </script>
 </body>
 </html>
