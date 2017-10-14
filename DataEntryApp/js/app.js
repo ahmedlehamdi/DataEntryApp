@@ -78,17 +78,20 @@ function loadAllFlyers()
 function displayFlyerList(flyerList)
 {
     ShowMyLoginSpinner();
-    var template = '<tr> <th scope="row">#NUM#</th> <td>#NAME#</td><td>#IMAGE#</td><td>#STATUS#</td><td>#VIEW#</td><td>#EDIT#</td></tr>';
+    console.log(flyerList);
+    var template = '<tr> <th scope="row">#NUM#</th> <td>#NAME#</td><td>#IMAGE#</td><td>#STATUS#</td><td>#FROM#</td><td>#TO#</td><td>#VIEW#</td><td>#EDIT#</td></tr>';
     for (var i = 0; i < flyerList.length ; i++)
     {
         var xtemp = template;
-
+        console.log(flyerList[i]);
         xtemp = xtemp.replace('#NUM#', i + 1);
-        xtemp = xtemp.replace('#NAME#', flyerList[i].FRAME_NAME_EN);
+        xtemp = xtemp.replace('#NAME#', flyerList[i].FLYER_NAME_EN);
         xtemp = xtemp.replace('#IMAGE#', flyerList[i].FLYER_IMAGE_URL);
-        xtemp = xtemp.replace('#STATUS#', (flyerList[i].FLYER_APPROVED == 'false') ? "Not Approved" : "Approved");
-        xtemp = xtemp.replace('#VIEW#', '<div onclick="openFlyerDetails(' + flyerList[i].FLYER_ID + ')"><i class="fa-2x fa fa-search" style="cursor: pointer;"></i></div>');
-        xtemp = xtemp.replace('#EDIT#', '<div onclick="editFlyerDetails(' + flyerList[i].FLYER_ID + ')"><i class="fa-2x fa fa-pencil-square-o" style="cursor: pointer;"></i></div>');
+        xtemp = xtemp.replace('#STATUS#', (flyerList[i].FLYER_APPROVED == null) ? "Under Processing" : "Approved");
+        xtemp = xtemp.replace('#FROM#', (flyerList[i].FRAME_DATE_FROM).replace("T", " "));
+        xtemp = xtemp.replace('#TO#', (flyerList[i].FRAME_DATE_TO).replace("T", " "));
+        xtemp = xtemp.replace('#VIEW#', '<div onclick="openFlyerDetails(' + flyerList[i].FLYER_ID + ')"><i class="fa-2x fa fa-search" style="cursor: pointer;color: #67D3E0;"></i></div>');
+        xtemp = xtemp.replace('#EDIT#', (flyerList[i].FLYER_APPROVED == null) ? '<div onclick="editFlyerDetails(' + flyerList[i].FLYER_ID + ')"><i class="fa-2x fa fa-pencil-square-o" style="cursor: pointer;"></i></div>' : '<div><i class="fa-2x fa fa-check" style="color: #30BB74;" ></i></div>');
 
         $("#flyerTBody").append(xtemp);
     }

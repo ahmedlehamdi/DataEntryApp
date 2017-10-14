@@ -26,6 +26,12 @@ namespace DataEntryApp.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getAllFlyers", ReplyAction="http://tempuri.org/IService1/getAllFlyersResponse")]
         System.Threading.Tasks.Task<string> getAllFlyersAsync(int userID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getAllProviders", ReplyAction="http://tempuri.org/IService1/getAllProvidersResponse")]
+        string getAllProviders();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getAllProviders", ReplyAction="http://tempuri.org/IService1/getAllProvidersResponse")]
+        System.Threading.Tasks.Task<string> getAllProvidersAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -69,6 +75,14 @@ namespace DataEntryApp.ServiceReference1 {
         
         public System.Threading.Tasks.Task<string> getAllFlyersAsync(int userID) {
             return base.Channel.getAllFlyersAsync(userID);
+        }
+        
+        public string getAllProviders() {
+            return base.Channel.getAllProviders();
+        }
+        
+        public System.Threading.Tasks.Task<string> getAllProvidersAsync() {
+            return base.Channel.getAllProvidersAsync();
         }
     }
 }

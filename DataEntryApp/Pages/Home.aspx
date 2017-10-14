@@ -133,6 +133,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                         <th>Flyer Name</th>
                                         <th>Image</th>
                                         <th>Status</th>
+                                        <th>From</th>
+                                        <th>To</th>
                                         <th>View Products</th>
                                         <th>Edit</th>
                                     </tr>
@@ -143,6 +145,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                         <td>#NAME#</td>
                                         <td>#IMAGE#</td>
                                         <td>#STATUS#</td>
+                                        <td>#FROM#</td>
+                                        <td>#TO#</td>
                                         <td>#VIEW#</td>
                                         <td>#EDIT#</td>
                                     </tr-->

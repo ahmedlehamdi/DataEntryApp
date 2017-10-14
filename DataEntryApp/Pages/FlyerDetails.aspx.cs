@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataEntryApp.ServiceIntegration;
+using DataEntryApp.ServiceIntegration.ServiceObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -42,6 +44,16 @@ namespace DataEntryApp.Pages
 
         private void retrieveFlyerDetails(int flyerID)
         {
+            var flyersData = ServiceResponseUnMarshaller<List<FLyer>>.deserializer(Session["flyersList"].ToString());
+            FLyer selectedFlyer = null;
+            foreach(FLyer flyer in flyersData)
+            {
+                if (flyer.FLYER_ID == flyerID)
+                {
+                    selectedFlyer = flyer;
+                    break;
+                }
+            }
 
         }
     }

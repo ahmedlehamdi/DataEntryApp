@@ -18,6 +18,12 @@
   <wsdl:message name="IService1_getAllFlyers_OutputMessage">
     <wsdl:part name="parameters" element="tns:getAllFlyersResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_getAllProviders_InputMessage">
+    <wsdl:part name="parameters" element="tns:getAllProviders" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getAllProviders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getAllProvidersResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="checkLogin">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/checkLogin" message="tns:IService1_checkLogin_InputMessage" />
@@ -26,6 +32,10 @@
     <wsdl:operation name="getAllFlyers">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/getAllFlyers" message="tns:IService1_getAllFlyers_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/getAllFlyersResponse" message="tns:IService1_getAllFlyers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllProviders">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getAllProviders" message="tns:IService1_getAllProviders_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getAllProvidersResponse" message="tns:IService1_getAllProviders_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -41,6 +51,15 @@
     </wsdl:operation>
     <wsdl:operation name="getAllFlyers">
       <soap:operation soapAction="http://tempuri.org/IService1/getAllFlyers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllProviders">
+      <soap:operation soapAction="http://tempuri.org/IService1/getAllProviders" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

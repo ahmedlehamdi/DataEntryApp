@@ -50,6 +50,7 @@ namespace DataEntryApp.Pages
                 if (output.statusCode == 0)
                 {
                     HttpContext.Current.Response.Write("flyerList = " + output.returnObj + ";");
+                    Session["flyersList"] = output.returnObj;
                 }
                 else
                     HttpContext.Current.Response.Write("alert('" + output.returnObj + "');");
