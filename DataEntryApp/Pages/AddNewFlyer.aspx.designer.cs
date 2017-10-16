@@ -10,6 +10,6 @@
 namespace DataEntryApp.Pages {
     
     
-    public partial class FlyerDetails {
+    public partial class AddNewFlyer {
     }
 }

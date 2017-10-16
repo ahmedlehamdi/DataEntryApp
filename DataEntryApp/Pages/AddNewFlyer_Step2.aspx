@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FlyerDetails.aspx.cs" Inherits="DataEntryApp.Pages.FlyerDetails" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddNewFlyer_Step2.aspx.cs" Inherits="DataEntryApp.Pages.AddNewFlyer_Step2" %>
+
 
 <!--
 Author: W3layouts
@@ -95,89 +96,70 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <!--grids-->
                 <div class="grids">
                     <div class="progressbar-heading grids-heading">
-                        <h2>Add New Flyer</h2>
-                    </div>
-                    <div class="panel panel-widget forms-panel">
-                        <div class="forms">
-                            <div class="form-grids widget-shadow" data-example-id="basic-forms">
-                                <div class="form-title">
-                                    <h4>Basic Flyer Details :</h4>
-                                </div>
-                                <div class="form-body">
-                                    <form class="form-horizontal">
-                                        <div class="form-group">
-                                           <label class="col-sm-2 control-label">Name EN</label> 
-											<div class="col-sm-9">
-                                                <label class="control-label">Name EN</label> 
-											</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Name AR</label> 
-											<div class="col-sm-9">
-                                                <label class="control-label">Name AR</label> 
-											</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Image</label> 
-											<div class="col-sm-9">
-                                                <img src="" />
-											</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Provider / Retailer</label> 
-											<div class="col-sm-9">
-                                                <label class="control-label">Provider / Retailer</label> 
-											</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Offer Type</label> 
-											<div class="col-sm-9">
-                                                <label class="control-label">Offer Type</label> 
-											</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Offer Time Frame</label> 
-											<div class="col-sm-9">
-                                                <label class="control-label">Offer Time Frame</label> 
-											</div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+                        <h2>Add Product</h2>
+                        <div style="text-align:right; margin-bottom:10px;">
+                            <button type="button" class="btn btn-default btn-success btn-lg">Save Products</button>
+                            <button type="button" class="btn btn-default btn-info btn-lg" onclick="AddMoreProduct()">Add more Product</button>
                         </div>
                     </div>
-                    
+                   
                     <div class="panel panel-widget forms-panel">
                         <div class="forms">
                             <div class="form-grids widget-shadow" data-example-id="basic-forms">
                                 <div class="form-title">
-                                    <h4>List Of Products</h4>
+                                    <h4>Product Details :</h4>
+                                    <ul class="panel-tools">
+								        <li><a class="icon minimise-tool"><i class="fa fa-minus"></i></a></li>
+								        <li><a class="icon closed-tool"><i class="fa fa-times"></i></a></li>
+							          </ul>
                                 </div>
                                 <div class="form-body">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Product Name</th>
-                                                <th>Category</th>
-                                                <th>Type</th>
-                                                <th>Provider</th>
-                                                <th>Image</th>
-                                                <th>Specs</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="productTBody">
-                                            <tr>
-                                                <td>#</td>
-                                                <td>Product Name</td>
-                                                <td>Category</td>
-                                                <td>Type</td>
-                                                <td>Provider</td>
-                                                <td>Image</td>
-                                                <td>Specs</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <form>
+                                         <div class="form-group">
+                                            <label for="productNameEn">Name EN</label>
+                                            <input type="text" class="form-control" id="productNameEn" placeholder="Product Name En" onkeydown="$(this).parents('.forms').find('h4').text($(this).parents('.forms').find('h4').text() +  $(this).val());">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="productNameAr">Name AR</label>
+                                            <input type="text" class="form-control" id="productNameAr" placeholder="Product Name Ar">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="categoryDD">Category</label>
+                                            <select name="selector1" id="categoryDD" class="form-control1">
+                                                <option>Category 1</option>
+                                                <option>Category 2</option>
+                                                <option>Category 3</option>
+                                                <option>Category 4</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="productTypeDD">Type</label>
+                                            <select name="selector1" id="productTypeDD" class="form-control1">
+                                                <option>Type 1</option>
+                                                <option>Type 2</option>
+                                                <option>Type 3</option>
+                                                <option>Type 4</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="providerDD">Provider</label>
+                                            <select name="selector1" id="providerDD" class="form-control1">
+                                                <option>Provider 1</option>
+                                                <option>Provider 2</option>
+                                                <option>Provider 3</option>
+                                                <option>Provider 4</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="productImageFile">Image</label>
+                                            <input type="file" id="productImageFile">
+                                            <p class="help-block">Upload Product Image - Available Formats : pdf/png/jpg</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="productSpecs">Product Specs</label>
+                                            <input type="text" class="form-control" id="productSpecs" placeholder="Product Specs">
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -227,5 +209,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script src="/js/jquery.nicescroll.js"></script>
     <script src="/js/scripts.js"></script>
     <!--//scrolling js-->
+    <script src="/js/app.js"></script>
 </body>
 </html>
+

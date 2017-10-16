@@ -117,3 +117,21 @@ function openFlyerDetails(flyerID)
     arr.push(flyerID);
     openPageWithPostData("/Pages/FlyerDetails.aspx", arr);
 }
+
+var productCount = 0;
+function AddMoreProduct()
+{
+    var template = '<div class="panel panel-widget forms-panel" id="product_' + productCount  + '"> <div class="forms"> <div class="form-grids widget-shadow" data-example-id="basic-forms"> <div class="form-title"> <h4>Product Details :</h4> <ul class="panel-tools"> <li><a class="icon minimise-tool"><i class="fa fa-minus"></i></a></li><li><a class="icon closed-tool"><i class="fa fa-times"></i></a></li></ul> </div><div class="form-body"> <form> <div class="form-group"> <label for="productNameEn">Name EN</label> <input type="text" class="form-control" id="productNameEn" onkeydown="$(this).parents(\'.forms\').find(\'h4\').text($(this).parents(\'.forms\').find(\'h4\').text() +  $(this).val());" placeholder="Product Name En"> </div><div class="form-group"> <label for="productNameAr">Name AR</label> <input type="text" class="form-control" id="productNameAr" placeholder="Product Name Ar"> </div><div class="form-group"> <label for="categoryDD">Category</label> <select name="selector1" id="categoryDD" class="form-control1"> <option>Category 1</option> <option>Category 2</option> <option>Category 3</option> <option>Category 4</option> </select> </div><div class="form-group"> <label for="productTypeDD">Type</label> <select name="selector1" id="productTypeDD" class="form-control1"> <option>Type 1</option> <option>Type 2</option> <option>Type 3</option> <option>Type 4</option> </select> </div><div class="form-group"> <label for="providerDD">Provider</label> <select name="selector1" id="providerDD" class="form-control1"> <option>Provider 1</option> <option>Provider 2</option> <option>Provider 3</option> <option>Provider 4</option> </select> </div><div class="form-group"> <label for="productImageFile">Image</label> <input type="file" id="productImageFile"> <p class="help-block">Upload Product Image - Available Formats : pdf/png/jpg</p></div><div class="form-group"> <label for="productSpecs">Product Specs</label> <input type="text" class="form-control" id="productSpecs" placeholder="Product Specs"> </div></form> </div></div></div></div>';
+    $(".grids").append(template);
+    $("#product_" + productCount + " .panel-tools .minimise-tool").click(function (event) {
+        $(this).parents(".forms").find(".form-body").slideToggle(100);
+
+        return false;
+    });
+    $("#product_" + productCount + " .panel-tools .closed-tool").click(function (event) {
+        $(this).parents(".panel").fadeToggle(400).remove();
+
+        return false;
+    });
+    productCount++;
+}

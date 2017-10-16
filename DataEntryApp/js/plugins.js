@@ -48,24 +48,24 @@ $(document).ready(function(){
 PANEL TOOLS
 ===========================================================*/
 /* Minimize */
-//$(document).ready(function(){
-//  $(".panel-tools .minimise-tool").click(function(event){
-//  $(this).parents(".panel").find(".panel-body").slideToggle(100);
+$(document).ready(function(){
+  $(".panel-tools .minimise-tool").click(function(event){
+      $(this).parents(".forms").find(".form-body").slideToggle(100);
 
-//  return false;
-//}); 
+  return false;
+}); 
 
-// }); 
+ }); 
 
 /* Close */
-//$(document).ready(function(){
-//  $(".panel-tools .closed-tool").click(function(event){
-//  $(this).parents(".panel").fadeToggle(400);
+$(document).ready(function(){
+  $(".panel-tools .closed-tool").click(function(event){
+      $(this).parents(".panel").fadeToggle(400).remove();
 
-//  return false;
-//}); 
+  return false;
+}); 
 
-// }); 
+ }); 
 
  /* Search */
 //$(document).ready(function(){

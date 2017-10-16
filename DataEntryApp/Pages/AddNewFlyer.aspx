@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FlyerDetails.aspx.cs" Inherits="DataEntryApp.Pages.FlyerDetails" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddNewFlyer.aspx.cs" Inherits="DataEntryApp.Pages.AddNewFlyer" %>
 
 <!--
 Author: W3layouts
@@ -104,80 +104,49 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     <h4>Basic Flyer Details :</h4>
                                 </div>
                                 <div class="form-body">
-                                    <form class="form-horizontal">
+                                    <form>
                                         <div class="form-group">
-                                           <label class="col-sm-2 control-label">Name EN</label> 
-											<div class="col-sm-9">
-                                                <label class="control-label">Name EN</label> 
-											</div>
+                                            <label for="flyerNameEn">Name EN</label>
+                                            <input type="text" class="form-control" id="flyerNameEn" placeholder="Flyer Name En">
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Name AR</label> 
-											<div class="col-sm-9">
-                                                <label class="control-label">Name AR</label> 
-											</div>
+                                            <label for="flyerNameAr">Name AR</label>
+                                            <input type="text" class="form-control" id="flyerNameAr" placeholder="Flyer Name Ar">
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Image</label> 
-											<div class="col-sm-9">
-                                                <img src="" />
-											</div>
+                                            <label for="flyerImageFile">Image</label>
+                                            <input type="file" id="flyerImageFile">
+                                            <p class="help-block">Upload Flyer Image - Available Formats : pdf/png/jpg</p>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Provider / Retailer</label> 
-											<div class="col-sm-9">
-                                                <label class="control-label">Provider / Retailer</label> 
-											</div>
+                                            <label for="providerDD">Provider / Retailer</label>
+                                            <select name="selector1" id="providerDD" class="form-control1">
+                                                <option>Provider 1</option>
+                                                <option>Provider 2</option>
+                                                <option>Provider 3</option>
+                                                <option>Provider 4</option>
+                                            </select>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Offer Type</label> 
-											<div class="col-sm-9">
-                                                <label class="control-label">Offer Type</label> 
-											</div>
+                                            <label for="offerTypeDD">Offer Type</label>
+                                            <select name="selector1" id="offerTypeDD" class="form-control1">
+                                                <option>Offer Type 1</option>
+                                                <option>Offer Type 2</option>
+                                                <option>Offer Type 3</option>
+                                                <option>Offer Type 4</option>
+                                            </select>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Offer Time Frame</label> 
-											<div class="col-sm-9">
-                                                <label class="control-label">Offer Time Frame</label> 
-											</div>
+                                            <label for="timeFrameDD">Offer Time Frame</label>
+                                            <select name="selector1" id="timeFrameDD" class="form-control1">
+                                                <option>Time Frame 1</option>
+                                                <option>Time Frame 2</option>
+                                                <option>Time Frame 3</option>
+                                                <option>Time Frame 4</option>
+                                            </select>
                                         </div>
+                                        <button type="button" class="btn btn-default btn-success btn-lg" onclick="window.location='/Pages/AddNewFlyer_Step2.aspx'">Add Products</button>
                                     </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="panel panel-widget forms-panel">
-                        <div class="forms">
-                            <div class="form-grids widget-shadow" data-example-id="basic-forms">
-                                <div class="form-title">
-                                    <h4>List Of Products</h4>
-                                </div>
-                                <div class="form-body">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Product Name</th>
-                                                <th>Category</th>
-                                                <th>Type</th>
-                                                <th>Provider</th>
-                                                <th>Image</th>
-                                                <th>Specs</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="productTBody">
-                                            <tr>
-                                                <td>#</td>
-                                                <td>Product Name</td>
-                                                <td>Category</td>
-                                                <td>Type</td>
-                                                <td>Provider</td>
-                                                <td>Image</td>
-                                                <td>Specs</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
                                 </div>
                             </div>
                         </div>

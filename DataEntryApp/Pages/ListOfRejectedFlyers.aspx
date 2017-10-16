@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="DataEntryApp.Pages.Home" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ListOfRejectedFlyers.aspx.cs" Inherits="DataEntryApp.Pages.ListOfRejectedFlyers" %>
 
 <!--
 Author: W3layouts
@@ -72,59 +72,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<!-- main content start-->
 		<div id="page-wrapper">
 			<div class="main-page">
-			
-				<!-- four-grids -->
-				<div class="row four-grids">
-					<div class="col-md-4 ticket-grid">
-						<div class="tickets" onclick="window.location='/Pages/AddNewFlyer.aspx';">
-							<div class="grid-left">
-								<div class="book-icon">
-									<i class="fa fa-book"></i>
-								</div>
-							</div>
-							<div class="grid-right">
-								<h3>Offers<span>Flyer</span></h3>
-								<p>Add New</p>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
-					<div class="col-md-4 ticket-grid">
-						<div class="tickets">
-							<div class="grid-left">
-								<div class="book-icon">
-									<i class="fa fa-rocket"></i>
-								</div>
-							</div>
-							<div class="grid-right">
-								<h3>View <span>Flyers</span></h3>
-								<p>Rejected</p>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
-					<div class="col-md-4 ticket-grid">
-						<div class="tickets">
-							<div class="grid-left">
-								<div class="book-icon">
-									<i class="fa fa-sign-out"></i>
-								</div>
-							</div>
-							<div class="grid-right">
-								<h3>Welcome<span id="uName"></span></h3>
-								<p>Sign-out</p>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<!-- //four-grids -->
 				<!--row-->
 				<div class="grids">
                     <div class="panel panel-widget">
                         <div class="tables">
-                            <h4>List Of Flyers:</h4>
+                            <h4>List Of Rejected Flyers:</h4>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -134,21 +86,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         <th>Status</th>
                                         <th>From</th>
                                         <th>To</th>
-                                        <th>View Products</th>
-                                        <th>Edit</th>
                                     </tr>
                                 </thead>
                                 <tbody id="flyerTBody">
-                                    <!--tr>
+                                    <tr>
                                         <th scope="row">#NUM#</th>
                                         <td>#NAME#</td>
                                         <td>#IMAGE#</td>
                                         <td>#STATUS#</td>
                                         <td>#FROM#</td>
                                         <td>#TO#</td>
-                                        <td>#VIEW#</td>
-                                        <td>#EDIT#</td>
-                                    </tr-->
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -203,9 +151,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<script src="../js/app.js"></script>
 		<script>
 		    $(document).ready(function () {
-		        var uname = localStorage.getItem('username');
-		        $("#uName").text(uname);
-		        loadAllFlyers();
 		    });
 			
 		</script>
