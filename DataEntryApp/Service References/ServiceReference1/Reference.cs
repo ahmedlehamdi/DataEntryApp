@@ -9,7 +9,339 @@
 //------------------------------------------------------------------------------
 
 namespace DataEntryApp.ServiceReference1 {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OFFER_FLYER", Namespace="http://schemas.datacontract.org/2004/07/DataEntryDAL.DataAccessLogic")]
+    [System.SerializableAttribute()]
+    internal partial class OFFER_FLYER : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ADMIN_IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> FLYER_APPROVEDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> FLYER_EXPIREDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int FLYER_IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FLYER_IMAGE_URLField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FLYER_NAME_ARField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FLYER_NAME_ENField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int FRAME_IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int OFFER_TYPE_IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PROVIDER_IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int USER_IDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal System.Nullable<int> ADMIN_ID {
+            get {
+                return this.ADMIN_IDField;
+            }
+            set {
+                if ((this.ADMIN_IDField.Equals(value) != true)) {
+                    this.ADMIN_IDField = value;
+                    this.RaisePropertyChanged("ADMIN_ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal System.Nullable<bool> FLYER_APPROVED {
+            get {
+                return this.FLYER_APPROVEDField;
+            }
+            set {
+                if ((this.FLYER_APPROVEDField.Equals(value) != true)) {
+                    this.FLYER_APPROVEDField = value;
+                    this.RaisePropertyChanged("FLYER_APPROVED");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal System.Nullable<bool> FLYER_EXPIRED {
+            get {
+                return this.FLYER_EXPIREDField;
+            }
+            set {
+                if ((this.FLYER_EXPIREDField.Equals(value) != true)) {
+                    this.FLYER_EXPIREDField = value;
+                    this.RaisePropertyChanged("FLYER_EXPIRED");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal int FLYER_ID {
+            get {
+                return this.FLYER_IDField;
+            }
+            set {
+                if ((this.FLYER_IDField.Equals(value) != true)) {
+                    this.FLYER_IDField = value;
+                    this.RaisePropertyChanged("FLYER_ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string FLYER_IMAGE_URL {
+            get {
+                return this.FLYER_IMAGE_URLField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FLYER_IMAGE_URLField, value) != true)) {
+                    this.FLYER_IMAGE_URLField = value;
+                    this.RaisePropertyChanged("FLYER_IMAGE_URL");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string FLYER_NAME_AR {
+            get {
+                return this.FLYER_NAME_ARField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FLYER_NAME_ARField, value) != true)) {
+                    this.FLYER_NAME_ARField = value;
+                    this.RaisePropertyChanged("FLYER_NAME_AR");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string FLYER_NAME_EN {
+            get {
+                return this.FLYER_NAME_ENField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FLYER_NAME_ENField, value) != true)) {
+                    this.FLYER_NAME_ENField = value;
+                    this.RaisePropertyChanged("FLYER_NAME_EN");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal int FRAME_ID {
+            get {
+                return this.FRAME_IDField;
+            }
+            set {
+                if ((this.FRAME_IDField.Equals(value) != true)) {
+                    this.FRAME_IDField = value;
+                    this.RaisePropertyChanged("FRAME_ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal int OFFER_TYPE_ID {
+            get {
+                return this.OFFER_TYPE_IDField;
+            }
+            set {
+                if ((this.OFFER_TYPE_IDField.Equals(value) != true)) {
+                    this.OFFER_TYPE_IDField = value;
+                    this.RaisePropertyChanged("OFFER_TYPE_ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal int PROVIDER_ID {
+            get {
+                return this.PROVIDER_IDField;
+            }
+            set {
+                if ((this.PROVIDER_IDField.Equals(value) != true)) {
+                    this.PROVIDER_IDField = value;
+                    this.RaisePropertyChanged("PROVIDER_ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal int USER_ID {
+            get {
+                return this.USER_IDField;
+            }
+            set {
+                if ((this.USER_IDField.Equals(value) != true)) {
+                    this.USER_IDField = value;
+                    this.RaisePropertyChanged("USER_ID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TIME_FRAME", Namespace="http://schemas.datacontract.org/2004/07/DataEntryDAL.DataAccessLogic")]
+    [System.SerializableAttribute()]
+    internal partial class TIME_FRAME : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> FRAME_DATE_FROMField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> FRAME_DATE_TOField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int FRAME_IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FRAME_NAME_ARField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FRAME_NAME_ENField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> FRAME_TYPE_IDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal System.Nullable<System.DateTime> FRAME_DATE_FROM {
+            get {
+                return this.FRAME_DATE_FROMField;
+            }
+            set {
+                if ((this.FRAME_DATE_FROMField.Equals(value) != true)) {
+                    this.FRAME_DATE_FROMField = value;
+                    this.RaisePropertyChanged("FRAME_DATE_FROM");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal System.Nullable<System.DateTime> FRAME_DATE_TO {
+            get {
+                return this.FRAME_DATE_TOField;
+            }
+            set {
+                if ((this.FRAME_DATE_TOField.Equals(value) != true)) {
+                    this.FRAME_DATE_TOField = value;
+                    this.RaisePropertyChanged("FRAME_DATE_TO");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal int FRAME_ID {
+            get {
+                return this.FRAME_IDField;
+            }
+            set {
+                if ((this.FRAME_IDField.Equals(value) != true)) {
+                    this.FRAME_IDField = value;
+                    this.RaisePropertyChanged("FRAME_ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string FRAME_NAME_AR {
+            get {
+                return this.FRAME_NAME_ARField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FRAME_NAME_ARField, value) != true)) {
+                    this.FRAME_NAME_ARField = value;
+                    this.RaisePropertyChanged("FRAME_NAME_AR");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string FRAME_NAME_EN {
+            get {
+                return this.FRAME_NAME_ENField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FRAME_NAME_ENField, value) != true)) {
+                    this.FRAME_NAME_ENField = value;
+                    this.RaisePropertyChanged("FRAME_NAME_EN");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal System.Nullable<int> FRAME_TYPE_ID {
+            get {
+                return this.FRAME_TYPE_IDField;
+            }
+            set {
+                if ((this.FRAME_TYPE_IDField.Equals(value) != true)) {
+                    this.FRAME_TYPE_IDField = value;
+                    this.RaisePropertyChanged("FRAME_TYPE_ID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IService1")]
@@ -32,6 +364,24 @@ namespace DataEntryApp.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getAllProviders", ReplyAction="http://tempuri.org/IService1/getAllProvidersResponse")]
         System.Threading.Tasks.Task<string> getAllProvidersAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getAllOfferTypes", ReplyAction="http://tempuri.org/IService1/getAllOfferTypesResponse")]
+        string getAllOfferTypes();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getAllOfferTypes", ReplyAction="http://tempuri.org/IService1/getAllOfferTypesResponse")]
+        System.Threading.Tasks.Task<string> getAllOfferTypesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getAllTimeFrames", ReplyAction="http://tempuri.org/IService1/getAllTimeFramesResponse")]
+        string getAllTimeFrames();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getAllTimeFrames", ReplyAction="http://tempuri.org/IService1/getAllTimeFramesResponse")]
+        System.Threading.Tasks.Task<string> getAllTimeFramesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addNewFlyerBasicData", ReplyAction="http://tempuri.org/IService1/addNewFlyerBasicDataResponse")]
+        string addNewFlyerBasicData(DataEntryApp.ServiceReference1.OFFER_FLYER flyer, DataEntryApp.ServiceReference1.TIME_FRAME frame);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addNewFlyerBasicData", ReplyAction="http://tempuri.org/IService1/addNewFlyerBasicDataResponse")]
+        System.Threading.Tasks.Task<string> addNewFlyerBasicDataAsync(DataEntryApp.ServiceReference1.OFFER_FLYER flyer, DataEntryApp.ServiceReference1.TIME_FRAME frame);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -83,6 +433,30 @@ namespace DataEntryApp.ServiceReference1 {
         
         public System.Threading.Tasks.Task<string> getAllProvidersAsync() {
             return base.Channel.getAllProvidersAsync();
+        }
+        
+        public string getAllOfferTypes() {
+            return base.Channel.getAllOfferTypes();
+        }
+        
+        public System.Threading.Tasks.Task<string> getAllOfferTypesAsync() {
+            return base.Channel.getAllOfferTypesAsync();
+        }
+        
+        public string getAllTimeFrames() {
+            return base.Channel.getAllTimeFrames();
+        }
+        
+        public System.Threading.Tasks.Task<string> getAllTimeFramesAsync() {
+            return base.Channel.getAllTimeFramesAsync();
+        }
+        
+        public string addNewFlyerBasicData(DataEntryApp.ServiceReference1.OFFER_FLYER flyer, DataEntryApp.ServiceReference1.TIME_FRAME frame) {
+            return base.Channel.addNewFlyerBasicData(flyer, frame);
+        }
+        
+        public System.Threading.Tasks.Task<string> addNewFlyerBasicDataAsync(DataEntryApp.ServiceReference1.OFFER_FLYER flyer, DataEntryApp.ServiceReference1.TIME_FRAME frame) {
+            return base.Channel.addNewFlyerBasicDataAsync(flyer, frame);
         }
     }
 }

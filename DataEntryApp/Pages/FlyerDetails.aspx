@@ -94,8 +94,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="main-page">
                 <!--grids-->
                 <div class="grids">
-                    <div class="progressbar-heading grids-heading">
-                        <h2>Add New Flyer</h2>
+                    <div class="row">
+                        <div class="progressbar-heading grids-heading col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                            <h2>Flyer Details</h2>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <button type="button" class="btn btn-default btn-info btn-lg" onclick="window.location='/Pages/Home.aspx'">
+                                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                                Back To Home
+                            </button>
+                        </div>
                     </div>
                     <div class="panel panel-widget forms-panel">
                         <div class="forms">

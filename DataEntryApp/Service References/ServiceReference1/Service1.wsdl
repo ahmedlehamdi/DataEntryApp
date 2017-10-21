@@ -4,6 +4,7 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:1876/Service1.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:1876/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:1876/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DataEntryDAL.DataAccessLogic" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IService1_checkLogin_InputMessage">
@@ -24,6 +25,24 @@
   <wsdl:message name="IService1_getAllProviders_OutputMessage">
     <wsdl:part name="parameters" element="tns:getAllProvidersResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_getAllOfferTypes_InputMessage">
+    <wsdl:part name="parameters" element="tns:getAllOfferTypes" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getAllOfferTypes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getAllOfferTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getAllTimeFrames_InputMessage">
+    <wsdl:part name="parameters" element="tns:getAllTimeFrames" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getAllTimeFrames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getAllTimeFramesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_addNewFlyerBasicData_InputMessage">
+    <wsdl:part name="parameters" element="tns:addNewFlyerBasicData" />
+  </wsdl:message>
+  <wsdl:message name="IService1_addNewFlyerBasicData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addNewFlyerBasicDataResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="checkLogin">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/checkLogin" message="tns:IService1_checkLogin_InputMessage" />
@@ -36,6 +55,18 @@
     <wsdl:operation name="getAllProviders">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/getAllProviders" message="tns:IService1_getAllProviders_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/getAllProvidersResponse" message="tns:IService1_getAllProviders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllOfferTypes">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getAllOfferTypes" message="tns:IService1_getAllOfferTypes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getAllOfferTypesResponse" message="tns:IService1_getAllOfferTypes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllTimeFrames">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getAllTimeFrames" message="tns:IService1_getAllTimeFrames_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getAllTimeFramesResponse" message="tns:IService1_getAllTimeFrames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="addNewFlyerBasicData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/addNewFlyerBasicData" message="tns:IService1_addNewFlyerBasicData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/addNewFlyerBasicDataResponse" message="tns:IService1_addNewFlyerBasicData_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -60,6 +91,33 @@
     </wsdl:operation>
     <wsdl:operation name="getAllProviders">
       <soap:operation soapAction="http://tempuri.org/IService1/getAllProviders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllOfferTypes">
+      <soap:operation soapAction="http://tempuri.org/IService1/getAllOfferTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllTimeFrames">
+      <soap:operation soapAction="http://tempuri.org/IService1/getAllTimeFrames" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addNewFlyerBasicData">
+      <soap:operation soapAction="http://tempuri.org/IService1/addNewFlyerBasicData" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

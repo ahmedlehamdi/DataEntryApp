@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DataEntryDAL.DataAccessLogic" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DataEntryDAL.DataAccessLogic" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="OFFER_FLYER">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ADMIN_ID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="FLYER_APPROVED" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="FLYER_EXPIRED" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="FLYER_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="FLYER_IMAGE_URL" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FLYER_NAME_AR" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FLYER_NAME_EN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FRAME_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="OFFER_TYPE_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="PROVIDER_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="USER_ID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OFFER_FLYER" nillable="true" type="tns:OFFER_FLYER" />
+  <xs:complexType name="TIME_FRAME">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FRAME_DATE_FROM" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FRAME_DATE_TO" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FRAME_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="FRAME_NAME_AR" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FRAME_NAME_EN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FRAME_TYPE_ID" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TIME_FRAME" nillable="true" type="tns:TIME_FRAME" />
+</xs:schema>

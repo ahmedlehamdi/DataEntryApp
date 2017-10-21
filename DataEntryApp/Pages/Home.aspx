@@ -104,7 +104,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						</div>
 					</div>
 					<div class="col-md-4 ticket-grid">
-						<div class="tickets">
+						<div class="tickets" onclick="logOut();">
 							<div class="grid-left">
 								<div class="book-icon">
 									<i class="fa fa-sign-out"></i>

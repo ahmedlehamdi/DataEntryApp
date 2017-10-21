@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:1876/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DataEntryDAL.DataAccessLogic" />
   <xs:element name="checkLogin">
     <xs:complexType>
       <xs:sequence>
@@ -38,6 +39,45 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="getAllProvidersResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getAllOfferTypes">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getAllOfferTypesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="getAllOfferTypesResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getAllTimeFrames">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getAllTimeFramesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="getAllTimeFramesResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addNewFlyerBasicData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/DataEntryDAL.DataAccessLogic" minOccurs="0" name="flyer" nillable="true" type="q1:OFFER_FLYER" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DataEntryDAL.DataAccessLogic" minOccurs="0" name="frame" nillable="true" type="q2:TIME_FRAME" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addNewFlyerBasicDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="addNewFlyerBasicDataResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

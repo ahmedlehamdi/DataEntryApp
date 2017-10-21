@@ -18,6 +18,10 @@ namespace DataEntryApp.Pages
             {
                 doLogin();
             }
+            if (this.Request.QueryString["fnID"] != null && this.Request.QueryString["fnID"] == "3")
+            {
+                doLogout();
+            }
         }
 
         protected void doLogin()
@@ -60,6 +64,19 @@ namespace DataEntryApp.Pages
                     HttpContext.Current.Response.SuppressContent = true;
                 }
             }
+        }
+
+        protected void doLogout()
+        {
+            HttpContext.Current.Response.Clear();
+            HttpContext.Current.Response.ClearHeaders();
+            HttpContext.Current.Response.ClearContent();
+            Session["UserID"] = null;
+            Session.RemoveAll();
+            Session.Abandon();
+            HttpContext.Current.Response.Flush();
+            HttpContext.Current.ApplicationInstance.CompleteRequest();
+            HttpContext.Current.Response.SuppressContent = true;
         }
     }
 }

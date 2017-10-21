@@ -118,6 +118,7 @@
     <Content Include="css\hover.css" />
     <Content Include="css\jqcandlestick.css" />
     <Content Include="css\jquery-loading.min.css" />
+    <Content Include="css\jquery.datetimepicker.min.css" />
     <Content Include="css\jqvmap.css" />
     <Content Include="css\style.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -161,6 +162,7 @@
     <Content Include="js\gmaps.js" />
     <Content Include="js\jquery-1.11.1.min.js" />
     <Content Include="js\jquery-loading.js" />
+    <Content Include="js\jquery.datetimepicker.full.min.js" />
     <Content Include="js\jquery.flot.errorbars.js" />
     <Content Include="js\jquery.flot.js" />
     <Content Include="js\jquery.flot.navigate.js" />
@@ -222,6 +224,9 @@
     <Content Include="maps\risk.json" />
     <Content Include="maps\usofa.json" />
     <None Include="Service References\ServiceReference1\Service1.wsdl" />
+    <None Include="Service References\ServiceReference1\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServiceReference1\Service11.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -292,6 +297,7 @@
     </Compile>
     <Compile Include="ServiceIntegration\ReturnObject.cs" />
     <Compile Include="ServiceIntegration\ServiceObjects\FLyer.cs" />
+    <Compile Include="ServiceIntegration\ServiceObjects\PROVIDER.cs" />
     <Compile Include="ServiceIntegration\ServiceObjects\User.cs" />
     <Compile Include="ServiceIntegration\ServiceResponseUnMarshaller.cs" />
   </ItemGroup>
@@ -300,6 +306,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ServiceReference1\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UploadedImages\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

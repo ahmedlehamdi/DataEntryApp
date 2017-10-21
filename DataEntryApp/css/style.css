@@ -3891,3 +3891,8 @@ ul.nofitications-dropdown {
     font-size: 1.7em !important;
     line-height: 46px !important;
 }
+
+button i
+{
+    margin: 0px 5px;
+}
