@@ -27,4 +27,56 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="TIME_FRAME" nillable="true" type="tns:TIME_FRAME" />
+  <xs:complexType name="PRODUCT">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FLYER_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="PRODUCT_ATTR_1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PRODUCT_ATTR_10" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PRODUCT_ATTR_2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PRODUCT_ATTR_3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PRODUCT_ATTR_4" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PRODUCT_ATTR_5" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PRODUCT_ATTR_6" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PRODUCT_ATTR_7" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PRODUCT_ATTR_8" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PRODUCT_ATTR_9" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PRODUCT_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="PRODUCT_IMAGE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PRODUCT_NAME_AR" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PRODUCT_NAME_EN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PRODUCT_TAGS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PROVIDER_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="SPECS_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="TYPE_ID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PRODUCT" nillable="true" type="tns:PRODUCT" />
+  <xs:complexType name="PRODUCT_SPEC">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SPECS_ATTR_1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SPECS_ATTR_10" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SPECS_ATTR_2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SPECS_ATTR_3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SPECS_ATTR_4" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SPECS_ATTR_5" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SPECS_ATTR_6" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SPECS_ATTR_7" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SPECS_ATTR_8" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SPECS_ATTR_9" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SPECS_ID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PRODUCT_SPEC" nillable="true" type="tns:PRODUCT_SPEC" />
+  <xs:complexType name="ArrayOfPRODUCT">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PRODUCT" nillable="true" type="tns:PRODUCT" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPRODUCT" nillable="true" type="tns:ArrayOfPRODUCT" />
+  <xs:complexType name="ArrayOfPRODUCT_SPEC">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PRODUCT_SPEC" nillable="true" type="tns:PRODUCT_SPEC" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPRODUCT_SPEC" nillable="true" type="tns:ArrayOfPRODUCT_SPEC" />
 </xs:schema>

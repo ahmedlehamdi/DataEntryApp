@@ -81,4 +81,60 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="getAllProductCategories">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getAllProductCategoriesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="getAllProductCategoriesResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getAllCategoryTypes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="categoryID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getAllCategoryTypesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="getAllCategoryTypesResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="submitFlyerProduct">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DataEntryDAL.DataAccessLogic" minOccurs="0" name="product" nillable="true" type="q3:PRODUCT" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DataEntryDAL.DataAccessLogic" minOccurs="0" name="specs" nillable="true" type="q4:PRODUCT_SPEC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="submitFlyerProductResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="submitFlyerProductResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="submitFlyerAllProducts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/DataEntryDAL.DataAccessLogic" minOccurs="0" name="products" nillable="true" type="q5:ArrayOfPRODUCT" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/DataEntryDAL.DataAccessLogic" minOccurs="0" name="specs" nillable="true" type="q6:ArrayOfPRODUCT_SPEC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="submitFlyerAllProductsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="submitFlyerAllProductsResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

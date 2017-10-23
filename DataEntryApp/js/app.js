@@ -1,6 +1,6 @@
 ﻿
 var productCount = 0;
-var providersList = '', offersTypesList = '', timeFramesList = '';
+var providersList = '', offersTypesList = '', timeFramesList = '', productCategories = '', catTypes = '';
 
 function AjaxCall(PageURL, CallBackFunc) {
     try {
@@ -133,8 +133,8 @@ function openFlyerDetails(flyerID)
 
 function AddMoreProduct()
 {
-    var template = '<div class="panel panel-widget forms-panel" id="product_' + productCount  + '"> <div class="forms"> <div class="form-grids widget-shadow" data-example-id="basic-forms"> <div class="form-title"> <h4>Product Details :</h4> <ul class="panel-tools"> <li><a class="icon minimise-tool"><i class="fa fa-minus"></i></a></li><li><a class="icon closed-tool"><i class="fa fa-times"></i></a></li></ul> </div><div class="form-body"> <form> <div class="form-group"> <label for="productNameEn">Name EN</label> <input type="text" class="form-control" id="productNameEn" onkeydown="$(this).parents(\'.forms\').find(\'h4\').text($(this).parents(\'.forms\').find(\'h4\').text() +  $(this).val());" placeholder="Product Name En"> </div><div class="form-group"> <label for="productNameAr">Name AR</label> <input type="text" class="form-control" id="productNameAr" placeholder="Product Name Ar"> </div><div class="form-group"> <label for="categoryDD">Category</label> <select name="selector1" id="categoryDD" class="form-control1"> <option>Category 1</option> <option>Category 2</option> <option>Category 3</option> <option>Category 4</option> </select> </div><div class="form-group"> <label for="productTypeDD">Type</label> <select name="selector1" id="productTypeDD" class="form-control1"> <option>Type 1</option> <option>Type 2</option> <option>Type 3</option> <option>Type 4</option> </select> </div><div class="form-group"> <label for="providerDD">Provider</label> <select name="selector1" id="providerDD" class="form-control1"> <option>Provider 1</option> <option>Provider 2</option> <option>Provider 3</option> <option>Provider 4</option> </select> </div><div class="form-group"> <label for="productImageFile">Image</label> <input type="file" id="productImageFile"> <p class="help-block">Upload Product Image - Available Formats : pdf/png/jpg</p></div><div class="form-group"> <label for="productSpecs">Product Specs</label> <input type="text" class="form-control" id="productSpecs" placeholder="Product Specs"> </div></form> </div></div></div></div>';
-    $(".grids").append(template);
+    var template = '<div class="panel panel-widget forms-panel" id="product_' + productCount + '"> <div class="forms"> <div class="form-grids widget-shadow" data-example-id="basic-forms"> <div class="form-title"> <h4>Product Details :</h4> <ul class="panel-tools"> <li><a class="icon minimise-tool"><i class="fa fa-minus"></i></a></li><li><a class="icon closed-tool"><i class="fa fa-times"></i></a></li></ul> </div><div class="form-body"> <form> <div class="form-group"> <label for="productNameEn">Name EN</label> <input type="text" class="form-control" id="productNameEn" placeholder="Product Name En" onkeydown="$(this).parents(\'.forms\').find(\'h4\').text(\'Product Details : \' + $(this).val());"> </div><div class="form-group"> <label for="productNameAr">Name AR</label> <input type="text" class="form-control" id="productNameAr" placeholder="Product Name Ar"> </div><div class="form-group"> <label for="categoryDD">Category</label> <select name="categoryDD" id="categoryDD" class="form-control1"> <option value="-1">Select Product Category</option> </select> </div><div class="form-group"> <label for="productTypeDD">Type</label> <select name="productTypeDD" id="productTypeDD" class="form-control1"> <option value="-1">Select Category Type</option> </select> </div><div class="form-group"> <label for="providerDD">Provider</label> <select name="providerDD" id="providerDD" class="form-control1"> <option value="-1">Select Product Provider</option> </select> </div><div class="form-group"> <label for="productImageFile">Image</label> <input type="file" id="productImageFile" name="productImageFile"> <p class="help-block">Upload Product Image - Available Formats : pdf/png/jpg</p></div><div class="form-group"> <label for="productSpecs_1">Product Specs 1</label> <input type="text" class="form-control" id="productSpecs_1" placeholder="Product Specs"> </div><div class="form-group"> <label for="productSpecs_2">Product Specs 2</label> <input type="text" class="form-control" id="productSpecs_2" placeholder="Product Specs"> </div><div class="form-group"> <label for="productSpecs_3">Product Specs 3</label> <input type="text" class="form-control" id="productSpecs_3" placeholder="Product Specs"> </div><div class="form-group"> <label for="productSpecs_4">Product Specs 4</label> <input type="text" class="form-control" id="productSpecs_4" placeholder="Product Specs"> </div><div class="form-group"> <label for="productSpecs_5">Product Specs 5</label> <input type="text" class="form-control" id="productSpecs_5" placeholder="Product Specs"> </div></form> </div></div></div></div>';
+    $(".products").append(template);
     $("#product_" + productCount + " .panel-tools .minimise-tool").click(function (event) {
         $(this).parents(".forms").find(".form-body").slideToggle(100);
 
@@ -142,10 +142,15 @@ function AddMoreProduct()
     });
     $("#product_" + productCount + " .panel-tools .closed-tool").click(function (event) {
         $(this).parents(".panel").fadeToggle(400).remove();
-
+        if (productCount > 0) productCount--;
+        alert("In App.js : " + productCount);
         return false;
     });
-    productCount++;
+    loadProductCategoriesData();
+    setTimeout(function () {
+        loadProvidersData();
+    }, 500);
+    
 }
 
 function loadAddFlyerData()
@@ -176,7 +181,7 @@ function loadProvidersData()
             providersList = '';
             eval(data);
             if (providersList != '') {
-
+                displayProvidersData(providersList)
             }
         });
 }
@@ -205,6 +210,7 @@ function loadTimeFramesData() {
 
 function displayProvidersData(list)
 {
+    //alert("loadProviders : " + (productCount - 1));
     var template = '<option value="#ID#">#DETAILS#</option>';
     for(var i = 0 ; i < list.length ; i++)
     {
@@ -212,7 +218,10 @@ function displayProvidersData(list)
         temp = temp.replace("#ID#", list[i].PROVIDER_ID);
         temp = temp.replace("#DETAILS#", list[i].PROVIDER_NAME_EN + " - " + list[i].PROVIDER_BUSINESS_AREA
                                 + " - " + list[i].LOCATION_CITY + " - " + list[i].LOCATION_DISTRICT);
-        $("#providerDD").append(temp);
+        if ($("#product_" + (productCount - 1) + " #providerDD").size() == 0)
+            $("#providerDD").append(temp);
+        else
+            $("#product_" + (productCount - 1) + " #providerDD").append(temp);
     }
 }
 function displayOffersTypesData(list) {
@@ -235,6 +244,7 @@ function displayTimeFramesData(list) {
 }
 
 function submitFlyerForm() {
+    ShowMyLoginSpinner();
     var fd = new FormData();
     var file = document.getElementById('flyerImageFile');
     if (file.files.length != 0) {
@@ -258,12 +268,136 @@ function submitFlyerForm() {
             xhr.open("POST", "/Pages/AddNewFlyer.aspx?fnID=7", true);
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
-                    console.log(xhr.responseText);
-                    console.log(xhr.responseBody);
+                    //window.location = "/Pages/AddNewFlyer_Step2.aspx";
                 }
+                else if(xhr.readyState == 3)
+                {
+                    eval(xhr.responseText);
+                }
+                HideMyLoginSpinner();
             };
             xhr.send(fd);
         }
     }
     return false;
+}
+
+
+function loadProductCategoriesData() {
+    AjaxCall("../Pages/AddNewFlyer_Step2.aspx?fnID=8"
+        , function (data) {
+            productCategories = '';
+            eval(data);
+            if (productCategories != '') {
+                //alert("loadCategory : " + productCount);
+                var template = '<option value="#ID#">#DETAILS#</option>';
+                for (var i = 0 ; i < productCategories.length ; i++) {
+                    var temp = template;
+                    temp = temp.replace("#ID#", productCategories[i].CATEGORY_ID);
+                    temp = temp.replace("#DETAILS#", productCategories[i].CATEGORY_NAME_EN + " - " + productCategories[i].CATEGORY_SPECS);
+                    $("#product_" + productCount + " #categoryDD").append(temp);
+                }
+                $("#product_" + productCount + " #categoryDD").on('change', function () {
+                    if ($(this).val() != '-1') {
+                        loadCategoriesTypesData($(this).val(), $(this));
+                    }
+                    else {
+                        alert('Please Select Category');
+                    }
+                });
+                productCount++;
+            }
+        });
+}
+
+function loadCategoriesTypesData(catID, obj) {
+    AjaxCall("../Pages/AddNewFlyer_Step2.aspx?fnID=9&catID=" + catID
+        , function (data) {
+            catTypes = '';
+            //alert("loadTypes : " + productCount);
+            $("#product_" + (productCount - 1) + " #productTypeDD").html('<option value="-1">Select Category Type</option>');
+            eval(data);
+            if (catTypes != '') {
+                var template = '<option value="#ID#">#DETAILS#</option>';
+                //console.log($(obj).parent().parent().find("#productTypeDD"));
+                //console.log((productCount-1));
+                for (var i = 0 ; i < catTypes.length ; i++) {
+                    var temp = template;
+                    temp = temp.replace("#ID#", catTypes[i].TYPE_ID);
+                    temp = temp.replace("#DETAILS#", catTypes[i].TYPE_NAME_EN + " - " + catTypes[i].TYPE_SPECS);
+                    $(obj).parent().parent().find("#productTypeDD").append(temp);
+                    //console.log($(obj).parent().parent().find("#productTypeDD").size());
+                }
+                //console.log((productCount - 1));
+            }
+        });
+}
+
+
+function SubmitFlyerProducts()
+{
+    var flyerID = localStorage.getItem('flyerID');
+    localStorage.removeItem('flyerID');
+
+    //0 -- > productCount
+    //"product_" + productCount
+    var fdArr = new Array();
+    var fd = new FormData();
+    for(var i = 0 ; i < productCount ; i++)
+    {
+        var productID = "product_" + i;
+        fdArr.push(createProductObject(productID, i, fd));
+    }
+    //console.log(fd);
+    ShowMyLoginSpinner();
+    fd.append('fnID', '10');
+    fd.append('productCount', productCount);
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/Pages/AddNewFlyer_Step2.aspx", true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 3) {
+            eval(xhr.responseText);
+        }
+        HideMyLoginSpinner();
+    };
+    xhr.send(fd);
+}
+
+
+function createProductObject(proID, index, fd)
+{
+    
+    var file = GetElementInsideContainer(proID, "productImageFile");
+    if (file.files.length != 0) {
+        var filetype = file.files[0].type;
+        if (filetype.indexOf("image") != -1) {
+            for (var i = 0; i < file.files.length; i++) {
+                fd.append('_file_' + index , file.files[i]);
+            }
+            
+            fd.append('productNameEn_' + index, $("#" + proID + " #productNameEn").val());
+            fd.append('productNameAr_' + index, $("#" + proID + " #productNameAr").val());
+            fd.append('categoryDD_' + index, $("#" + proID + " #categoryDD").val());
+            fd.append('productTypeDD_' + index, $("#" + proID + " #productTypeDD").val());
+            fd.append('providerDD_' + index, $("#" + proID + " #providerDD").val());
+            fd.append('productSpecs_1_' + index, $("#" + proID + " #productSpecs_1").val());
+            fd.append('productSpecs_2_' + index, $("#" + proID + " #productSpecs_2").val());
+            fd.append('productSpecs_3_' + index, $("#" + proID + " #productSpecs_3").val());
+            fd.append('productSpecs_4_' + index, $("#" + proID + " #productSpecs_4").val());
+            fd.append('productSpecs_5_' + index, $("#" + proID + " #productSpecs_5").val());
+        }
+    }
+    return fd;
+}
+
+function GetElementInsideContainer(containerID, childID) {
+    var elm = {};
+    var elms = document.getElementById(containerID).getElementsByTagName("*");
+    for (var i = 0; i < elms.length; i++) {
+        if (elms[i].id === childID) {
+            elm = elms[i];
+            break;
+        }
+    }
+    return elm;
 }

@@ -94,16 +94,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div id="page-wrapper">
             <div class="main-page">
                 <!--grids-->
-                <div class="grids">
+                <div class="grids products">
                     <div class="progressbar-heading grids-heading">
-                        <h2>Add Product</h2>
-                        <div style="text-align:right; margin-bottom:10px;">
-                            <button type="button" class="btn btn-default btn-success btn-lg">Save Products</button>
-                            <button type="button" class="btn btn-default btn-info btn-lg" onclick="AddMoreProduct()">Add more Product</button>
+                        <div class="row">
+                            <div class="progressbar-heading grids-heading col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                                <h2>Add Flyer Products</h2>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <button type="button" class="btn btn-default btn-success btn-lg" onclick="AddMoreProduct()">Add more Product</button>
+                            </div>
                         </div>
                     </div>
                    
-                    <div class="panel panel-widget forms-panel">
+                    <div class="panel panel-widget forms-panel" id="product_0">
                         <div class="forms">
                             <div class="form-grids widget-shadow" data-example-id="basic-forms">
                                 <div class="form-title">
@@ -117,7 +120,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     <form>
                                          <div class="form-group">
                                             <label for="productNameEn">Name EN</label>
-                                            <input type="text" class="form-control" id="productNameEn" placeholder="Product Name En" onkeydown="$(this).parents('.forms').find('h4').text($(this).parents('.forms').find('h4').text() +  $(this).val());">
+                                            <input type="text" class="form-control" id="productNameEn" placeholder="Product Name En" onkeydown="$(this).parents('.forms').find('h4').text('Product Details : ' + $(this).val());">
                                         </div>
                                         <div class="form-group">
                                             <label for="productNameAr">Name AR</label>
@@ -125,47 +128,68 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         </div>
                                         <div class="form-group">
                                             <label for="categoryDD">Category</label>
-                                            <select name="selector1" id="categoryDD" class="form-control1">
-                                                <option>Category 1</option>
-                                                <option>Category 2</option>
-                                                <option>Category 3</option>
-                                                <option>Category 4</option>
+                                            <select name="categoryDD" id="categoryDD" class="form-control1">
+                                                <option value="-1">Select Product Category</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="productTypeDD">Type</label>
-                                            <select name="selector1" id="productTypeDD" class="form-control1">
-                                                <option>Type 1</option>
-                                                <option>Type 2</option>
-                                                <option>Type 3</option>
-                                                <option>Type 4</option>
+                                            <select name="productTypeDD" id="productTypeDD" class="form-control1">
+                                                <option value="-1">Select Category Type</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="providerDD">Provider</label>
-                                            <select name="selector1" id="providerDD" class="form-control1">
-                                                <option>Provider 1</option>
-                                                <option>Provider 2</option>
-                                                <option>Provider 3</option>
-                                                <option>Provider 4</option>
+                                            <select name="providerDD" id="providerDD" class="form-control1">
+                                                <option value="-1">Select Product Provider</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="productImageFile">Image</label>
-                                            <input type="file" id="productImageFile">
+                                            <input type="file" id="productImageFile" name="productImageFile">
                                             <p class="help-block">Upload Product Image - Available Formats : pdf/png/jpg</p>
                                         </div>
                                         <div class="form-group">
-                                            <label for="productSpecs">Product Specs</label>
-                                            <input type="text" class="form-control" id="productSpecs" placeholder="Product Specs">
+                                            <label for="productSpecs_1">Product Specs 1</label>
+                                            <input type="text" class="form-control" id="productSpecs_1" placeholder="Product Specs">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="productSpecs_2">Product Specs 2</label>
+                                            <input type="text" class="form-control" id="productSpecs_2" placeholder="Product Specs">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="productSpecs_3">Product Specs 3</label>
+                                            <input type="text" class="form-control" id="productSpecs_3" placeholder="Product Specs">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="productSpecs_4">Product Specs 4</label>
+                                            <input type="text" class="form-control" id="productSpecs_4" placeholder="Product Specs">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="productSpecs_5">Product Specs 5</label>
+                                            <input type="text" class="form-control" id="productSpecs_5" placeholder="Product Specs">
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
                 </div>
                 <!--//grids-->
+                <div class="grids">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <button type="button" class="btn btn-default btn-info btn-lg pull-left" onclick="window.location='/Pages/Home.aspx'">
+                                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                                Back To Home
+                            </button>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <input type="button" value="Submit Products" class="btn btn-default btn-warning btn-lg pull-right" ID="productSubmitBtn" OnClick="SubmitFlyerProducts()" />
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <!--footer-->
@@ -210,6 +234,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script src="/js/scripts.js"></script>
     <!--//scrolling js-->
     <script src="/js/app.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            productCount = 0;
+            loadProductCategoriesData();
+            loadProvidersData();
+            $('.closed-tool').on('click', function () {
+                if (productCount > 0) productCount--;
+                alert("In Page : " + productCount);
+            });
+        });
+    </script>
 </body>
 </html>
 

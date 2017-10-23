@@ -209,6 +209,11 @@ namespace DataEntryApp.Pages
         {
             try
             {
+                HttpContext.Current.Response.Clear();
+                HttpContext.Current.Response.ClearHeaders();
+                HttpContext.Current.Response.ClearContent();
+                HttpContext.Current.Response.ContentType = "application/json";
+
                 HttpPostedFile file = HttpContext.Current.Request.Files["_file"];
                 string fileName = Path.GetFileName(file.FileName);
                 string filename = !(file.FileName == "NoImage") ? Path.Combine(this.Server.MapPath("~/UploadedImages/"), fileName) : "";
@@ -236,14 +241,21 @@ namespace DataEntryApp.Pages
                 if (flyerObj.statusCode == 0)
                 {
                     Session["flyerID"] = int.Parse(flyerObj.returnObj.ToString());
-                    Server.TransferRequest("/Pages/AddNewFlyer_Step2.aspx");
+                    HttpContext.Current.Response.Write("window.location = '/Pages/AddNewFlyer_Step2.aspx';localStorage.setItem('flyerID', '" + flyerObj.returnObj.ToString() + "');");
                 }
                 else
                 {
                     Session["flyerID"] = null;
-                    errorLbl.Text = flyerObj.returnObj.ToString(); ;
+                    errorLbl.Text = flyerObj.returnObj.ToString();
+                    HttpContext.Current.Response.Write("flyerID = null;alert('"+ flyerObj.returnObj.ToString() + "')");
                 }
                 
+               
+               // HttpContext.Current.Response.RedirectToRoute("/Pages/AddNewFlyer_Step2.aspx");
+                HttpContext.Current.Response.Flush();
+                HttpContext.Current.ApplicationInstance.CompleteRequest();
+                HttpContext.Current.Response.SuppressContent = true;
+
             }
             catch (Exception ex)
             {

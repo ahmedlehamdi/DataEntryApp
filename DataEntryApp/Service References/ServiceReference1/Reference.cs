@@ -343,6 +343,544 @@ namespace DataEntryApp.ServiceReference1 {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PRODUCT", Namespace="http://schemas.datacontract.org/2004/07/DataEntryDAL.DataAccessLogic")]
+    [System.SerializableAttribute()]
+    internal partial class PRODUCT : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int FLYER_IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PRODUCT_ATTR_1Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PRODUCT_ATTR_10Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PRODUCT_ATTR_2Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PRODUCT_ATTR_3Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PRODUCT_ATTR_4Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PRODUCT_ATTR_5Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PRODUCT_ATTR_6Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PRODUCT_ATTR_7Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PRODUCT_ATTR_8Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PRODUCT_ATTR_9Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PRODUCT_IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PRODUCT_IMAGEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PRODUCT_NAME_ARField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PRODUCT_NAME_ENField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PRODUCT_TAGSField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PROVIDER_IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SPECS_IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TYPE_IDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal int FLYER_ID {
+            get {
+                return this.FLYER_IDField;
+            }
+            set {
+                if ((this.FLYER_IDField.Equals(value) != true)) {
+                    this.FLYER_IDField = value;
+                    this.RaisePropertyChanged("FLYER_ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string PRODUCT_ATTR_1 {
+            get {
+                return this.PRODUCT_ATTR_1Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PRODUCT_ATTR_1Field, value) != true)) {
+                    this.PRODUCT_ATTR_1Field = value;
+                    this.RaisePropertyChanged("PRODUCT_ATTR_1");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string PRODUCT_ATTR_10 {
+            get {
+                return this.PRODUCT_ATTR_10Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PRODUCT_ATTR_10Field, value) != true)) {
+                    this.PRODUCT_ATTR_10Field = value;
+                    this.RaisePropertyChanged("PRODUCT_ATTR_10");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string PRODUCT_ATTR_2 {
+            get {
+                return this.PRODUCT_ATTR_2Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PRODUCT_ATTR_2Field, value) != true)) {
+                    this.PRODUCT_ATTR_2Field = value;
+                    this.RaisePropertyChanged("PRODUCT_ATTR_2");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string PRODUCT_ATTR_3 {
+            get {
+                return this.PRODUCT_ATTR_3Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PRODUCT_ATTR_3Field, value) != true)) {
+                    this.PRODUCT_ATTR_3Field = value;
+                    this.RaisePropertyChanged("PRODUCT_ATTR_3");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string PRODUCT_ATTR_4 {
+            get {
+                return this.PRODUCT_ATTR_4Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PRODUCT_ATTR_4Field, value) != true)) {
+                    this.PRODUCT_ATTR_4Field = value;
+                    this.RaisePropertyChanged("PRODUCT_ATTR_4");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string PRODUCT_ATTR_5 {
+            get {
+                return this.PRODUCT_ATTR_5Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PRODUCT_ATTR_5Field, value) != true)) {
+                    this.PRODUCT_ATTR_5Field = value;
+                    this.RaisePropertyChanged("PRODUCT_ATTR_5");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string PRODUCT_ATTR_6 {
+            get {
+                return this.PRODUCT_ATTR_6Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PRODUCT_ATTR_6Field, value) != true)) {
+                    this.PRODUCT_ATTR_6Field = value;
+                    this.RaisePropertyChanged("PRODUCT_ATTR_6");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string PRODUCT_ATTR_7 {
+            get {
+                return this.PRODUCT_ATTR_7Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PRODUCT_ATTR_7Field, value) != true)) {
+                    this.PRODUCT_ATTR_7Field = value;
+                    this.RaisePropertyChanged("PRODUCT_ATTR_7");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string PRODUCT_ATTR_8 {
+            get {
+                return this.PRODUCT_ATTR_8Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PRODUCT_ATTR_8Field, value) != true)) {
+                    this.PRODUCT_ATTR_8Field = value;
+                    this.RaisePropertyChanged("PRODUCT_ATTR_8");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string PRODUCT_ATTR_9 {
+            get {
+                return this.PRODUCT_ATTR_9Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PRODUCT_ATTR_9Field, value) != true)) {
+                    this.PRODUCT_ATTR_9Field = value;
+                    this.RaisePropertyChanged("PRODUCT_ATTR_9");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal int PRODUCT_ID {
+            get {
+                return this.PRODUCT_IDField;
+            }
+            set {
+                if ((this.PRODUCT_IDField.Equals(value) != true)) {
+                    this.PRODUCT_IDField = value;
+                    this.RaisePropertyChanged("PRODUCT_ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string PRODUCT_IMAGE {
+            get {
+                return this.PRODUCT_IMAGEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PRODUCT_IMAGEField, value) != true)) {
+                    this.PRODUCT_IMAGEField = value;
+                    this.RaisePropertyChanged("PRODUCT_IMAGE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string PRODUCT_NAME_AR {
+            get {
+                return this.PRODUCT_NAME_ARField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PRODUCT_NAME_ARField, value) != true)) {
+                    this.PRODUCT_NAME_ARField = value;
+                    this.RaisePropertyChanged("PRODUCT_NAME_AR");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string PRODUCT_NAME_EN {
+            get {
+                return this.PRODUCT_NAME_ENField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PRODUCT_NAME_ENField, value) != true)) {
+                    this.PRODUCT_NAME_ENField = value;
+                    this.RaisePropertyChanged("PRODUCT_NAME_EN");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string PRODUCT_TAGS {
+            get {
+                return this.PRODUCT_TAGSField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PRODUCT_TAGSField, value) != true)) {
+                    this.PRODUCT_TAGSField = value;
+                    this.RaisePropertyChanged("PRODUCT_TAGS");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal int PROVIDER_ID {
+            get {
+                return this.PROVIDER_IDField;
+            }
+            set {
+                if ((this.PROVIDER_IDField.Equals(value) != true)) {
+                    this.PROVIDER_IDField = value;
+                    this.RaisePropertyChanged("PROVIDER_ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal int SPECS_ID {
+            get {
+                return this.SPECS_IDField;
+            }
+            set {
+                if ((this.SPECS_IDField.Equals(value) != true)) {
+                    this.SPECS_IDField = value;
+                    this.RaisePropertyChanged("SPECS_ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal int TYPE_ID {
+            get {
+                return this.TYPE_IDField;
+            }
+            set {
+                if ((this.TYPE_IDField.Equals(value) != true)) {
+                    this.TYPE_IDField = value;
+                    this.RaisePropertyChanged("TYPE_ID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PRODUCT_SPEC", Namespace="http://schemas.datacontract.org/2004/07/DataEntryDAL.DataAccessLogic")]
+    [System.SerializableAttribute()]
+    internal partial class PRODUCT_SPEC : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SPECS_ATTR_1Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SPECS_ATTR_10Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SPECS_ATTR_2Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SPECS_ATTR_3Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SPECS_ATTR_4Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SPECS_ATTR_5Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SPECS_ATTR_6Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SPECS_ATTR_7Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SPECS_ATTR_8Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SPECS_ATTR_9Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SPECS_IDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string SPECS_ATTR_1 {
+            get {
+                return this.SPECS_ATTR_1Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SPECS_ATTR_1Field, value) != true)) {
+                    this.SPECS_ATTR_1Field = value;
+                    this.RaisePropertyChanged("SPECS_ATTR_1");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string SPECS_ATTR_10 {
+            get {
+                return this.SPECS_ATTR_10Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SPECS_ATTR_10Field, value) != true)) {
+                    this.SPECS_ATTR_10Field = value;
+                    this.RaisePropertyChanged("SPECS_ATTR_10");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string SPECS_ATTR_2 {
+            get {
+                return this.SPECS_ATTR_2Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SPECS_ATTR_2Field, value) != true)) {
+                    this.SPECS_ATTR_2Field = value;
+                    this.RaisePropertyChanged("SPECS_ATTR_2");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string SPECS_ATTR_3 {
+            get {
+                return this.SPECS_ATTR_3Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SPECS_ATTR_3Field, value) != true)) {
+                    this.SPECS_ATTR_3Field = value;
+                    this.RaisePropertyChanged("SPECS_ATTR_3");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string SPECS_ATTR_4 {
+            get {
+                return this.SPECS_ATTR_4Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SPECS_ATTR_4Field, value) != true)) {
+                    this.SPECS_ATTR_4Field = value;
+                    this.RaisePropertyChanged("SPECS_ATTR_4");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string SPECS_ATTR_5 {
+            get {
+                return this.SPECS_ATTR_5Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SPECS_ATTR_5Field, value) != true)) {
+                    this.SPECS_ATTR_5Field = value;
+                    this.RaisePropertyChanged("SPECS_ATTR_5");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string SPECS_ATTR_6 {
+            get {
+                return this.SPECS_ATTR_6Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SPECS_ATTR_6Field, value) != true)) {
+                    this.SPECS_ATTR_6Field = value;
+                    this.RaisePropertyChanged("SPECS_ATTR_6");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string SPECS_ATTR_7 {
+            get {
+                return this.SPECS_ATTR_7Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SPECS_ATTR_7Field, value) != true)) {
+                    this.SPECS_ATTR_7Field = value;
+                    this.RaisePropertyChanged("SPECS_ATTR_7");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string SPECS_ATTR_8 {
+            get {
+                return this.SPECS_ATTR_8Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SPECS_ATTR_8Field, value) != true)) {
+                    this.SPECS_ATTR_8Field = value;
+                    this.RaisePropertyChanged("SPECS_ATTR_8");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string SPECS_ATTR_9 {
+            get {
+                return this.SPECS_ATTR_9Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SPECS_ATTR_9Field, value) != true)) {
+                    this.SPECS_ATTR_9Field = value;
+                    this.RaisePropertyChanged("SPECS_ATTR_9");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal int SPECS_ID {
+            get {
+                return this.SPECS_IDField;
+            }
+            set {
+                if ((this.SPECS_IDField.Equals(value) != true)) {
+                    this.SPECS_IDField = value;
+                    this.RaisePropertyChanged("SPECS_ID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IService1")]
     internal interface IService1 {
@@ -382,6 +920,30 @@ namespace DataEntryApp.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addNewFlyerBasicData", ReplyAction="http://tempuri.org/IService1/addNewFlyerBasicDataResponse")]
         System.Threading.Tasks.Task<string> addNewFlyerBasicDataAsync(DataEntryApp.ServiceReference1.OFFER_FLYER flyer, DataEntryApp.ServiceReference1.TIME_FRAME frame);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getAllProductCategories", ReplyAction="http://tempuri.org/IService1/getAllProductCategoriesResponse")]
+        string getAllProductCategories();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getAllProductCategories", ReplyAction="http://tempuri.org/IService1/getAllProductCategoriesResponse")]
+        System.Threading.Tasks.Task<string> getAllProductCategoriesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getAllCategoryTypes", ReplyAction="http://tempuri.org/IService1/getAllCategoryTypesResponse")]
+        string getAllCategoryTypes(int categoryID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getAllCategoryTypes", ReplyAction="http://tempuri.org/IService1/getAllCategoryTypesResponse")]
+        System.Threading.Tasks.Task<string> getAllCategoryTypesAsync(int categoryID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/submitFlyerProduct", ReplyAction="http://tempuri.org/IService1/submitFlyerProductResponse")]
+        string submitFlyerProduct(DataEntryApp.ServiceReference1.PRODUCT product, DataEntryApp.ServiceReference1.PRODUCT_SPEC specs);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/submitFlyerProduct", ReplyAction="http://tempuri.org/IService1/submitFlyerProductResponse")]
+        System.Threading.Tasks.Task<string> submitFlyerProductAsync(DataEntryApp.ServiceReference1.PRODUCT product, DataEntryApp.ServiceReference1.PRODUCT_SPEC specs);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/submitFlyerAllProducts", ReplyAction="http://tempuri.org/IService1/submitFlyerAllProductsResponse")]
+        string submitFlyerAllProducts(DataEntryApp.ServiceReference1.PRODUCT[] products, DataEntryApp.ServiceReference1.PRODUCT_SPEC[] specs);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/submitFlyerAllProducts", ReplyAction="http://tempuri.org/IService1/submitFlyerAllProductsResponse")]
+        System.Threading.Tasks.Task<string> submitFlyerAllProductsAsync(DataEntryApp.ServiceReference1.PRODUCT[] products, DataEntryApp.ServiceReference1.PRODUCT_SPEC[] specs);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -457,6 +1019,38 @@ namespace DataEntryApp.ServiceReference1 {
         
         public System.Threading.Tasks.Task<string> addNewFlyerBasicDataAsync(DataEntryApp.ServiceReference1.OFFER_FLYER flyer, DataEntryApp.ServiceReference1.TIME_FRAME frame) {
             return base.Channel.addNewFlyerBasicDataAsync(flyer, frame);
+        }
+        
+        public string getAllProductCategories() {
+            return base.Channel.getAllProductCategories();
+        }
+        
+        public System.Threading.Tasks.Task<string> getAllProductCategoriesAsync() {
+            return base.Channel.getAllProductCategoriesAsync();
+        }
+        
+        public string getAllCategoryTypes(int categoryID) {
+            return base.Channel.getAllCategoryTypes(categoryID);
+        }
+        
+        public System.Threading.Tasks.Task<string> getAllCategoryTypesAsync(int categoryID) {
+            return base.Channel.getAllCategoryTypesAsync(categoryID);
+        }
+        
+        public string submitFlyerProduct(DataEntryApp.ServiceReference1.PRODUCT product, DataEntryApp.ServiceReference1.PRODUCT_SPEC specs) {
+            return base.Channel.submitFlyerProduct(product, specs);
+        }
+        
+        public System.Threading.Tasks.Task<string> submitFlyerProductAsync(DataEntryApp.ServiceReference1.PRODUCT product, DataEntryApp.ServiceReference1.PRODUCT_SPEC specs) {
+            return base.Channel.submitFlyerProductAsync(product, specs);
+        }
+        
+        public string submitFlyerAllProducts(DataEntryApp.ServiceReference1.PRODUCT[] products, DataEntryApp.ServiceReference1.PRODUCT_SPEC[] specs) {
+            return base.Channel.submitFlyerAllProducts(products, specs);
+        }
+        
+        public System.Threading.Tasks.Task<string> submitFlyerAllProductsAsync(DataEntryApp.ServiceReference1.PRODUCT[] products, DataEntryApp.ServiceReference1.PRODUCT_SPEC[] specs) {
+            return base.Channel.submitFlyerAllProductsAsync(products, specs);
         }
     }
 }

@@ -43,6 +43,30 @@
   <wsdl:message name="IService1_addNewFlyerBasicData_OutputMessage">
     <wsdl:part name="parameters" element="tns:addNewFlyerBasicDataResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_getAllProductCategories_InputMessage">
+    <wsdl:part name="parameters" element="tns:getAllProductCategories" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getAllProductCategories_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getAllProductCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getAllCategoryTypes_InputMessage">
+    <wsdl:part name="parameters" element="tns:getAllCategoryTypes" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getAllCategoryTypes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getAllCategoryTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_submitFlyerProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:submitFlyerProduct" />
+  </wsdl:message>
+  <wsdl:message name="IService1_submitFlyerProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:submitFlyerProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_submitFlyerAllProducts_InputMessage">
+    <wsdl:part name="parameters" element="tns:submitFlyerAllProducts" />
+  </wsdl:message>
+  <wsdl:message name="IService1_submitFlyerAllProducts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:submitFlyerAllProductsResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="checkLogin">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/checkLogin" message="tns:IService1_checkLogin_InputMessage" />
@@ -67,6 +91,22 @@
     <wsdl:operation name="addNewFlyerBasicData">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/addNewFlyerBasicData" message="tns:IService1_addNewFlyerBasicData_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/addNewFlyerBasicDataResponse" message="tns:IService1_addNewFlyerBasicData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllProductCategories">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getAllProductCategories" message="tns:IService1_getAllProductCategories_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getAllProductCategoriesResponse" message="tns:IService1_getAllProductCategories_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllCategoryTypes">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getAllCategoryTypes" message="tns:IService1_getAllCategoryTypes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getAllCategoryTypesResponse" message="tns:IService1_getAllCategoryTypes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="submitFlyerProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/submitFlyerProduct" message="tns:IService1_submitFlyerProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/submitFlyerProductResponse" message="tns:IService1_submitFlyerProduct_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="submitFlyerAllProducts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/submitFlyerAllProducts" message="tns:IService1_submitFlyerAllProducts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/submitFlyerAllProductsResponse" message="tns:IService1_submitFlyerAllProducts_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -118,6 +158,42 @@
     </wsdl:operation>
     <wsdl:operation name="addNewFlyerBasicData">
       <soap:operation soapAction="http://tempuri.org/IService1/addNewFlyerBasicData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllProductCategories">
+      <soap:operation soapAction="http://tempuri.org/IService1/getAllProductCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllCategoryTypes">
+      <soap:operation soapAction="http://tempuri.org/IService1/getAllCategoryTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="submitFlyerProduct">
+      <soap:operation soapAction="http://tempuri.org/IService1/submitFlyerProduct" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="submitFlyerAllProducts">
+      <soap:operation soapAction="http://tempuri.org/IService1/submitFlyerAllProducts" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
