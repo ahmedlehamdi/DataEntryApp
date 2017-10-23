@@ -116,37 +116,49 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         <div class="form-group">
                                            <label class="col-sm-2 control-label">Name EN</label> 
 											<div class="col-sm-9">
-                                                <label class="control-label">Name EN</label> 
+                                                <label class="control-label" id="flyerNameEN"></label> 
 											</div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Name AR</label> 
 											<div class="col-sm-9">
-                                                <label class="control-label">Name AR</label> 
+                                                <label class="control-label" id="flyerNameAR"></label> 
 											</div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Image</label> 
 											<div class="col-sm-9">
-                                                <img src="" />
+                                                <a id="flyerImg" href=""></a>
 											</div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Provider / Retailer</label> 
 											<div class="col-sm-9">
-                                                <label class="control-label">Provider / Retailer</label> 
+                                                <label class="control-label" id="flyerProvider"></label> 
 											</div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Offer Type</label> 
 											<div class="col-sm-9">
-                                                <label class="control-label">Offer Type</label> 
+                                                <label class="control-label" id="flyerOfferType"></label> 
 											</div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Offer Time Frame</label> 
 											<div class="col-sm-9">
-                                                <label class="control-label">Offer Time Frame</label> 
+                                                <label class="control-label" id="flyerTimeFrame"></label> 
+											</div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Offer Date To</label> 
+											<div class="col-sm-9">
+                                                <label class="control-label" id="flyerFromDate"></label> 
+											</div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Offer Date From</label> 
+											<div class="col-sm-9">
+                                                <label class="control-label" id="flyerToDate"></label> 
 											</div>
                                         </div>
                                     </form>
@@ -175,15 +187,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                             </tr>
                                         </thead>
                                         <tbody id="productTBody">
-                                            <tr>
-                                                <td>#</td>
-                                                <td>Product Name</td>
-                                                <td>Category</td>
-                                                <td>Type</td>
-                                                <td>Provider</td>
-                                                <td>Image</td>
-                                                <td>Specs</td>
-                                            </tr>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -234,6 +238,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!--scrolling js-->
     <script src="/js/jquery.nicescroll.js"></script>
     <script src="/js/scripts.js"></script>
+    <script src="/js/app.js"></script>
     <!--//scrolling js-->
+    <script>
+        $(document).ready(function () {
+            loadFlyerDetails();
+        });
+    </script>
 </body>
 </html>

@@ -137,4 +137,32 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="getFlyerBasicData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="flyerID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getFlyerBasicDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="getFlyerBasicDataResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getFlyerProducts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="flyerID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getFlyerProductsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="getFlyerProductsResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

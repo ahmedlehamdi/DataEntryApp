@@ -1,6 +1,7 @@
 ﻿
 var productCount = 0;
 var providersList = '', offersTypesList = '', timeFramesList = '', productCategories = '', catTypes = '';
+var flyerData = '', flyerProducts = '';
 
 function AjaxCall(PageURL, CallBackFunc) {
     try {
@@ -98,7 +99,7 @@ function displayFlyerList(flyerList)
         console.log(flyerList[i]);
         xtemp = xtemp.replace('#NUM#', i + 1);
         xtemp = xtemp.replace('#NAME#', flyerList[i].FLYER_NAME_EN);
-        xtemp = xtemp.replace('#IMAGE#', flyerList[i].FLYER_IMAGE_URL);
+        xtemp = xtemp.replace('#IMAGE#', "<a target='_blank' href='" + flyerList[i].FLYER_IMAGE_URL + "' download='" + flyerList[i].FLYER_IMAGE_URL.split('/')[2] + "'>" + flyerList[i].FLYER_IMAGE_URL.split('/')[2] + "</a>");
         xtemp = xtemp.replace('#STATUS#', (flyerList[i].FLYER_APPROVED == null) ? "Under Processing" : "Approved");
         xtemp = xtemp.replace('#FROM#', (flyerList[i].FRAME_DATE_FROM).replace("T", " "));
         xtemp = xtemp.replace('#TO#', (flyerList[i].FRAME_DATE_TO).replace("T", " "));
@@ -110,7 +111,7 @@ function displayFlyerList(flyerList)
     HideMyLoginSpinner();
 }
 
-function openPageWithPostData(pageURL, dataArr)
+function openPageWithPostData(pageURL, dataArr, callback)
 {
     var form = "<form id='submittedForm' method='POST' action='" + pageURL + "'>";
 
@@ -121,15 +122,58 @@ function openPageWithPostData(pageURL, dataArr)
     form += "</form>";
     $('body').append(form);
     $("#submittedForm").submit();
+    if (callback)
+        callback();
 }
 
 function openFlyerDetails(flyerID)
 {
-    var arr = new Array();
-    arr.push(flyerID);
-    openPageWithPostData("/Pages/FlyerDetails.aspx", arr);
+    localStorage.setItem('flyerID', flyerID);
+    window.location = '/Pages/FlyerDetails.aspx';
 }
 
+function loadFlyerDetails()
+{
+
+    AjaxCall("../Pages/FlyerDetails.aspx?fnID=11&flyerID="+localStorage.getItem('flyerID') 
+       , function (data) {
+           flyerProducts = '', flyerData = '';
+           eval(data);
+           if (flyerData != '') {
+               $("#flyerNameEN").text(flyerData.FLYER_NAME_EN);
+               $("#flyerNameAR").text(flyerData.FLYER_NAME_AR);
+               $("#flyerImg").attr('href', flyerData.FLYER_IMAGE_URL);
+               $("#flyerImg").attr('download', flyerData.FLYER_IMAGE_URL.split('/')[2]);
+               $("#flyerImg").text(flyerData.FLYER_IMAGE_URL.split('/')[2]);
+               $("#flyerProvider").text(flyerData.PROVIDER_NAME_EN);
+               $("#flyerOfferType").text(flyerData.OFFER_TYPE_NAME_EN);
+               $("#FRAME_NAME_EN").text(flyerData.FLYER_NAME_EN);
+               $("#flyerFromDate").text(flyerData.FRAME_DATE_FROM);
+               $("#flyerToDate").text(flyerData.FRAME_DATE_TO);
+               flyerData = '';
+           }
+           if (flyerProducts != '') {
+               var template = '<tr> <td>#ID#</td><td>#ProductName#</td><td>#Category#</td><td>#Type#</td><td>#Provider#</td><td>#Image#</td><td>#Specs#</td></tr>';
+               for (var i = 0 ; i < flyerProducts.length ; i++) {
+                   var temp = template;
+                   temp = temp.replace("#ID#", i);
+                   temp = temp.replace("#ProductName#", flyerProducts[i].PRODUCT_NAME_EN);
+                   temp = temp.replace("#Category#", flyerProducts[i].CATEGORY_NAME_EN);
+                   temp = temp.replace("#Type#", flyerProducts[i].TYPE_NAME_EN);
+                   temp = temp.replace("#Provider#", flyerProducts[i].PROVIDER_NAME_EN);
+                   temp = temp.replace("#Image#", "<a target='_blank' href='" + flyerProducts[i].PRODUCT_IMAGE + "' download='" + flyerProducts[i].PRODUCT_IMAGE.split('/')[2] + "' > " + flyerProducts[i].PRODUCT_IMAGE.split('/')[2] + "</a>");
+                   var specs = (flyerProducts[i].SPECS_ATTR_1 != '' && flyerProducts[i].SPECS_ATTR_1 != null) ? ("- " + flyerProducts[i].SPECS_ATTR_1) : ("");
+                   specs += (flyerProducts[i].SPECS_ATTR_2 != '' && flyerProducts[i].SPECS_ATTR_1 != null) ? ("<br/> - " + flyerProducts[i].SPECS_ATTR_2) : ("");
+                   specs += (flyerProducts[i].SPECS_ATTR_3 != '' && flyerProducts[i].SPECS_ATTR_1 != null) ? ("<br/> - " + flyerProducts[i].SPECS_ATTR_3) : ("");
+                   specs += (flyerProducts[i].SPECS_ATTR_4 != '' && flyerProducts[i].SPECS_ATTR_1 != null) ? ("<br/> - " + flyerProducts[i].SPECS_ATTR_4) : ("");
+                   specs += (flyerProducts[i].SPECS_ATTR_5 != '' && flyerProducts[i].SPECS_ATTR_1 != null) ? ("<br/> - " + flyerProducts[i].SPECS_ATTR_5) : ("");
+                   temp = temp.replace("#Specs#", specs);
+                   $("#productTBody").append(temp);
+               }
+           }
+       });
+    localStorage.removeItem('flyerID');
+}
 
 function AddMoreProduct()
 {

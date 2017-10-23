@@ -67,6 +67,18 @@
   <wsdl:message name="IService1_submitFlyerAllProducts_OutputMessage">
     <wsdl:part name="parameters" element="tns:submitFlyerAllProductsResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_getFlyerBasicData_InputMessage">
+    <wsdl:part name="parameters" element="tns:getFlyerBasicData" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getFlyerBasicData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getFlyerBasicDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getFlyerProducts_InputMessage">
+    <wsdl:part name="parameters" element="tns:getFlyerProducts" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getFlyerProducts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getFlyerProductsResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="checkLogin">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/checkLogin" message="tns:IService1_checkLogin_InputMessage" />
@@ -107,6 +119,14 @@
     <wsdl:operation name="submitFlyerAllProducts">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/submitFlyerAllProducts" message="tns:IService1_submitFlyerAllProducts_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/submitFlyerAllProductsResponse" message="tns:IService1_submitFlyerAllProducts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getFlyerBasicData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getFlyerBasicData" message="tns:IService1_getFlyerBasicData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getFlyerBasicDataResponse" message="tns:IService1_getFlyerBasicData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getFlyerProducts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getFlyerProducts" message="tns:IService1_getFlyerProducts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getFlyerProductsResponse" message="tns:IService1_getFlyerProducts_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -194,6 +214,24 @@
     </wsdl:operation>
     <wsdl:operation name="submitFlyerAllProducts">
       <soap:operation soapAction="http://tempuri.org/IService1/submitFlyerAllProducts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFlyerBasicData">
+      <soap:operation soapAction="http://tempuri.org/IService1/getFlyerBasicData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFlyerProducts">
+      <soap:operation soapAction="http://tempuri.org/IService1/getFlyerProducts" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

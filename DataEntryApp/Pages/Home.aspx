@@ -89,20 +89,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<div class="clearfix"> </div>
 						</div>
 					</div>
-					<div class="col-md-4 ticket-grid">
-						<div class="tickets">
-							<div class="grid-left">
-								<div class="book-icon">
-									<i class="fa fa-rocket"></i>
-								</div>
-							</div>
-							<div class="grid-right">
-								<h3>View <span>Flyers</span></h3>
-								<p>Rejected</p>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
+					
 					<div class="col-md-4 ticket-grid">
 						<div class="tickets" onclick="logOut();">
 							<div class="grid-left">

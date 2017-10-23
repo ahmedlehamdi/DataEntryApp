@@ -944,6 +944,18 @@ namespace DataEntryApp.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/submitFlyerAllProducts", ReplyAction="http://tempuri.org/IService1/submitFlyerAllProductsResponse")]
         System.Threading.Tasks.Task<string> submitFlyerAllProductsAsync(DataEntryApp.ServiceReference1.PRODUCT[] products, DataEntryApp.ServiceReference1.PRODUCT_SPEC[] specs);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getFlyerBasicData", ReplyAction="http://tempuri.org/IService1/getFlyerBasicDataResponse")]
+        string getFlyerBasicData(int flyerID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getFlyerBasicData", ReplyAction="http://tempuri.org/IService1/getFlyerBasicDataResponse")]
+        System.Threading.Tasks.Task<string> getFlyerBasicDataAsync(int flyerID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getFlyerProducts", ReplyAction="http://tempuri.org/IService1/getFlyerProductsResponse")]
+        string getFlyerProducts(int flyerID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getFlyerProducts", ReplyAction="http://tempuri.org/IService1/getFlyerProductsResponse")]
+        System.Threading.Tasks.Task<string> getFlyerProductsAsync(int flyerID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1051,6 +1063,22 @@ namespace DataEntryApp.ServiceReference1 {
         
         public System.Threading.Tasks.Task<string> submitFlyerAllProductsAsync(DataEntryApp.ServiceReference1.PRODUCT[] products, DataEntryApp.ServiceReference1.PRODUCT_SPEC[] specs) {
             return base.Channel.submitFlyerAllProductsAsync(products, specs);
+        }
+        
+        public string getFlyerBasicData(int flyerID) {
+            return base.Channel.getFlyerBasicData(flyerID);
+        }
+        
+        public System.Threading.Tasks.Task<string> getFlyerBasicDataAsync(int flyerID) {
+            return base.Channel.getFlyerBasicDataAsync(flyerID);
+        }
+        
+        public string getFlyerProducts(int flyerID) {
+            return base.Channel.getFlyerProducts(flyerID);
+        }
+        
+        public System.Threading.Tasks.Task<string> getFlyerProductsAsync(int flyerID) {
+            return base.Channel.getFlyerProductsAsync(flyerID);
         }
     }
 }

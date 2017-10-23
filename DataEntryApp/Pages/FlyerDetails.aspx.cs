@@ -1,5 +1,6 @@
 ﻿using DataEntryApp.ServiceIntegration;
 using DataEntryApp.ServiceIntegration.ServiceObjects;
+using DataEntryApp.ServiceReference1;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,30 +32,67 @@ namespace DataEntryApp.Pages
             }
             else
             {
-                if (Request.Form["param0"] != null)
+                if (this.Request.QueryString["fnID"] != null && this.Request.QueryString["fnID"] == "11")
                 {
-                    retrieveFlyerDetails(int.Parse(Request.Form["param0"]));
+                    if (this.Request.QueryString["flyerID"] == null)
+                    {
+                        Response.Redirect("/Pages/Home.aspx");
+                    }
+                    else
+                    {
+                        retrieveFlyerDetails(int.Parse(this.Request.QueryString["flyerID"]));
+                    }
                 }
-                else
-                {
-                    this.Response.Redirect("Login.aspx");
-                }
+                //else
+                //{
+                //    this.Response.Redirect("Login.aspx");
+                //}
             }
         }
 
         private void retrieveFlyerDetails(int flyerID)
         {
-            var flyersData = ServiceResponseUnMarshaller<List<FLyer>>.deserializer(Session["flyersList"].ToString());
-            FLyer selectedFlyer = null;
-            foreach(FLyer flyer in flyersData)
+            HttpContext.Current.Response.Clear();
+            HttpContext.Current.Response.ClearHeaders();
+            HttpContext.Current.Response.ClearContent();
+            try
             {
-                if (flyer.FLYER_ID == flyerID)
+                if (flyerID > 0)
                 {
-                    selectedFlyer = flyer;
-                    break;
-                }
-            }
+                    ReturnObject<object> FlyerBasicData = ServiceResponseUnMarshaller<object>.unmarshall(new Service1Client().getFlyerBasicData(flyerID));
+                    if (FlyerBasicData.statusCode == 0)
+                    {
+                        HttpContext.Current.Response.Write("flyerData = " + FlyerBasicData.returnObj + ";");
+                    }
+                    else
+                        HttpContext.Current.Response.Write("alert('" + FlyerBasicData.returnObj + "');");
 
+                    ReturnObject<object> FlyerProducts = ServiceResponseUnMarshaller<object>.unmarshall(new Service1Client().getFlyerProducts(flyerID));
+                    if (FlyerProducts.statusCode == 0)
+                    {
+                        HttpContext.Current.Response.Write("flyerProducts = " + FlyerProducts.returnObj + ";");
+                    }
+                    else
+                        HttpContext.Current.Response.Write("alert('" + FlyerProducts.returnObj + "');");
+                }
+                else
+                {
+                    HttpContext.Current.Response.Write("alert('Failed To retrieve Flyer Products Data');");
+                }
+                HttpContext.Current.Response.Flush();
+                HttpContext.Current.ApplicationInstance.CompleteRequest();
+                HttpContext.Current.Response.SuppressContent = true;
+            }
+            catch (Exception ex)
+            {
+                HttpContext.Current.Response.Clear();
+                HttpContext.Current.Response.ClearHeaders();
+                HttpContext.Current.Response.ClearContent();
+                HttpContext.Current.Response.Write("alert('Error Retrieving Flyer Products Data');");
+                HttpContext.Current.Response.Flush();
+                HttpContext.Current.ApplicationInstance.CompleteRequest();
+                HttpContext.Current.Response.SuppressContent = true;
+            }
         }
     }
 }
