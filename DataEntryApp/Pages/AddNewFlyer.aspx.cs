@@ -56,7 +56,11 @@ namespace DataEntryApp.Pages
                 {
                     RETRIEVE_ADD_FLYER_DATA();
                 }
-                else if(HttpContext.Current.Request.Files["_file"] != null)
+                else if(HttpContext.Current.Request.Form["action"] != null && HttpContext.Current.Request.Form["action"] == "insert")
+                {
+                    flyerSubmitData();
+                }
+                else if(HttpContext.Current.Request.Form["action"] != null && HttpContext.Current.Request.Form["action"] == "update")
                 {
                     flyerSubmitData();
                 }
@@ -236,8 +240,16 @@ namespace DataEntryApp.Pages
                 frame.FRAME_DATE_FROM = Convert.ToDateTime(Request.Form["dateFrom"]);
                 frame.FRAME_DATE_TO = Convert.ToDateTime(Request.Form["dateTo"]);
 
+                //flyerID  -   frameID
+                var action = HttpContext.Current.Request.Form["action"];
+                if (action == "update")
+                {
+                    frame.FRAME_ID = int.Parse(HttpContext.Current.Request.Form["frameID"]);
+                    flyerData.FLYER_ID = int.Parse(HttpContext.Current.Request.Form["flyerID"]);
+                }
 
-                ReturnObject<object> flyerObj = ServiceResponseUnMarshaller<object>.unmarshall(new Service1Client().addNewFlyerBasicData(flyerData, frame));
+
+                ReturnObject<object> flyerObj = ServiceResponseUnMarshaller<object>.unmarshall(new Service1Client().addNewFlyerBasicData(flyerData, frame, action));
                 if (flyerObj.statusCode == 0)
                 {
                     Session["flyerID"] = int.Parse(flyerObj.returnObj.ToString());

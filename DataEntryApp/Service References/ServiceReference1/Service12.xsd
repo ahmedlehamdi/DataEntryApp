@@ -71,6 +71,7 @@
       <xs:sequence>
         <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/DataEntryDAL.DataAccessLogic" minOccurs="0" name="flyer" nillable="true" type="q1:OFFER_FLYER" />
         <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DataEntryDAL.DataAccessLogic" minOccurs="0" name="frame" nillable="true" type="q2:TIME_FRAME" />
+        <xs:element minOccurs="0" name="action" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

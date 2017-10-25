@@ -916,10 +916,10 @@ namespace DataEntryApp.ServiceReference1 {
         System.Threading.Tasks.Task<string> getAllTimeFramesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addNewFlyerBasicData", ReplyAction="http://tempuri.org/IService1/addNewFlyerBasicDataResponse")]
-        string addNewFlyerBasicData(DataEntryApp.ServiceReference1.OFFER_FLYER flyer, DataEntryApp.ServiceReference1.TIME_FRAME frame);
+        string addNewFlyerBasicData(DataEntryApp.ServiceReference1.OFFER_FLYER flyer, DataEntryApp.ServiceReference1.TIME_FRAME frame, string action);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addNewFlyerBasicData", ReplyAction="http://tempuri.org/IService1/addNewFlyerBasicDataResponse")]
-        System.Threading.Tasks.Task<string> addNewFlyerBasicDataAsync(DataEntryApp.ServiceReference1.OFFER_FLYER flyer, DataEntryApp.ServiceReference1.TIME_FRAME frame);
+        System.Threading.Tasks.Task<string> addNewFlyerBasicDataAsync(DataEntryApp.ServiceReference1.OFFER_FLYER flyer, DataEntryApp.ServiceReference1.TIME_FRAME frame, string action);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getAllProductCategories", ReplyAction="http://tempuri.org/IService1/getAllProductCategoriesResponse")]
         string getAllProductCategories();
@@ -1025,12 +1025,12 @@ namespace DataEntryApp.ServiceReference1 {
             return base.Channel.getAllTimeFramesAsync();
         }
         
-        public string addNewFlyerBasicData(DataEntryApp.ServiceReference1.OFFER_FLYER flyer, DataEntryApp.ServiceReference1.TIME_FRAME frame) {
-            return base.Channel.addNewFlyerBasicData(flyer, frame);
+        public string addNewFlyerBasicData(DataEntryApp.ServiceReference1.OFFER_FLYER flyer, DataEntryApp.ServiceReference1.TIME_FRAME frame, string action) {
+            return base.Channel.addNewFlyerBasicData(flyer, frame, action);
         }
         
-        public System.Threading.Tasks.Task<string> addNewFlyerBasicDataAsync(DataEntryApp.ServiceReference1.OFFER_FLYER flyer, DataEntryApp.ServiceReference1.TIME_FRAME frame) {
-            return base.Channel.addNewFlyerBasicDataAsync(flyer, frame);
+        public System.Threading.Tasks.Task<string> addNewFlyerBasicDataAsync(DataEntryApp.ServiceReference1.OFFER_FLYER flyer, DataEntryApp.ServiceReference1.TIME_FRAME frame, string action) {
+            return base.Channel.addNewFlyerBasicDataAsync(flyer, frame, action);
         }
         
         public string getAllProductCategories() {

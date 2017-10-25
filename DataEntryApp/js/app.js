@@ -104,7 +104,7 @@ function displayFlyerList(flyerList)
         xtemp = xtemp.replace('#FROM#', (flyerList[i].FRAME_DATE_FROM).replace("T", " "));
         xtemp = xtemp.replace('#TO#', (flyerList[i].FRAME_DATE_TO).replace("T", " "));
         xtemp = xtemp.replace('#VIEW#', '<div onclick="openFlyerDetails(' + flyerList[i].FLYER_ID + ')"><i class="fa-2x fa fa-search" style="cursor: pointer;color: #67D3E0;"></i></div>');
-        xtemp = xtemp.replace('#EDIT#', (flyerList[i].FLYER_APPROVED == null) ? '<div onclick="editFlyerDetails(' + flyerList[i].FLYER_ID + ')"><i class="fa-2x fa fa-pencil-square-o" style="cursor: pointer;"></i></div>' : '<div><i class="fa-2x fa fa-check" style="color: #30BB74;" ></i></div>');
+        xtemp = xtemp.replace('#EDIT#', (flyerList[i].FLYER_APPROVED == null) ? '<div onclick="openEditFlyerDetails(' + flyerList[i].FLYER_ID + ')"><i class="fa-2x fa fa-pencil-square-o" style="cursor: pointer;"></i></div>' : '<div><i class="fa-2x fa fa-check" style="color: #30BB74;" ></i></div>');
 
         $("#flyerTBody").append(xtemp);
     }
@@ -236,7 +236,7 @@ function loadOffersTypesData() {
             offersTypesList = '';
             eval(data);
             if (offersTypesList != '') {
-
+                displayOffersTypesData(offersTypesList);
             }
         });
 }
@@ -247,7 +247,7 @@ function loadTimeFramesData() {
             timeFramesList = '';
             eval(data);
             if (timeFramesList != '') {
-
+                displayTimeFramesData(timeFramesList);
             }
         });
 }
@@ -267,6 +267,11 @@ function displayProvidersData(list)
         else
             $("#product_" + (productCount - 1) + " #providerDD").append(temp);
     }
+
+    if($("#providerDD").attr("data-old") && $("#providerDD").attr("data-old") != null)
+    {
+        $("#providerDD").val($("#providerDD").attr("data-old"));
+    }
 }
 function displayOffersTypesData(list) {
     var template = '<option value="#ID#">#DETAILS#</option>';
@@ -275,6 +280,9 @@ function displayOffersTypesData(list) {
         temp = temp.replace("#ID#", list[i].OFFER_TYPE_ID);
         temp = temp.replace("#DETAILS#", list[i].OFFER_TYPE_NAME_EN + " - " + list[i].OFFER_TYPE_VALUE);
         $("#offerTypeDD").append(temp);
+    }
+    if ($("#offerTypeDD").attr("data-old") && $("#offerTypeDD").attr("data-old") != null) {
+        $("#offerTypeDD").val($("#offerTypeDD").attr("data-old"));
     }
 }
 function displayTimeFramesData(list) {
@@ -285,9 +293,12 @@ function displayTimeFramesData(list) {
         temp = temp.replace("#DETAILS#", list[i].FRAME_TYPE_NAME_EN );
         $("#timeFrameDD").append(temp);
     }
+    if ($("#timeFrameDD").attr("data-old") && $("#timeFrameDD").attr("data-old") != null) {
+        $("#timeFrameDD").val($("#timeFrameDD").attr("data-old"));
+    }
 }
 
-function submitFlyerForm() {
+function submitFlyerForm(action) {
     ShowMyLoginSpinner();
     var fd = new FormData();
     var file = document.getElementById('flyerImageFile');
@@ -308,6 +319,11 @@ function submitFlyerForm() {
             fd.append('dateFrom', $("#dateFrom").val());
             fd.append('dateTo', $("#dateTo").val());
 
+            fd.append('flyerID', $("#flyerNameAr").attr('data-old'));
+            fd.append('frameID', $("#timeFrameDD").attr('data-id'));
+
+            (action == 'edit') ? fd.append('action', "update") : fd.append('action', "insert");
+            
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "/Pages/AddNewFlyer.aspx?fnID=7", true);
             xhr.onreadystatechange = function () {
@@ -444,4 +460,41 @@ function GetElementInsideContainer(containerID, childID) {
         }
     }
     return elm;
+}
+
+function openEditFlyerDetails(flyerID)
+{
+    localStorage.setItem("flyerID", flyerID);
+    window.location = '/Pages/EditFlyerDetails.aspx';
+}
+
+function loadFlyerDetailsForEdit() {
+    
+    AjaxCall("../Pages/EditFlyerDetails.aspx?fnID=12&flyerID=" + localStorage.getItem("flyerID")
+       , function (data) {
+           flyerData = '';
+           eval(data);
+           if (flyerData != '') {
+               $("#flyerNameEn").val(flyerData.FLYER_NAME_EN);
+               $("#flyerNameAr").val(flyerData.FLYER_NAME_AR);
+               $("#flyerNameAr").attr('data-old', flyerData.FLYER_ID);
+               $("#oldImage").attr('href', flyerData.FLYER_IMAGE_URL);
+               $("#oldImage").attr('download', flyerData.FLYER_IMAGE_URL.split('/')[2]);
+               $("#oldImage").text(flyerData.FLYER_IMAGE_URL.split('/')[2]);
+               $("#providerDD").attr('data-old', flyerData.PROVIDER_ID);
+               $("#offerTypeDD").attr('data-old', flyerData.OFFER_TYPE_ID);
+               $("#timeFrameDD").attr('data-old', flyerData.FRAME_TYPE_ID);
+               alert(flyerData.FRAME_ID);
+               $("#timeFrameDD").attr('data-id', flyerData.FRAME_ID);
+               $("#frameNameAr").val(flyerData.FRAME_NAME_EN);
+               $("#frameNameEn").val(flyerData.FRAME_NAME_AR);
+               $("#dateFrom").val(flyerData.FRAME_DATE_FROM.replace('T', ' '));
+               $("#dateTo").val(flyerData.FRAME_DATE_TO.replace('T', ' '));
+               flyerData = '';
+               loadProvidersData();
+               loadOffersTypesData();
+               loadTimeFramesData();
+           }
+           localStorage.removeItem("flyerID")
+       });
 }
