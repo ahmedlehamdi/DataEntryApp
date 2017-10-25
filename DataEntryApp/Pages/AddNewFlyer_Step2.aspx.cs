@@ -123,7 +123,7 @@ namespace DataEntryApp.Pages
             HttpContext.Current.Response.ContentType = "application/json";
             try
             {
-                var flyerID = int.Parse(Session["flyerID"].ToString());
+                var flyerID = int.Parse(Session["flyerID"] != null ? Session["flyerID"].ToString() : HttpContext.Current.Request.Form["flyerID"]);
                 Session["flyerID"] = null;
                 var productCount = int.Parse(HttpContext.Current.Request.Form["productCount"]);
                 PRODUCT_SPEC[] specs = new PRODUCT_SPEC[productCount];
@@ -137,6 +137,10 @@ namespace DataEntryApp.Pages
                         fileName = Path.GetFileName(file.FileName);
                         string filename = !(file.FileName == "NoImage") ? Path.Combine(this.Server.MapPath("~/UploadedImages/"), fileName) : "";
                         file.SaveAs(filename);
+                    }
+                    else if (HttpContext.Current.Request.Form["_imgFile_" + i] != null)
+                    {
+                        fileName = HttpContext.Current.Request.Form["_imgFile_" + i].Replace("/UploadedImages/", "");
                     }
                     PRODUCT_SPEC spec = new PRODUCT_SPEC();
                     spec.SPECS_ATTR_1 = HttpContext.Current.Request.Form["productSpecs_1_" + i];

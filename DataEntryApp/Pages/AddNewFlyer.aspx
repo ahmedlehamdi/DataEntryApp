@@ -165,7 +165,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                             <label for="dateTo">Date To</label>
                                             <asp:TextBox data-validation="required" ReadOnly="true" required="" ViewStateMode="Enabled" runat="server" CssClass="form-control" id="dateTo" name="dateTo" />
                                         </div>
-                                        <input type="button" value="Add Products" class="btn btn-default btn-success btn-lg" ID="flyerSubmitBtn" OnClick="submitFlyerForm()" />
+                                        <input type="button" value="Add Products" class="btn btn-default btn-success btn-lg" ID="flyerSubmitBtn" OnClick="submitFlyerForm('insert')" />
                                     </form>
                                 </div>
                             </div>

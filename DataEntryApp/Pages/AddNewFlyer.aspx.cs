@@ -253,7 +253,8 @@ namespace DataEntryApp.Pages
                 if (flyerObj.statusCode == 0)
                 {
                     Session["flyerID"] = int.Parse(flyerObj.returnObj.ToString());
-                    HttpContext.Current.Response.Write("window.location = '/Pages/AddNewFlyer_Step2.aspx';localStorage.setItem('flyerID', '" + flyerObj.returnObj.ToString() + "');");
+                    var redURL = (action == "insert") ? "/Pages/AddNewFlyer_Step2.aspx" : "/Pages/EditFlyerDetails_Step2.aspx";
+                    HttpContext.Current.Response.Write("window.location = '" + redURL + "';localStorage.setItem('flyerID', '" + flyerObj.returnObj.ToString() + "');");
                 }
                 else
                 {
