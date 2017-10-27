@@ -196,9 +196,12 @@
     <Content Include="Pages\EditFlyerDetails.aspx" />
     <Content Include="Pages\EditFlyerDetails_Step2.aspx" />
     <Content Include="Pages\FlyerDetails.aspx" />
+    <Content Include="Pages\FlyerDetails_Admin.aspx" />
     <Content Include="Pages\Home.aspx" />
+    <Content Include="Pages\Home_Admin.aspx" />
     <Content Include="Pages\ListOfRejectedFlyers.aspx" />
     <Content Include="Pages\Login.aspx" />
+    <Content Include="Pages\UserList.aspx" />
     <Content Include="progressbar.html" />
     <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
     <None Include="Service References\ServiceReference1\configuration.svcinfo" />
@@ -284,12 +287,26 @@
     <Compile Include="Pages\FlyerDetails.aspx.designer.cs">
       <DependentUpon>FlyerDetails.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\FlyerDetails_Admin.aspx.cs">
+      <DependentUpon>FlyerDetails_Admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\FlyerDetails_Admin.aspx.designer.cs">
+      <DependentUpon>FlyerDetails_Admin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Home_Admin.aspx.cs">
+      <DependentUpon>Home_Admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Home_Admin.aspx.designer.cs">
+      <DependentUpon>Home_Admin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\ListOfRejectedFlyers.aspx.cs">
       <DependentUpon>ListOfRejectedFlyers.aspx</DependentUpon>
@@ -304,6 +321,13 @@
     </Compile>
     <Compile Include="Pages\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserList.aspx.cs">
+      <DependentUpon>UserList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\UserList.aspx.designer.cs">
+      <DependentUpon>UserList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\ServiceReference1\Reference.cs">

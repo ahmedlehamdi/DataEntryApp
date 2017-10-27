@@ -37,6 +37,7 @@ function ShowMyLoginSpinner() {
 
 function HideMyLoginSpinner() {
     $('body').loading('hide');
+    $('body').loading('destroy');
 }
 
 
@@ -49,8 +50,8 @@ $(document).ready(function () {
             if ($.trim($("#passwordTxt").val()) != '' && $("#passwordTxt").val() != null) {
                 AjaxCall("../Pages/Login.aspx?username=" + $("#userNameTxt").val() + "&password=" + $("#passwordTxt").val() + "&fnID=1"
                     , function (data) {
-                            
                         eval(data);
+                        $("#submitButton").attr('disabled', false);
                     });
             } else {
                 $("#submitButton").attr('disabled', false);
@@ -88,11 +89,14 @@ function loadAllFlyers()
 }
 
 
+
 function displayFlyerList(flyerList)
 {
     ShowMyLoginSpinner();
     console.log(flyerList);
-    var template = '<tr> <th scope="row">#NUM#</th> <td>#NAME#</td><td>#IMAGE#</td><td>#STATUS#</td><td>#FROM#</td><td>#TO#</td><td>#VIEW#</td><td>#EDIT#</td></tr>';
+    var UType = localStorage.getItem('UType');
+    var template = (UType != null && UType == 'entry') ? '<tr> <th scope="row">#NUM#</th> <td>#NAME#</td><td>#IMAGE#</td><td>#STATUS#</td><td>#FROM#</td><td>#TO#</td><td>#VIEW#</td><td>#EDIT#</td></tr>'
+                    : '<tr> <th scope="row">#NUM#</th><td>#NAME#</td><td>#IMAGE#</td><td>#STATUS#</td><td>#FROM#</td><td>#TO#</td><td>#VIEW#</td><td>#DELETE#</td></tr>';
     for (var i = 0; i < flyerList.length ; i++)
     {
         var xtemp = template;
@@ -104,8 +108,10 @@ function displayFlyerList(flyerList)
         xtemp = xtemp.replace('#FROM#', (flyerList[i].FRAME_DATE_FROM).replace("T", " "));
         xtemp = xtemp.replace('#TO#', (flyerList[i].FRAME_DATE_TO).replace("T", " "));
         xtemp = xtemp.replace('#VIEW#', '<div onclick="openFlyerDetails(' + flyerList[i].FLYER_ID + ')"><i class="fa-2x fa fa-search" style="cursor: pointer;color: #67D3E0;"></i></div>');
-        xtemp = xtemp.replace('#EDIT#', (flyerList[i].FLYER_APPROVED == null) ? '<div onclick="openEditFlyerDetails(' + flyerList[i].FLYER_ID + ')"><i class="fa-2x fa fa-pencil-square-o" style="cursor: pointer;"></i></div>' : '<div><i class="fa-2x fa fa-check" style="color: #30BB74;" ></i></div>');
-
+        if (UType != null && UType == 'entry')
+            xtemp = xtemp.replace('#EDIT#', (flyerList[i].FLYER_APPROVED == null) ? '<div onclick="openEditFlyerDetails(' + flyerList[i].FLYER_ID + ')"><i class="fa-2x fa fa-pencil-square-o" style="cursor: pointer;"></i></div>' : '<div><i class="fa-2x fa fa-check" style="color: #30BB74;" ></i></div>');
+        else
+            xtemp = xtemp.replace('#DELETE#', '<div data-index="'+ i + '" onclick="loadDeleteFlyerModal(' + flyerList[i].FLYER_ID + ', \'' + i+'\')"><i class="fa-2x fa fa-trash-o" style="cursor: pointer;color:#d9534f;"></i></div>');
         $("#flyerTBody").append(xtemp);
     }
     HideMyLoginSpinner();
@@ -129,7 +135,8 @@ function openPageWithPostData(pageURL, dataArr, callback)
 function openFlyerDetails(flyerID)
 {
     localStorage.setItem('flyerID', flyerID);
-    window.location = '/Pages/FlyerDetails.aspx';
+    var UType = localStorage.getItem("UType");
+    window.location = (UType == 'entry') ? '/Pages/FlyerDetails.aspx' : '/Pages/FlyerDetails_Admin.aspx';
 }
 
 function loadFlyerDetails()
@@ -396,11 +403,9 @@ function loadCategoriesTypesData(catID, obj) {
 
 function SubmitFlyerProducts()
 {
+    ShowMyLoginSpinner();
     var flyerID = localStorage.getItem('flyerID');
     localStorage.removeItem('flyerID');
-
-    //0 -- > productCount
-    //"product_" + productCount
     var fdArr = new Array();
     var fd = new FormData();
     for (var i = 0 ; i < $("[id*='product_']").size() ; i++)
@@ -408,8 +413,6 @@ function SubmitFlyerProducts()
         var productID = $($("[id*='product_']")[i]).attr("id");
         fdArr.push(createProductObject(productID, i, fd));
     }
-    //console.log(fd);
-    ShowMyLoginSpinner();
     fd.append('fnID', '10');
     fd.append('productCount', $("[id*='product_']").size());
     var xhr = new XMLHttpRequest();
@@ -566,3 +569,81 @@ function loadFlyerProductsForEdit()
 }
 
 
+function loadDeleteFlyerModal(flyerID, index)
+{
+    var body = '<h3>Are You Sure You Want to Delete Flyer ?</h3>';
+    var footer = '<button type="button" class="btn btn-danger" onclick="DeleteFlyer(' + flyerID + ', \'' + index + '\')" >Delete</button><button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
+    AddModalData("Delete Flyer", body, footer);
+    showModal('myModal');
+}
+
+function DeleteFlyer(flyerID, index)
+{
+    AjaxCall("../Pages/Home_Admin.aspx?fnID=15&flyerID=" + flyerID
+       , function (data) {
+           var output = false;
+           eval(data);
+           if (output) {
+               $("[data-index='" + index + "']").parents('tr').remove().fadeOut();
+               hideModal('myModal');
+           }
+       });
+}
+
+
+
+function AddModalData(title, body, footer) {
+    $("#modalHeader").text(title);
+    $("#modalBody").html(body);
+    $("#modalFooter").html(footer);
+}
+
+function DeleteModalData()
+{
+    $("#modalHeader").text('');
+    $("#modalBody").html('');
+    $("#modalFooter").html('');
+}
+
+function showModal(id) {
+    $("#" + id).modal('show');
+}
+
+function hideModal(id) {
+    $("#" + id).modal('hide');
+}
+
+function showEditPasswordModal()
+{
+    var body = '<div class="form-body"><form> <div class="form-group"> <label for="oldPSW">Old Password</label> <input type="Password" class="form-control" id="oldPSW" placeholder="Old Password"> </div><div class="form-group"> <label for="newPSW">New Password</label> <input type="password" class="form-control" id="newPSW" placeholder="New Password"> </div><div class="form-group"> <label for="cfmNewPSW">Confirm New Password</label> <input type="password" id="cfmNewPSW" class="form-control" placeholder="Confirm New Password"> </div></form> </div>';
+    var footer = '<button type="button" class="btn btn-info" onclick="saveNewPassword()" >Save</button><button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
+    AddModalData('Edit Password', body, footer);
+    showModal('myModal');
+}
+
+function saveNewPassword()
+{
+    AjaxCall("../Pages/Home_Admin.aspx?fnID=16&newPassword=" + $("#newPSW").val() + "&newPasswordRepeated=" + $("#cfmNewPSW").val() + "&oldPassword=" + $("#oldPSW").val()
+       , function (data) {
+           var output = false;
+           eval(data);
+           if (output) {
+               hideModal('myModal');
+           }
+       });
+}
+
+
+function ShowNewUserModel()
+{
+    var body = '<div class="form-body"><form> <div class="form-group"> <label for="userName">User Name</label> <input type="text" class="form-control" id="userName" placeholder="User Name "> </div><div class="form-group"> <label for="password">User Password</label> <input type="password" class="form-control" id="password" placeholder="User Password"> </div><div class="form-group"> <label for="userType">User Type</label> <select name="userType" id="userType" class="form-control1"><option value="-1">Data Entry</option><option>Admin</option></select> </div></form> </div>';
+    var footer = '<button type="button" class="btn btn-info" onclick="addNewUser()" >Save</button><button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
+    AddModalData('Add New User', body, footer);
+    showModal('myModal');
+}
+
+function addNewUser()
+{
+    alert("addNewUser");
+    hideModal('myModal');
+}

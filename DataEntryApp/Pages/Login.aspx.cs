@@ -38,13 +38,18 @@ namespace DataEntryApp.Pages
                     {
                         User user = ServiceResponseUnMarshaller<User>.deserializer(output.returnObj.ToString());
                         Session["UserID"] = user.USER_ID;
+                        Session["UserPassword"] = user.USER_PASSWORD;
                         if (user.USER_TYPE == "Admin")
                         {
-                            HttpContext.Current.Response.Write("localStorage.setItem('UType', 'admin');localStorage.setItem('username', '" + user.USER_NAME + "');window.location = 'Home.aspx';");
+                            HttpContext.Current.Response.Write("localStorage.setItem('UType', 'admin');localStorage.setItem('username', '" + user.USER_NAME + "');window.location = '/Pages/Home_admin.aspx';");
                         }
                         else if (user.USER_TYPE == "DataEntry")
                         {
-                            HttpContext.Current.Response.Write("localStorage.setItem('UType', 'entry');localStorage.setItem('username', '" + user.USER_NAME + "');window.location = 'Home.aspx';");
+                            HttpContext.Current.Response.Write("localStorage.setItem('UType', 'entry');localStorage.setItem('username', '" + user.USER_NAME + "');window.location = '/Pages/Home.aspx';");
+                        }
+                        else if (user.USER_TYPE == "SuperAdmin")
+                        {
+                            HttpContext.Current.Response.Write("localStorage.setItem('UType', 'sAdmin');localStorage.setItem('username', '" + user.USER_NAME + "');window.location = '/Pages/Home_admin.aspx';");
                         }
                     }
                     else

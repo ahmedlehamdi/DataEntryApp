@@ -956,6 +956,18 @@ namespace DataEntryApp.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getFlyerProducts", ReplyAction="http://tempuri.org/IService1/getFlyerProductsResponse")]
         System.Threading.Tasks.Task<string> getFlyerProductsAsync(int flyerID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/deleteFlyerAndProductsByID", ReplyAction="http://tempuri.org/IService1/deleteFlyerAndProductsByIDResponse")]
+        string deleteFlyerAndProductsByID(int flyerID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/deleteFlyerAndProductsByID", ReplyAction="http://tempuri.org/IService1/deleteFlyerAndProductsByIDResponse")]
+        System.Threading.Tasks.Task<string> deleteFlyerAndProductsByIDAsync(int flyerID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/updateUserPassword", ReplyAction="http://tempuri.org/IService1/updateUserPasswordResponse")]
+        string updateUserPassword(int userID, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/updateUserPassword", ReplyAction="http://tempuri.org/IService1/updateUserPasswordResponse")]
+        System.Threading.Tasks.Task<string> updateUserPasswordAsync(int userID, string password);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1079,6 +1091,22 @@ namespace DataEntryApp.ServiceReference1 {
         
         public System.Threading.Tasks.Task<string> getFlyerProductsAsync(int flyerID) {
             return base.Channel.getFlyerProductsAsync(flyerID);
+        }
+        
+        public string deleteFlyerAndProductsByID(int flyerID) {
+            return base.Channel.deleteFlyerAndProductsByID(flyerID);
+        }
+        
+        public System.Threading.Tasks.Task<string> deleteFlyerAndProductsByIDAsync(int flyerID) {
+            return base.Channel.deleteFlyerAndProductsByIDAsync(flyerID);
+        }
+        
+        public string updateUserPassword(int userID, string password) {
+            return base.Channel.updateUserPassword(userID, password);
+        }
+        
+        public System.Threading.Tasks.Task<string> updateUserPasswordAsync(int userID, string password) {
+            return base.Channel.updateUserPasswordAsync(userID, password);
         }
     }
 }
