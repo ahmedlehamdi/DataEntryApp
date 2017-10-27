@@ -33,7 +33,7 @@ namespace DataEntryApp.Pages
             {
                 if (this.Request.QueryString["fnID"] != null && this.Request.QueryString["fnID"] == "17")
                 {
-                    
+                    approveRejectFlyer();
                 }
             }
         }

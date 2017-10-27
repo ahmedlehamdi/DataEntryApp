@@ -183,18 +183,20 @@ function loadFlyerDetails()
                if (!buttonFlag)
                { $("#approvBtnGroup").remove(); }
                else {
+                   var flyerID = localStorage.getItem('flyerID');
                    $("#approvBtnGroup .btn-success").on('click', function () {
-                       approveRejectFlyer(true, localStorage.getItem('flyerID'));
+
+                       approveRejectFlyer(true, flyerID);
                    });
                    $("#approvBtnGroup .btn-danger").on('click', function () {
-                       approveRejectFlyer(false, localStorage.getItem('flyerID'));
+                       approveRejectFlyer(false, flyerID);
                    });
                   
                }
            } catch (e) { }
-                
+           localStorage.removeItem('flyerID'); 
        });
-    localStorage.removeItem('flyerID');
+   
 }
 
 function AddMoreProduct()
