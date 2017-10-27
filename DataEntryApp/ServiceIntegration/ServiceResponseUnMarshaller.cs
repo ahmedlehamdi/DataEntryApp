@@ -21,5 +21,11 @@ namespace DataEntryApp.ServiceIntegration
             OBJ obj = JsonConvert.DeserializeObject<OBJ>(str);
             return obj;
         }
+
+        public static string serializer(OBJ obj)
+        {
+            string result = JsonConvert.SerializeObject(obj);
+            return result;
+        }
     }
 }

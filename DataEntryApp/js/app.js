@@ -673,3 +673,42 @@ function approveRejectFlyer(flag, flyerID)
           eval(data);
       });
 }
+
+function loadUsersList()
+{
+    AjaxCall("../Pages/UserManagment.aspx?fnID=18"
+     , function (data) {
+         var usersList = '';
+         eval(data);
+         if (usersList != '')
+         {
+             $("#usersTBody").html('');
+             var template = '<tr><td>#USERNAME#</td><td>#USERTYPE#</td><td>#USERPASSWORD#</td></tr>';
+             for(var i = 0 ; i < usersList.length ; i++)
+             {
+                 var temp = template;
+                 temp = temp.replace("#USERNAME#", usersList[i].USER_NAME);
+                 temp = temp.replace("#USERTYPE#", usersList[i].USER_TYPE);
+                 temp = temp.replace("#USERPASSWORD#", "<button data-uid='" + usersList[i].USER_ID + "' class='btn btn-default btn-info' onclick='confirmShowPassword($(this));'>Show Password</button>");
+                 $("#usersTBody").append(temp);
+             }
+         }
+     });
+}
+
+function confirmShowPassword(obj)
+{
+    var body = '<div class="form-body"><form> <div class="form-group"> <label for="userpassword">User Pasword</label> <input type="password" class="form-control" id="userpassword" name="userpassword" placeholder="User Password"/> </div></form> </div>';
+    var footer = '<button type="button" class="btn btn-info" onclick="showPassword('+$(obj).attr('data-uid')+')" id="validateConfirmBtn">Confirm</button><button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
+    AddModalData('Validation ', body, footer);
+    showModal('myModal');
+}
+
+
+function showPassword(data)
+{
+    AjaxCall("../Pages/UserManagment.aspx?fnID=19&enteredPassword=" + $("#userpassword").val() + "&uID=" + data
+     , function (data) {
+         eval(data);
+     });
+}

@@ -201,7 +201,7 @@
     <Content Include="Pages\Home_Admin.aspx" />
     <Content Include="Pages\ListOfRejectedFlyers.aspx" />
     <Content Include="Pages\Login.aspx" />
-    <Content Include="Pages\UserList.aspx" />
+    <Content Include="Pages\UserManagment.aspx" />
     <Content Include="Pages\UsersList.aspx" />
     <Content Include="progressbar.html" />
     <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
@@ -323,12 +323,12 @@
     <Compile Include="Pages\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\UserList.aspx.cs">
-      <DependentUpon>UserList.aspx</DependentUpon>
+    <Compile Include="Pages\UserManagment.aspx.cs">
+      <DependentUpon>UserManagment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\UserList.aspx.designer.cs">
-      <DependentUpon>UserList.aspx</DependentUpon>
+    <Compile Include="Pages\UserManagment.aspx.designer.cs">
+      <DependentUpon>UserManagment.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\UsersList.aspx.cs">
       <DependentUpon>UsersList.aspx</DependentUpon>

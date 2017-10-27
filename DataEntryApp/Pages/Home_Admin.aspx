@@ -81,7 +81,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			
 				<!-- four-grids -->
 				<div class="row four-grids">
-					<div class="col-md-4 ticket-grid" onclick="window.location='/Pages/UserList.aspx';">
+					<div class="col-md-4 ticket-grid" onclick="window.location='/Pages/UserManagment.aspx';">
 						<div class="tickets">
 							<div class="grid-left">
 								<div class="book-icon">

@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UserList.aspx.cs" Inherits="DataEntryApp.Pages.UserList" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UserManagment.aspx.cs" Inherits="DataEntryApp.Pages.UserManagment" %>
+
 
 <!--
 Author: W3layouts
@@ -39,9 +40,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--//end-animate-->
 <script src="../js/custom.js"></script>
 <link href="../css/custom.css" rel="stylesheet">
-    <link href='../css/jquery-loading.min.css' rel='stylesheet' type='text/css'>
-
+<link href='../css/jquery-loading.min.css' rel='stylesheet' type='text/css'>
+<!--//Spinner--> 
+<!-- js -->
+<script src="../js/jquery.form-validator.min.js"></script>
 <script src="../js/jquery-loading.js"></script>
+    
+<link href="../css/demo-page.css" rel="stylesheet" media="all">
+<link href="../css/hover.css" rel="stylesheet" media="all">
 </head> 
 <body class="cbp-spmenu-push">
 	<div class="main-content">
@@ -72,52 +78,40 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<!-- main content start-->
 		<div id="page-wrapper">
 			<div class="main-page">
-
 				<!--row-->
 				<div class="grids">
-                    <div class="row">
-                        <div class="progressbar-heading grids-heading col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                            <h2>Users List</h2>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                            <button type="button" class="btn btn-default btn-info btn-lg" onclick="window.location='/Pages/Home_Admin.aspx'">
-                                <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                                Back To Home
-                            </button>
-                        </div>
-                    </div>
                     <div class="panel panel-widget">
                         <div class="tables">
-                            <h4>List Of Users:</h4>
+                            <div class="row">
+                                <div class="progressbar-heading grids-heading col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                                    <h2>List Of Users:</h2>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                    <button type="button" class="btn btn-default btn-info btn-lg" onclick="window.location='/Pages/Home.aspx'">
+                                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                                        Back To Home
+                                    </button>
+                                </div>
+                            </div>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>User Name</th>
-                                        <th>User Password</th>
                                         <th>User Type</th>
-                                        <th>Delete</th>
+                                        <th>Password</th>
                                     </tr>
                                 </thead>
-                                <tbody id="flyerTBody">
+                                <tbody id="usersTBody">
                                     <tr>
                                         <td>#USERNAME#</td>
-                                        <td>#USERPASSWORD#</td>
                                         <td>#USERTYPE#</td>
-                                        <td>#DELETE#</td>
+                                        <td>#USERPASSWORD#</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-					
-                    <div class="clearfix"> </div>
-                    <div class="row">
-                        <div class="progressbar-heading grids-heading col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                            <button type="button" class="btn btn-default btn-success btn-lg" onclick="ShowNewUserModel()">
-                                Add New User
-                            </button>
-                        </div>
-                    </div>
+					<div class="clearfix"> </div>
 				</div>
 				<!--//row-->
 			</div>
@@ -145,7 +139,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <!--//footer-->
 	</div>
 	<!-- Classie -->
-		<div class="modal fade" id="myModal" role="dialog">
+
+    <!-- MODAL -->
+
+    <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
     
           <!-- Modal content-->
@@ -164,6 +161,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       
         </div>
       </div>
+		
 	<!-- Bootstrap Core JavaScript --> 
 		
         <script type="text/javascript" src="../js/bootstrap.min.js"></script>
@@ -185,7 +183,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<script src="../js/app.js"></script>
 		<script>
 		    $(document).ready(function () {
-		        
+		        loadUsersList();
 		    });
 			
 		</script>

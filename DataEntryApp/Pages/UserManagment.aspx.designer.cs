@@ -10,6 +10,6 @@
 namespace DataEntryApp.Pages {
     
     
-    public partial class UserList {
+    public partial class UserManagment {
     }
 }

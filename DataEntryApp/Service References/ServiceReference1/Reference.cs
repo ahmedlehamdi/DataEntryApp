@@ -974,6 +974,12 @@ namespace DataEntryApp.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/approveRejectFlyer", ReplyAction="http://tempuri.org/IService1/approveRejectFlyerResponse")]
         System.Threading.Tasks.Task<string> approveRejectFlyerAsync(int flyerID, bool approveRejectFlag);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getListOfAllUsers", ReplyAction="http://tempuri.org/IService1/getListOfAllUsersResponse")]
+        string getListOfAllUsers();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getListOfAllUsers", ReplyAction="http://tempuri.org/IService1/getListOfAllUsersResponse")]
+        System.Threading.Tasks.Task<string> getListOfAllUsersAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1121,6 +1127,14 @@ namespace DataEntryApp.ServiceReference1 {
         
         public System.Threading.Tasks.Task<string> approveRejectFlyerAsync(int flyerID, bool approveRejectFlag) {
             return base.Channel.approveRejectFlyerAsync(flyerID, approveRejectFlag);
+        }
+        
+        public string getListOfAllUsers() {
+            return base.Channel.getListOfAllUsers();
+        }
+        
+        public System.Threading.Tasks.Task<string> getListOfAllUsersAsync() {
+            return base.Channel.getListOfAllUsersAsync();
         }
     }
 }

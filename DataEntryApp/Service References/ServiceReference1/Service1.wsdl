@@ -97,6 +97,12 @@
   <wsdl:message name="IService1_approveRejectFlyer_OutputMessage">
     <wsdl:part name="parameters" element="tns:approveRejectFlyerResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_getListOfAllUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:getListOfAllUsers" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getListOfAllUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getListOfAllUsersResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="checkLogin">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/checkLogin" message="tns:IService1_checkLogin_InputMessage" />
@@ -157,6 +163,10 @@
     <wsdl:operation name="approveRejectFlyer">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/approveRejectFlyer" message="tns:IService1_approveRejectFlyer_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/approveRejectFlyerResponse" message="tns:IService1_approveRejectFlyer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getListOfAllUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getListOfAllUsers" message="tns:IService1_getListOfAllUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getListOfAllUsersResponse" message="tns:IService1_getListOfAllUsers_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -289,6 +299,15 @@
     </wsdl:operation>
     <wsdl:operation name="approveRejectFlyer">
       <soap:operation soapAction="http://tempuri.org/IService1/approveRejectFlyer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getListOfAllUsers">
+      <soap:operation soapAction="http://tempuri.org/IService1/getListOfAllUsers" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
