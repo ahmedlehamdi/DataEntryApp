@@ -653,7 +653,7 @@ function saveNewPassword()
 
 function ShowNewUserModel()
 {
-    var body = '<div class="form-body"><form> <div class="form-group"> <label for="userName">User Name</label> <input type="text" class="form-control" id="userName" placeholder="User Name "> </div><div class="form-group"> <label for="password">User Password</label> <input type="password" class="form-control" id="password" placeholder="User Password"> </div><div class="form-group"> <label for="userType">User Type</label> <select name="userType" id="userType" class="form-control1"><option value="-1">Data Entry</option><option>Admin</option></select> </div></form> </div>';
+    var body = '<div class="form-body"><form> <div class="form-group"> <label for="userName">User Name</label> <input type="text" class="form-control" id="userName" placeholder="User Name "> </div><div class="form-group"> <label for="password">User Password</label> <input type="password" class="form-control" id="password" placeholder="User Password"> </div><div class="form-group"> <label for="userType">User Type</label> <select name="userType" id="userType" class="form-control1"><option value="1">Data Entry</option><option value="2">Admin</option></select> </div></form> </div>';
     var footer = '<button type="button" class="btn btn-info" onclick="addNewUser()" >Save</button><button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
     AddModalData('Add New User', body, footer);
     showModal('myModal');
@@ -661,8 +661,12 @@ function ShowNewUserModel()
 
 function addNewUser()
 {
-    alert("addNewUser");
-    hideModal('myModal');
+    AjaxCall("../Pages/UserManagment.aspx?fnID=20&userName=" + $("#modalBody #userName").val() + "&userPassword=" + $("#modalBody #password").val() + "&UserType=" + $("#modalBody #userType").val()
+     , function (data) {
+         eval(data);
+         hideModal('myModal');
+     });
+    
 }
 
 function approveRejectFlyer(flag, flyerID)

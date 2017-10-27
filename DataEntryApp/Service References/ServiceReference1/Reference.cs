@@ -881,6 +881,115 @@ namespace DataEntryApp.ServiceReference1 {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/DataEntryDAL.DataAccessLogic")]
+    [System.SerializableAttribute()]
+    internal partial class User : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int USER_IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string USER_NAMEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string USER_PAGESField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string USER_PASSWORDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string USER_TYPEField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal int USER_ID {
+            get {
+                return this.USER_IDField;
+            }
+            set {
+                if ((this.USER_IDField.Equals(value) != true)) {
+                    this.USER_IDField = value;
+                    this.RaisePropertyChanged("USER_ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string USER_NAME {
+            get {
+                return this.USER_NAMEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.USER_NAMEField, value) != true)) {
+                    this.USER_NAMEField = value;
+                    this.RaisePropertyChanged("USER_NAME");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string USER_PAGES {
+            get {
+                return this.USER_PAGESField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.USER_PAGESField, value) != true)) {
+                    this.USER_PAGESField = value;
+                    this.RaisePropertyChanged("USER_PAGES");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string USER_PASSWORD {
+            get {
+                return this.USER_PASSWORDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.USER_PASSWORDField, value) != true)) {
+                    this.USER_PASSWORDField = value;
+                    this.RaisePropertyChanged("USER_PASSWORD");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string USER_TYPE {
+            get {
+                return this.USER_TYPEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.USER_TYPEField, value) != true)) {
+                    this.USER_TYPEField = value;
+                    this.RaisePropertyChanged("USER_TYPE");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IService1")]
     internal interface IService1 {
@@ -980,6 +1089,12 @@ namespace DataEntryApp.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getListOfAllUsers", ReplyAction="http://tempuri.org/IService1/getListOfAllUsersResponse")]
         System.Threading.Tasks.Task<string> getListOfAllUsersAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addNewUser", ReplyAction="http://tempuri.org/IService1/addNewUserResponse")]
+        string addNewUser(DataEntryApp.ServiceReference1.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addNewUser", ReplyAction="http://tempuri.org/IService1/addNewUserResponse")]
+        System.Threading.Tasks.Task<string> addNewUserAsync(DataEntryApp.ServiceReference1.User user);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1135,6 +1250,14 @@ namespace DataEntryApp.ServiceReference1 {
         
         public System.Threading.Tasks.Task<string> getListOfAllUsersAsync() {
             return base.Channel.getListOfAllUsersAsync();
+        }
+        
+        public string addNewUser(DataEntryApp.ServiceReference1.User user) {
+            return base.Channel.addNewUser(user);
+        }
+        
+        public System.Threading.Tasks.Task<string> addNewUserAsync(DataEntryApp.ServiceReference1.User user) {
+            return base.Channel.addNewUserAsync(user);
         }
     }
 }

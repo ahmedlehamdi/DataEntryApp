@@ -40,7 +40,10 @@ namespace DataEntryApp.Pages
                 {
                     validateUserPassword();
                 }
-
+                if (this.Request.QueryString["fnID"] != null && this.Request.QueryString["fnID"] == "20")
+                {
+                    insertNewUser();
+                }
             }
         }
 
@@ -54,11 +57,11 @@ namespace DataEntryApp.Pages
                 ReturnObject<object> output = ServiceResponseUnMarshaller<object>.unmarshall(new Service1Client().getListOfAllUsers());
                 if (output.statusCode == 0)
                 {
-                    var usersList = ServiceResponseUnMarshaller<List<User>>.deserializer(output.returnObj.ToString());
+                    var usersList = ServiceResponseUnMarshaller<List<ServiceReference1.User>>.deserializer(output.returnObj.ToString());
                     Session["UsersList"] = output.returnObj.ToString();
-                    foreach (User user in usersList)
+                    foreach (ServiceReference1.User user in usersList)
                         user.USER_PASSWORD = "";
-                    var emptyUsersList = ServiceResponseUnMarshaller<List<User>>.serializer(usersList);
+                    var emptyUsersList = ServiceResponseUnMarshaller<List<ServiceReference1.User>>.serializer(usersList);
                     HttpContext.Current.Response.Write("usersList = " + emptyUsersList + ";");
 
                 }
@@ -95,7 +98,7 @@ namespace DataEntryApp.Pages
                 if(enteredPassword == userPassword)
                 {
                     var usersListStr = Session["UsersList"].ToString();
-                    var usersList = ServiceResponseUnMarshaller<List<User>>.deserializer(usersListStr);
+                    var usersList = ServiceResponseUnMarshaller<List<ServiceReference1.User>>.deserializer(usersListStr);
                     foreach(User user in usersList)
                     {
                         if(user.USER_ID == int.Parse(userID))
@@ -110,6 +113,45 @@ namespace DataEntryApp.Pages
                 {
                     HttpContext.Current.Response.Write("alert('Invalid Entered Password');");
                 }
+                HttpContext.Current.Response.Flush();
+                HttpContext.Current.ApplicationInstance.CompleteRequest();
+                HttpContext.Current.Response.SuppressContent = true;
+            }
+            catch (Exception ex)
+            {
+                HttpContext.Current.Response.Clear();
+                HttpContext.Current.Response.ClearHeaders();
+                HttpContext.Current.Response.ClearContent();
+                HttpContext.Current.Response.Write("alert('Error Retrieving Users Data');");
+                HttpContext.Current.Response.Flush();
+                HttpContext.Current.ApplicationInstance.CompleteRequest();
+                HttpContext.Current.Response.SuppressContent = true;
+            }
+        }
+
+        private void insertNewUser()
+        {
+            HttpContext.Current.Response.Clear();
+            HttpContext.Current.Response.ClearHeaders();
+            HttpContext.Current.Response.ClearContent();
+            try
+            {
+                var userName = this.Request.QueryString["userName"];
+                var userPassword = this.Request.QueryString["userPassword"];
+                var UserType = this.Request.QueryString["UserType"];
+
+                ServiceReference1.User user = new ServiceReference1.User();
+                user.USER_NAME = userName;
+                user.USER_PASSWORD = userPassword;
+                user.USER_TYPE = (UserType == "1" ? "DataEntry" : "Admin");
+
+                ReturnObject<object> output = ServiceResponseUnMarshaller<object>.unmarshall(new Service1Client().addNewUser(user));
+                if (output.statusCode == 0)
+                {
+                    HttpContext.Current.Response.Write("window.location='/Pages/UserManagment.aspx';alert('User Have been Inserted Successfully');");
+                }
+                else
+                    HttpContext.Current.Response.Write("alert('" + output.returnObj + "');");
                 HttpContext.Current.Response.Flush();
                 HttpContext.Current.ApplicationInstance.CompleteRequest();
                 HttpContext.Current.Response.SuppressContent = true;

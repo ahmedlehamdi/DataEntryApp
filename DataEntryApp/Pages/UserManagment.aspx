@@ -87,7 +87,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     <h2>List Of Users:</h2>
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                    <button type="button" class="btn btn-default btn-info btn-lg" onclick="window.location='/Pages/Home.aspx'">
+                                    <button type="button" class="btn btn-default btn-info btn-lg" onclick="window.location='/Pages/Home_Admin.aspx'">
                                         <i class="fa fa-arrow-left" aria-hidden="true"></i>
                                         Back To Home
                                     </button>
@@ -102,11 +102,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     </tr>
                                 </thead>
                                 <tbody id="usersTBody">
-                                    <tr>
-                                        <td>#USERNAME#</td>
-                                        <td>#USERTYPE#</td>
-                                        <td>#USERPASSWORD#</td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -114,6 +109,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="clearfix"> </div>
 				</div>
 				<!--//row-->
+                <div class="row" style="padding-bottom:20px;">
+                    <button type="button" class="btn btn-default btn-success btn-lg" onclick="ShowNewUserModel()">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Add User
+                    </button>
+                 </div>
 			</div>
 		</div>
 		<!--footer-->

@@ -79,4 +79,14 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfPRODUCT_SPEC" nillable="true" type="tns:ArrayOfPRODUCT_SPEC" />
+  <xs:complexType name="User">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="USER_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="USER_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="USER_PAGES" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="USER_PASSWORD" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="USER_TYPE" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="User" nillable="true" type="tns:User" />
 </xs:schema>

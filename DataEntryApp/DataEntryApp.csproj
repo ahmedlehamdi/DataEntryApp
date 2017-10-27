@@ -346,7 +346,6 @@
     <Compile Include="ServiceIntegration\ReturnObject.cs" />
     <Compile Include="ServiceIntegration\ServiceObjects\FLyer.cs" />
     <Compile Include="ServiceIntegration\ServiceObjects\PROVIDER.cs" />
-    <Compile Include="ServiceIntegration\ServiceObjects\User.cs" />
     <Compile Include="ServiceIntegration\ServiceResponseUnMarshaller.cs" />
   </ItemGroup>
   <ItemGroup>
