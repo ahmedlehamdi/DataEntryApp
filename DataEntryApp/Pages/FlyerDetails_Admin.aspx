@@ -197,7 +197,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </div>
                     
                 </div>
-                <div class="row" style="padding-bottom:20px;">
+                <div class="row" style="padding-bottom:20px;" id="approvBtnGroup">
                     <button type="button" class="btn btn-default btn-success btn-lg" onclick="">
                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                         Approve

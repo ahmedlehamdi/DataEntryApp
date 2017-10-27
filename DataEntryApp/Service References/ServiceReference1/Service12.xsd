@@ -195,4 +195,19 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="approveRejectFlyer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="flyerID" type="xs:int" />
+        <xs:element minOccurs="0" name="approveRejectFlag" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="approveRejectFlyerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="approveRejectFlyerResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

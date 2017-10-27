@@ -968,6 +968,12 @@ namespace DataEntryApp.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/updateUserPassword", ReplyAction="http://tempuri.org/IService1/updateUserPasswordResponse")]
         System.Threading.Tasks.Task<string> updateUserPasswordAsync(int userID, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/approveRejectFlyer", ReplyAction="http://tempuri.org/IService1/approveRejectFlyerResponse")]
+        string approveRejectFlyer(int flyerID, bool approveRejectFlag);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/approveRejectFlyer", ReplyAction="http://tempuri.org/IService1/approveRejectFlyerResponse")]
+        System.Threading.Tasks.Task<string> approveRejectFlyerAsync(int flyerID, bool approveRejectFlag);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1107,6 +1113,14 @@ namespace DataEntryApp.ServiceReference1 {
         
         public System.Threading.Tasks.Task<string> updateUserPasswordAsync(int userID, string password) {
             return base.Channel.updateUserPasswordAsync(userID, password);
+        }
+        
+        public string approveRejectFlyer(int flyerID, bool approveRejectFlag) {
+            return base.Channel.approveRejectFlyer(flyerID, approveRejectFlag);
+        }
+        
+        public System.Threading.Tasks.Task<string> approveRejectFlyerAsync(int flyerID, bool approveRejectFlag) {
+            return base.Channel.approveRejectFlyerAsync(flyerID, approveRejectFlag);
         }
     }
 }

@@ -2,6 +2,7 @@
 var productCount = 0;
 var providersList = '', offersTypesList = '', timeFramesList = '', productCategories = '', catTypes = '';
 var flyerData = '', flyerProducts = '';
+var buttonFlag = false;
 
 function AjaxCall(PageURL, CallBackFunc) {
     try {
@@ -104,7 +105,7 @@ function displayFlyerList(flyerList)
         xtemp = xtemp.replace('#NUM#', i + 1);
         xtemp = xtemp.replace('#NAME#', flyerList[i].FLYER_NAME_EN);
         xtemp = xtemp.replace('#IMAGE#', "<a target='_blank' href='" + flyerList[i].FLYER_IMAGE_URL + "' download='" + flyerList[i].FLYER_IMAGE_URL.split('/')[2] + "'>" + flyerList[i].FLYER_IMAGE_URL.split('/')[2] + "</a>");
-        xtemp = xtemp.replace('#STATUS#', (flyerList[i].FLYER_APPROVED == null) ? "Under Processing" : "Approved");
+        xtemp = xtemp.replace('#STATUS#', (flyerList[i].FLYER_APPROVED == null) ? "Under Processing" : (flyerList[i].FLYER_APPROVED == true ) ? "Approved" : "Rejected");
         xtemp = xtemp.replace('#FROM#', (flyerList[i].FRAME_DATE_FROM).replace("T", " "));
         xtemp = xtemp.replace('#TO#', (flyerList[i].FRAME_DATE_TO).replace("T", " "));
         xtemp = xtemp.replace('#VIEW#', '<div onclick="openFlyerDetails(' + flyerList[i].FLYER_ID + ')"><i class="fa-2x fa fa-search" style="cursor: pointer;color: #67D3E0;"></i></div>');
@@ -178,6 +179,20 @@ function loadFlyerDetails()
                    $("#productTBody").append(temp);
                }
            }
+           try {
+               if (!buttonFlag)
+               { $("#approvBtnGroup").remove(); }
+               else {
+                   $("#approvBtnGroup .btn-success").on('click', function () {
+                       approveRejectFlyer(true, localStorage.getItem('flyerID'));
+                   });
+                   $("#approvBtnGroup .btn-danger").on('click', function () {
+                       approveRejectFlyer(false, localStorage.getItem('flyerID'));
+                   });
+                  
+               }
+           } catch (e) { }
+                
        });
     localStorage.removeItem('flyerID');
 }
@@ -646,4 +661,13 @@ function addNewUser()
 {
     alert("addNewUser");
     hideModal('myModal');
+}
+
+function approveRejectFlyer(flag, flyerID)
+{
+    AjaxCall("../Pages/FlyerDetails_Admin.aspx?fnID=17&flyerID=" + flyerID + "&flag=" + flag
+      , function (data) {
+          var output = false;
+          eval(data);
+      });
 }
