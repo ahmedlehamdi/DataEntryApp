@@ -94,14 +94,14 @@ function loadAllFlyers()
 function displayFlyerList(flyerList)
 {
     ShowMyLoginSpinner();
-    console.log(flyerList);
+    //console.log(flyerList);
     var UType = localStorage.getItem('UType');
     var template = (UType != null && UType == 'entry') ? '<tr> <th scope="row">#NUM#</th> <td>#NAME#</td><td>#IMAGE#</td><td>#STATUS#</td><td>#FROM#</td><td>#TO#</td><td>#VIEW#</td><td>#EDIT#</td></tr>'
                     : '<tr> <th scope="row">#NUM#</th><td>#NAME#</td><td>#IMAGE#</td><td>#STATUS#</td><td>#FROM#</td><td>#TO#</td><td>#VIEW#</td><td>#DELETE#</td></tr>';
     for (var i = 0; i < flyerList.length ; i++)
     {
         var xtemp = template;
-        console.log(flyerList[i]);
+        //console.log(flyerList[i]);
         xtemp = xtemp.replace('#NUM#', i + 1);
         xtemp = xtemp.replace('#NAME#', flyerList[i].FLYER_NAME_EN);
         xtemp = xtemp.replace('#IMAGE#', "<a target='_blank' href='" + flyerList[i].FLYER_IMAGE_URL + "' download='" + flyerList[i].FLYER_IMAGE_URL.split('/')[2] + "'>" + flyerList[i].FLYER_IMAGE_URL.split('/')[2] + "</a>");
@@ -115,7 +115,24 @@ function displayFlyerList(flyerList)
             xtemp = xtemp.replace('#DELETE#', '<div data-index="'+ i + '" onclick="loadDeleteFlyerModal(' + flyerList[i].FLYER_ID + ', \'' + i+'\')"><i class="fa-2x fa fa-trash-o" style="cursor: pointer;color:#d9534f;"></i></div>');
         $("#flyerTBody").append(xtemp);
     }
+    applyDataTable();    
     HideMyLoginSpinner();
+}
+
+function applyDataTable(id) {
+
+    if (!id) {
+        $('#' + id).dataTable({
+            paging: false
+        });
+    }
+    else {
+        $('.datatable').dataTable({
+            paging: false
+        });
+    }
+    $('.dataTables_length select').addClass('form-control');
+    $('.dataTables_filter input').addClass('form-control');
 }
 
 function openPageWithPostData(pageURL, dataArr, callback)
@@ -178,6 +195,7 @@ function loadFlyerDetails()
                    temp = temp.replace("#Specs#", specs);
                    $("#productTBody").append(temp);
                }
+               applyDataTable();
            }
            try {
                if (!buttonFlag)
@@ -201,7 +219,7 @@ function loadFlyerDetails()
 
 function AddMoreProduct()
 {
-    var template = '<div class="panel panel-widget forms-panel" id="product_' + productCount + '"> <div class="forms"> <div class="form-grids widget-shadow" data-example-id="basic-forms"> <div class="form-title"> <h4>Product Details :</h4> <ul class="panel-tools"> <li><a class="icon minimise-tool"><i class="fa fa-minus"></i></a></li><li><a class="icon closed-tool"><i class="fa fa-times"></i></a></li></ul> </div><div class="form-body"> <form> <div class="form-group"> <label for="productNameEn">Name EN</label> <input type="text" class="form-control" id="productNameEn" placeholder="Product Name En" onkeydown="$(this).parents(\'.forms\').find(\'h4\').text(\'Product Details : \' + $(this).val());"> </div><div class="form-group"> <label for="productNameAr">Name AR</label> <input type="text" class="form-control" id="productNameAr" placeholder="Product Name Ar"> </div><div class="form-group"> <label for="categoryDD">Category</label> <select name="categoryDD" id="categoryDD" class="form-control1"> <option value="-1">Select Product Category</option> </select> </div><div class="form-group"> <label for="productTypeDD">Type</label> <select name="productTypeDD" id="productTypeDD" class="form-control1"> <option value="-1">Select Category Type</option> </select> </div><div class="form-group"> <label for="providerDD">Provider</label> <select name="providerDD" id="providerDD" class="form-control1"> <option value="-1">Select Product Provider</option> </select> </div><div class="form-group"> <label for="productImageFile">Image</label> <input type="file" id="productImageFile" name="productImageFile"> <p class="help-block">Upload Product Image - Available Formats : pdf/png/jpg</p></div><div class="form-group"> <label for="productSpecs_1">Product Specs 1</label> <input type="text" class="form-control" id="productSpecs_1" placeholder="Product Specs"> </div><div class="form-group"> <label for="productSpecs_2">Product Specs 2</label> <input type="text" class="form-control" id="productSpecs_2" placeholder="Product Specs"> </div><div class="form-group"> <label for="productSpecs_3">Product Specs 3</label> <input type="text" class="form-control" id="productSpecs_3" placeholder="Product Specs"> </div><div class="form-group"> <label for="productSpecs_4">Product Specs 4</label> <input type="text" class="form-control" id="productSpecs_4" placeholder="Product Specs"> </div><div class="form-group"> <label for="productSpecs_5">Product Specs 5</label> <input type="text" class="form-control" id="productSpecs_5" placeholder="Product Specs"> </div></form> </div></div></div></div>';
+    var template = '<div class="panel panel-widget forms-panel" id="product_' + productCount + '"> <div class="forms"> <div class="form-grids widget-shadow" data-example-id="basic-forms"> <div class="form-title"> <h4>Product Details :</h4> <ul class="panel-tools"> <li><a class="icon minimise-tool"><i class="fa fa-minus"></i></a></li><li><a class="icon closed-tool"><i class="fa fa-times"></i></a></li></ul> </div><div class="form-body"> <form> <div class="form-group"> <label for="productNameEn">Name EN</label> <input required="required" type="text" class="form-control" id="productNameEn" placeholder="Product Name En" onkeydown="$(this).parents(\'.forms\').find(\'h4\').text(\'Product Details : \' + $(this).val());"> </div><div class="form-group"> <label for="productNameAr">Name AR</label> <input required="required" type="text" class="form-control" id="productNameAr" placeholder="Product Name Ar"> </div><div class="form-group"> <label for="categoryDD">Category</label> <select name="categoryDD" id="categoryDD" class="form-control1" required="required"> <option value="-1">Select Product Category</option> </select> </div><div class="form-group"> <label for="productTypeDD">Type</label> <select name="productTypeDD" id="productTypeDD" class="form-control1" required="required"> <option value="-1">Select Category Type</option> </select> </div><div class="form-group"> <label for="providerDD">Provider</label> <select name="providerDD" id="providerDD" class="form-control1" required="required"> <option value="-1">Select Product Provider</option> </select> </div><div class="form-group"> <label for="productImageFile">Image</label> <input type="file" id="productImageFile" name="productImageFile" required="required"> <p class="help-block">Upload Product Image - Available Formats : pdf/png/jpg</p></div><div class="form-group"> <label for="productSpecs_1">Product Specs 1</label> <input type="text" class="form-control" id="productSpecs_1" placeholder="Product Specs"> </div><div class="form-group"> <label for="productSpecs_2">Product Specs 2</label> <input type="text" class="form-control" id="productSpecs_2" placeholder="Product Specs"> </div><div class="form-group"> <label for="productSpecs_3">Product Specs 3</label> <input type="text" class="form-control" id="productSpecs_3" placeholder="Product Specs"> </div><div class="form-group"> <label for="productSpecs_4">Product Specs 4</label> <input type="text" class="form-control" id="productSpecs_4" placeholder="Product Specs"> </div><div class="form-group"> <label for="productSpecs_5">Product Specs 5</label> <input type="text" class="form-control" id="productSpecs_5" placeholder="Product Specs"> </div></form> </div></div></div></div>';
     $(".products").append(template);
     $("#product_" + productCount + " .panel-tools .minimise-tool").click(function (event) {
         $(this).parents(".forms").find(".form-body").slideToggle(100);
@@ -211,7 +229,7 @@ function AddMoreProduct()
     $("#product_" + productCount + " .panel-tools .closed-tool").click(function (event) {
         $(this).parents(".panel").fadeToggle(400).remove();
         if (productCount > 0) productCount--;
-        alert("In App.js : " + productCount);
+       // alert("In App.js : " + productCount);
         return false;
     });
     loadProductCategoriesData();
@@ -229,7 +247,7 @@ function loadAddFlyerData()
             offersTypesList = '';
             timeFramesList = '';
             eval(data);
-            console.log(data);
+            //console.log(data);
             if (providersList != '') {
                 displayProvidersData(providersList);
             }
@@ -322,47 +340,95 @@ function displayTimeFramesData(list) {
     }
 }
 
+function validateForm(formID) {
+    if (!formID) {
+        var forms = $('body form');
+        for(var u = 0 ; u < forms.size() ; u++)
+        {
+            var inputs = $(forms[u]).find("input,select");
+            for (var i = 0 ; i < inputs.size() ; i++) {
+                if ($(inputs[i]).attr('required') == 'required' || $(inputs[i]).attr('required') == '') {
+                    if ($(inputs[i]).val().trim() == '') {
+                        $(inputs[i]).css('border', '1px solid red');
+                        return false;
+                    } else { $(inputs[i]).style('border', ''); }
+                    if ($(inputs[i]).val() == '-1') {
+                        $(inputs[i]).css('border', '1px solid red');
+                        return false;
+                    } else { $(inputs[i]).style('border', ''); }
+                }
+            }
+            return true;
+        }
+    }
+    else {
+        var inputs = $("#" + formID + " input, #" + formID + " select");
+        for (var i = 0 ; i < inputs.size() ; i++) {
+            if ($(inputs[i]).attr('required') == 'required' || $(inputs[i]).attr('required') == '') {
+                if ($(inputs[i]).val().trim() == '') {
+                    $(inputs[i]).css('border', '1px solid red');
+                    return false;
+                } else { $(inputs[i]).style('border', ''); }
+                if ($(inputs[i]).val() == '-1') {
+                    $(inputs[i]).css('border', '1px solid red');
+                    return false;
+                } else { $(inputs[i]).style('border', ''); }
+            }
+        }
+        return true;
+    }
+}
+
 function submitFlyerForm(action) {
+    if (!validateForm("flyerDataForm")) {
+        alert("Please review the highlighted fields");
+        return false;
+    }
     ShowMyLoginSpinner();
     var fd = new FormData();
     var file = document.getElementById('flyerImageFile');
     if (file.files.length != 0) {
         var filetype = file.files[0].type;
-        if (filetype.indexOf("image") != -1) {
+        //console.log(file.files[0].type);    
+        if (filetype.indexOf("image") != -1 || filetype.indexOf("pdf") != -1) {
             for (var i = 0; i < file.files.length; i++) {
                 fd.append('_file', file.files[i]);
             }
-
-            fd.append('flyerNameAr', $("#flyerNameAr").val());
-            fd.append('flyerNameEn', $("#flyerNameEn").val());
-            fd.append('providerDD', $("#providerDD").val());
-            fd.append('offerTypeDD', $("#offerTypeDD").val());
-            fd.append('timeFrameDD', $("#timeFrameDD").val());
-            fd.append('frameNameAr', $("#frameNameAr").val());
-            fd.append('frameNameEn', $("#frameNameEn").val());
-            fd.append('dateFrom', $("#dateFrom").val());
-            fd.append('dateTo', $("#dateTo").val());
-
-            fd.append('flyerID', $("#flyerNameAr").attr('data-old'));
-            fd.append('frameID', $("#timeFrameDD").attr('data-id'));
-
-            (action == 'edit') ? fd.append('action', "update") : fd.append('action', "insert");
-            
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "/Pages/AddNewFlyer.aspx?fnID=7", true);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    //window.location = "/Pages/AddNewFlyer_Step2.aspx";
-                }
-                else if(xhr.readyState == 3)
-                {
-                    eval(xhr.responseText);
-                }
-                HideMyLoginSpinner();
-            };
-            xhr.send(fd);
         }
     }
+    else if (action == 'edit')
+    {
+        fd.append('oldImage', $("#oldImage").attr('href'));
+    }
+
+    fd.append('flyerNameAr', $("#flyerNameAr").val());
+    fd.append('flyerNameEn', $("#flyerNameEn").val());
+    fd.append('providerDD', $("#providerDD").val());
+    fd.append('offerTypeDD', $("#offerTypeDD").val());
+    fd.append('timeFrameDD', $("#timeFrameDD").val());
+    fd.append('frameNameAr', $("#frameNameAr").val());
+    fd.append('frameNameEn', $("#frameNameEn").val());
+    fd.append('dateFrom', $("#dateFrom").val());
+    fd.append('dateTo', $("#dateTo").val());
+
+    fd.append('flyerID', $("#flyerNameAr").attr('data-old'));
+    fd.append('frameID', $("#timeFrameDD").attr('data-id'));
+
+    (action == 'edit') ? fd.append('action', "update") : fd.append('action', "insert");
+            
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/Pages/AddNewFlyer.aspx?fnID=7", true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            //window.location = "/Pages/AddNewFlyer_Step2.aspx";
+        }
+        else if(xhr.readyState == 3)
+        {
+            eval(xhr.responseText);
+        }
+        HideMyLoginSpinner();
+    };
+    xhr.send(fd);
     return false;
 }
 
@@ -420,6 +486,7 @@ function loadCategoriesTypesData(catID, obj) {
 
 function SubmitFlyerProducts()
 {
+    if (!validateForm(false)) return false;
     ShowMyLoginSpinner();
     var flyerID = localStorage.getItem('flyerID');
     localStorage.removeItem('flyerID');
@@ -450,11 +517,11 @@ function createProductObject(proID, index, fd)
     if (flyerID != null)
         fd.append("flyerID", flyerID);
     var file = GetElementInsideContainer(proID, "productImageFile");
-    console.log(file.files);
-    console.log((file.files != null));
+    //console.log(file.files);
+    //console.log((file.files != null));
     if (file.files != null && file.files.length != 0) {
         var filetype = file.files[0].type;
-        if (filetype.indexOf("image") != -1)
+        if (filetype.indexOf("image") != -1 || filetype.indexOf("pdf") != -1) 
         {
             for (var i = 0; i < file.files.length; i++) {
                 fd.append('_file_' + index , file.files[i]);
@@ -512,7 +579,7 @@ function loadFlyerDetailsForEdit() {
                $("#providerDD").attr('data-old', flyerData.PROVIDER_ID);
                $("#offerTypeDD").attr('data-old', flyerData.OFFER_TYPE_ID);
                $("#timeFrameDD").attr('data-old', flyerData.FRAME_TYPE_ID);
-               alert(flyerData.FRAME_ID);
+               //alert(flyerData.FRAME_ID);
                $("#timeFrameDD").attr('data-id', flyerData.FRAME_ID);
                $("#frameNameAr").val(flyerData.FRAME_NAME_EN);
                $("#frameNameEn").val(flyerData.FRAME_NAME_AR);
@@ -541,7 +608,7 @@ function loadFlyerProductsForEdit()
            flyerProducts = '';
            eval(data);
            if (flyerProducts != '') {
-               var template = '<div class="panel panel-widget forms-panel" id="product_#COUNT#"><div class="forms"><div class="form-grids widget-shadow" data-example-id="basic-forms"><div class="form-title"><h4>Product Details :</h4><ul class="panel-tools"><li><a class="icon minimise-tool"><i class="fa fa-minus"></i></a></li><li><a class="icon closed-tool"><i class="fa fa-times"></i></a></li></ul></div><div class="form-body"><form> <div class="form-group"><label for="productNameEn">Product Name EN</label><input type="text" disabled="disabled" class="form-control" id="productNameEn" value="#PRODUCT_NAME_EN#" ></div><div class="form-group"><label for="productNameAr">Product Name Ar</label><input type="text" disabled="disabled" class="form-control" id="productNameAr" value="#PRODUCT_NAME_AR#"></div><div class="form-group"><label for="categoryDD">Category</label><select name="categoryDD" id="categoryDD" class="form-control1" disabled="disabled"><option value="#CAT_ID#">#CAT_NAME#</option></select></div><div class="form-group"><label for="productTypeDD">Type</label><select name="productTypeDD" id="productTypeDD" class="form-control1" disabled="disabled"><option value="#TYPE_ID#">#TYPE_NAME#</option></select></div><div class="form-group"><label for="providerDD">Provider</label><select name="providerDD" id="providerDD" class="form-control1" disabled="disabled"><option value="#PROVIDER_ID#">#PROVIDER_NAME#</option></select></div><div class="form-group"><label for="productImageFile">Image</label><a href="#IMG_URL#" id="productImageFile" download="#IMAGE#" name="productImageFile">#IMAGE#</a></div><div class="form-group"><label for="productSpecs_1">Product Specs 1</label><input type="text" disabled="disabled" class="form-control" id="productSpecs_1" value="#SPECS_1#"></div><div class="form-group"><label for="productSpecs_2">Product Specs 2</label><input type="text" disabled="disabled" class="form-control" id="productSpecs_2" value="#SPECS_2#"></div><div class="form-group"><label for="productSpecs_3">Product Specs 3</label><input type="text" disabled="disabled" class="form-control" id="productSpecs_3" value="#SPECS_3#"></div><div class="form-group"><label for="productSpecs_4">Product Specs 4</label><input type="text" disabled="disabled" class="form-control" id="productSpecs_4" value="#SPECS_4#"></div><div class="form-group"><label for="productSpecs_5">Product Specs 5</label><input type="text" disabled="disabled" class="form-control" id="productSpecs_5" value="#SPECS_5#"></div></form></div></div></div></div>';
+               var template = '<div class="panel panel-widget forms-panel" id="product_#COUNT#"> <div class="forms"> <div class="form-grids widget-shadow" data-example-id="basic-forms"> <div class="form-title"> <h4>Product Details :</h4> <ul class="panel-tools"> <li><a class="icon minimise-tool"><i class="fa fa-minus"></i></a></li><li><a class="icon closed-tool"><i class="fa fa-times"></i></a></li></ul> </div><div class="form-body"> <form> <div class="form-group"><label for="productNameEn">Product Name EN</label><input required="required" type="text" disabled="disabled" class="form-control" id="productNameEn" value="#PRODUCT_NAME_EN#" ></div><div class="form-group"><label for="productNameAr">Product Name Ar</label><input required="required" type="text" disabled="disabled" class="form-control" id="productNameAr" value="#PRODUCT_NAME_AR#"></div><div class="form-group"> <label for="categoryDD">Category</label> <select name="categoryDD" id="categoryDD" class="form-control1" disabled="disabled"> <option value="#CAT_ID#">#CAT_NAME#</option> </select> </div><div class="form-group"> <label for="productTypeDD">Type</label> <select name="productTypeDD" id="productTypeDD" class="form-control1" disabled="disabled"> <option value="#TYPE_ID#">#TYPE_NAME#</option> </select> </div><div class="form-group"> <label for="providerDD">Provider</label> <select name="providerDD" id="providerDD" class="form-control1" disabled="disabled"> <option value="#PROVIDER_ID#">#PROVIDER_NAME#</option> </select> </div><div class="form-group"><label for="productImageFile">Image</label><a href="#IMG_URL#" id="productImageFile" download="#IMAGE#" name="productImageFile">#IMAGE#</a></div><div class="form-group"><label for="productSpecs_1">Product Specs 1</label><input type="text" disabled="disabled" class="form-control" id="productSpecs_1" value="#SPECS_1#"></div><div class="form-group"><label for="productSpecs_2">Product Specs 2</label><input type="text" disabled="disabled" class="form-control" id="productSpecs_2" value="#SPECS_2#"></div><div class="form-group"><label for="productSpecs_3">Product Specs 3</label><input type="text" disabled="disabled" class="form-control" id="productSpecs_3" value="#SPECS_3#"></div><div class="form-group"><label for="productSpecs_4">Product Specs 4</label><input type="text" disabled="disabled" class="form-control" id="productSpecs_4" value="#SPECS_4#"></div><div class="form-group"><label for="productSpecs_5">Product Specs 5</label><input type="text" disabled="disabled" class="form-control" id="productSpecs_5" value="#SPECS_5#"></div></form> </div></div></div></div>';
                for (var i = 0 ; i < flyerProducts.length ; i++)
                {
                     var temp = template;
@@ -586,26 +653,7 @@ function loadFlyerProductsForEdit()
 }
 
 
-function loadDeleteFlyerModal(flyerID, index)
-{
-    var body = '<h3>Are You Sure You Want to Delete Flyer ?</h3>';
-    var footer = '<button type="button" class="btn btn-danger" onclick="DeleteFlyer(' + flyerID + ', \'' + index + '\')" >Delete</button><button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
-    AddModalData("Delete Flyer", body, footer);
-    showModal('myModal');
-}
 
-function DeleteFlyer(flyerID, index)
-{
-    AjaxCall("../Pages/Home_Admin.aspx?fnID=15&flyerID=" + flyerID
-       , function (data) {
-           var output = false;
-           eval(data);
-           if (output) {
-               $("[data-index='" + index + "']").parents('tr').remove().fadeOut();
-               hideModal('myModal');
-           }
-       });
-}
 
 
 
@@ -630,17 +678,21 @@ function hideModal(id) {
     $("#" + id).modal('hide');
 }
 
-function showEditPasswordModal()
-{
-    var body = '<div class="form-body"><form> <div class="form-group"> <label for="oldPSW">Old Password</label> <input type="Password" class="form-control" id="oldPSW" placeholder="Old Password"> </div><div class="form-group"> <label for="newPSW">New Password</label> <input type="password" class="form-control" id="newPSW" placeholder="New Password"> </div><div class="form-group"> <label for="cfmNewPSW">Confirm New Password</label> <input type="password" id="cfmNewPSW" class="form-control" placeholder="Confirm New Password"> </div></form> </div>';
-    var footer = '<button type="button" class="btn btn-info" onclick="saveNewPassword()" >Save</button><button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
+
+
+function showUserEditPasswordModal() {
+    var body = '<div class="form-body"><form id="editPassword" action="" method="POST"><div class="form-group"  > <label for="oldPSW">Old Password</label> <input type="password" data-validation="required  alphanumeric" class="form-control" id="oldPSW" placeholder="Old Password"> </div><div class="form-group"> <label for="newPSW">New Password</label> <input type="password" required="" data-validation="required  alphanumeric" class="form-control" id="newPSW" placeholder="New Password"> </div><div class="form-group"> <label for="cfmNewPSW">Confirm New Password</label> <input type="password" required="" data-validation="required  alphanumeric" id="cfmNewPSW" class="form-control" placeholder="Confirm New Password"> </div></form> </div>';
+    var footer = '<button type="submit" class="btn btn-info" onclick="saveUserNewPassword()" >Save</button><button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
     AddModalData('Edit Password', body, footer);
+    $.validate({
+        lang: 'en',
+        modules: 'security'
+    });
     showModal('myModal');
 }
 
-function saveNewPassword()
-{
-    AjaxCall("../Pages/Home_Admin.aspx?fnID=16&newPassword=" + $("#newPSW").val() + "&newPasswordRepeated=" + $("#cfmNewPSW").val() + "&oldPassword=" + $("#oldPSW").val()
+function saveUserNewPassword() {
+    AjaxCall("../Pages/Home.aspx?fnID=16&newPassword=" + $("#newPSW").val() + "&newPasswordRepeated=" + $("#cfmNewPSW").val() + "&oldPassword=" + $("#oldPSW").val()
        , function (data) {
            var output = false;
            eval(data);
@@ -650,69 +702,3 @@ function saveNewPassword()
        });
 }
 
-
-function ShowNewUserModel()
-{
-    var body = '<div class="form-body"><form> <div class="form-group"> <label for="userName">User Name</label> <input type="text" class="form-control" id="userName" placeholder="User Name "> </div><div class="form-group"> <label for="password">User Password</label> <input type="password" class="form-control" id="password" placeholder="User Password"> </div><div class="form-group"> <label for="userType">User Type</label> <select name="userType" id="userType" class="form-control1"><option value="1">Data Entry</option><option value="2">Admin</option></select> </div></form> </div>';
-    var footer = '<button type="button" class="btn btn-info" onclick="addNewUser()" >Save</button><button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
-    AddModalData('Add New User', body, footer);
-    showModal('myModal');
-}
-
-function addNewUser()
-{
-    AjaxCall("../Pages/UserManagment.aspx?fnID=20&userName=" + $("#modalBody #userName").val() + "&userPassword=" + $("#modalBody #password").val() + "&UserType=" + $("#modalBody #userType").val()
-     , function (data) {
-         eval(data);
-         hideModal('myModal');
-     });
-    
-}
-
-function approveRejectFlyer(flag, flyerID)
-{
-    AjaxCall("../Pages/FlyerDetails_Admin.aspx?fnID=17&flyerID=" + flyerID + "&flag=" + flag
-      , function (data) {
-          var output = false;
-          eval(data);
-      });
-}
-
-function loadUsersList()
-{
-    AjaxCall("../Pages/UserManagment.aspx?fnID=18"
-     , function (data) {
-         var usersList = '';
-         eval(data);
-         if (usersList != '')
-         {
-             $("#usersTBody").html('');
-             var template = '<tr><td>#USERNAME#</td><td>#USERTYPE#</td><td>#USERPASSWORD#</td></tr>';
-             for(var i = 0 ; i < usersList.length ; i++)
-             {
-                 var temp = template;
-                 temp = temp.replace("#USERNAME#", usersList[i].USER_NAME);
-                 temp = temp.replace("#USERTYPE#", usersList[i].USER_TYPE);
-                 temp = temp.replace("#USERPASSWORD#", "<button data-uid='" + usersList[i].USER_ID + "' class='btn btn-default btn-info' onclick='confirmShowPassword($(this));'>Show Password</button>");
-                 $("#usersTBody").append(temp);
-             }
-         }
-     });
-}
-
-function confirmShowPassword(obj)
-{
-    var body = '<div class="form-body"><form> <div class="form-group"> <label for="userpassword">User Pasword</label> <input type="password" class="form-control" id="userpassword" name="userpassword" placeholder="User Password"/> </div></form> </div>';
-    var footer = '<button type="button" class="btn btn-info" onclick="showPassword('+$(obj).attr('data-uid')+')" id="validateConfirmBtn">Confirm</button><button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
-    AddModalData('Validation ', body, footer);
-    showModal('myModal');
-}
-
-
-function showPassword(data)
-{
-    AjaxCall("../Pages/UserManagment.aspx?fnID=19&enteredPassword=" + $("#userpassword").val() + "&uID=" + data
-     , function (data) {
-         eval(data);
-     });
-}

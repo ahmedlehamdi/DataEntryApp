@@ -70,19 +70,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                 <!--notification menu end -->
                 <div class="profile_details">
-                    <ul>
-                        <li class="dropdown profile_details_drop">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <div class="profile_img">
-                                    <span class="prfil-img">
-                                        <img src="/images/a.png" alt="">
-                                    </span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
-                            
-                        </li>
-                    </ul>
+                    
                 </div>
 
                 <div class="clearfix"></div>
@@ -120,33 +108,33 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     <form>
                                          <div class="form-group">
                                             <label for="productNameEn">Name EN</label>
-                                            <input type="text" class="form-control" id="productNameEn" placeholder="Product Name En" onkeydown="$(this).parents('.forms').find('h4').text('Product Details : ' + $(this).val());">
+                                            <input type="text" class="form-control" id="productNameEn" required="required" placeholder="Product Name En" onkeydown="$(this).parents('.forms').find('h4').text('Product Details : ' + $(this).val());">
                                         </div>
                                         <div class="form-group">
                                             <label for="productNameAr">Name AR</label>
-                                            <input type="text" class="form-control" id="productNameAr" placeholder="Product Name Ar">
+                                            <input type="text" class="form-control" id="productNameAr" required="required" placeholder="Product Name Ar">
                                         </div>
                                         <div class="form-group">
                                             <label for="categoryDD">Category</label>
-                                            <select name="categoryDD" id="categoryDD" class="form-control1">
+                                            <select name="categoryDD" id="categoryDD" class="form-control1" required="required">
                                                 <option value="-1">Select Product Category</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="productTypeDD">Type</label>
-                                            <select name="productTypeDD" id="productTypeDD" class="form-control1">
+                                            <select name="productTypeDD" id="productTypeDD" class="form-control1" required="required">
                                                 <option value="-1">Select Category Type</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="providerDD">Provider</label>
-                                            <select name="providerDD" id="providerDD" class="form-control1">
+                                            <select name="providerDD" id="providerDD" class="form-control1" required="required">
                                                 <option value="-1">Select Product Provider</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="productImageFile">Image</label>
-                                            <input type="file" id="productImageFile" name="productImageFile">
+                                            <input type="file" id="productImageFile" name="productImageFile" required="required">
                                             <p class="help-block">Upload Product Image - Available Formats : pdf/png/jpg</p>
                                         </div>
                                         <div class="form-group">
@@ -186,7 +174,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             </button>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                            <input type="button" value="Submit Products" class="btn btn-default btn-warning btn-lg pull-right" ID="productSubmitBtn" OnClick="SubmitFlyerProducts()" />
+                            <input type="submit" value="Submit Products" class="btn btn-default btn-warning btn-lg pull-right" ID="productSubmitBtn" OnClick="SubmitFlyerProducts()" />
                         </div>
                     </div>
                 </div>
@@ -242,7 +230,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             loadProvidersData();
             $('.closed-tool').on('click', function () {
                 if (productCount > 0) productCount--;
-                alert("In Page : " + productCount);
+                //alert("In Page : " + productCount);
             });
         });
     </script>

@@ -3917,3 +3917,34 @@ button i
 {
     z-index:30001;
 }
+
+div.dataTables_length select {
+    width: 70px;
+}
+
+.dataTables_filter input, .dataTables_length select {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+.dataTables_length
+{
+    float: right;
+}
+.dataTables_filter input{
+    width: 50%;
+}
+.dataTables_filter
+{
+    margin-top: 15px;
+}
+.paging_two_button
+{
+    text-align: center;
+}
+.paging_two_button a
+{
+    margin : 0px 15px;
+}
+.paging_two_button{
+	margin: 0 15px;
+}

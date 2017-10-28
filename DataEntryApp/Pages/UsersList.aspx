@@ -131,7 +131,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div class="panel panel-widget">
                         <div class="tables">
                             <h4>List Of Flyers:</h4>
-                            <table class="table table-bordered">
+                            <table class="table table-striped table-bordered bootstrap-datatable datatable">
                                 <thead>
                                     <tr>
                                         <th>#</th>

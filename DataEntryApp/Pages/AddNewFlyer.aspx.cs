@@ -219,10 +219,17 @@ namespace DataEntryApp.Pages
                 HttpContext.Current.Response.ContentType = "application/json";
 
                 HttpPostedFile file = HttpContext.Current.Request.Files["_file"];
-                string fileName = Path.GetFileName(file.FileName);
-                string filename = !(file.FileName == "NoImage") ? Path.Combine(this.Server.MapPath("~/UploadedImages/"), fileName) : "";
-                file.SaveAs(filename);
-                
+                string fileName = "";
+                if (file != null)
+                {
+                    fileName = Path.GetFileName(file.FileName);
+                    string filename = !(file.FileName == "NoImage") ? Path.Combine(this.Server.MapPath("~/UploadedImages/"), fileName) : "";
+                    file.SaveAs(filename);
+                }
+                else
+                {
+                    fileName = Request.Form["oldImage"].Replace("/UploadedImages/", "");
+                }
                 OFFER_FLYER flyerData = new OFFER_FLYER();
                 flyerData.FLYER_NAME_AR = Request.Form["flyerNameAr"];
                 flyerData.FLYER_NAME_EN = Request.Form["flyerNameEn"];

@@ -110,7 +110,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             </button>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                            <input type="button" value="Submit Products" class="btn btn-default btn-warning btn-lg pull-right" ID="productSubmitBtn" OnClick="SubmitFlyerProducts()" />
+                            <input type="submit" value="Submit Products" class="btn btn-default btn-warning btn-lg pull-right" ID="productSubmitBtn" OnClick="SubmitFlyerProducts()" />
                         </div>
                     </div>
                 </div>

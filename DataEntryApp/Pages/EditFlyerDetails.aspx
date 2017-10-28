@@ -74,19 +74,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                 <!--notification menu end -->
                 <div class="profile_details">
-                    <ul>
-                        <li class="dropdown profile_details_drop">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <div class="profile_img">
-                                    <span class="prfil-img">
-                                        <img src="/images/a.png" alt="">
-                                    </span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
-                            
-                        </li>
-                    </ul>
+                    
                 </div>
 
                 <div class="clearfix"></div>
@@ -129,7 +117,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         </div>
                                         <div class="form-group">
                                             <label for="flyerImageFile">Image</label>
-                                            <asp:FileUpload data-validation="required" required="" id="flyerImageFile" name="flyerImageFile" runat="server"  />
+                                            <asp:FileUpload  id="flyerImageFile" name="flyerImageFile" runat="server"  />
                                             <p class="help-block">Upload Flyer Image - Available Formats : pdf/png/jpg</p>
                                             <a href="" id="oldImage"></a>
                                         </div>
@@ -167,7 +155,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                             <label for="dateTo">Date To</label>
                                             <asp:TextBox data-validation="required" ReadOnly="true" required="" ViewStateMode="Enabled" runat="server" CssClass="form-control" id="dateTo" name="dateTo" />
                                         </div>
-                                        <input type="button" value="Save Flyer" class="btn btn-default btn-success btn-lg" ID="flyerSubmitBtn" OnClick="submitFlyerForm('edit')" />
+                                        <input type="submit" value="Save Flyer" class="btn btn-default btn-success btn-lg" ID="flyerSubmitBtn" OnClick="submitFlyerForm('edit')" />
                                     </form>
                                 </div>
                             </div>

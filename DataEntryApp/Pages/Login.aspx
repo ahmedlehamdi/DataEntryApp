@@ -44,8 +44,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</div>
 			<div class="login-info" >
 				<form id="loginForm" method="post">
-					<input id="userNameTxt" type="text" class="user" name="username" data-validation="required  alphanumeric" placeholder="Enter username" required="">
-					<input id="passwordTxt" type="password" name="password" class="lock" data-validation="required  alphanumeric" placeholder="Enter Password" required="" >
+					<input id="userNameTxt" type="text" class="user" name="username" data-validation-event="submit" data-validation="required  alphanumeric" placeholder="Enter username" required="">
+					<input id="passwordTxt" type="password" data-validation-event="submit" name="password" class="lock" data-validation="required  alphanumeric" placeholder="Enter Password" required="" >
 					<!--<div class="forgot-top-grids">
 						<div class="forgot-grid">
 							<ul>
@@ -86,7 +86,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script>
         $(document).ready(function () {
             $.validate({
-                lang: 'en'
+                lang: 'en',
+                validateOnEvent: true
             });
         });
     </script>

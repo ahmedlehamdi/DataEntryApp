@@ -93,7 +93,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     </button>
                                 </div>
                             </div>
-                            <table class="table table-bordered">
+                            <table class="table table-striped table-bordered bootstrap-datatable datatable">
                                 <thead>
                                     <tr>
                                         <th>User Name</th>

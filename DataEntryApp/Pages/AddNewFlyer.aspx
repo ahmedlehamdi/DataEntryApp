@@ -73,19 +73,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                 <!--notification menu end -->
                 <div class="profile_details">
-                    <ul>
-                        <li class="dropdown profile_details_drop">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <div class="profile_img">
-                                    <span class="prfil-img">
-                                        <img src="/images/a.png" alt="">
-                                    </span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
-                            
-                        </li>
-                    </ul>
+                    
                 </div>
 
                 <div class="clearfix"></div>
@@ -165,7 +153,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                             <label for="dateTo">Date To</label>
                                             <asp:TextBox data-validation="required" ReadOnly="true" required="" ViewStateMode="Enabled" runat="server" CssClass="form-control" id="dateTo" name="dateTo" />
                                         </div>
-                                        <input type="button" value="Add Products" class="btn btn-default btn-success btn-lg" ID="flyerSubmitBtn" OnClick="submitFlyerForm('insert')" />
+                                        <input type="submit" value="Add Products" class="btn btn-default btn-success btn-lg" ID="flyerSubmitBtn" OnClick="submitFlyerForm('insert')" />
                                     </form>
                                 </div>
                             </div>

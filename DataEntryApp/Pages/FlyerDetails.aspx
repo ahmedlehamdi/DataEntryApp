@@ -69,19 +69,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                 <!--notification menu end -->
                 <div class="profile_details">
-                    <ul>
-                        <li class="dropdown profile_details_drop">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <div class="profile_img">
-                                    <span class="prfil-img">
-                                        <img src="/images/a.png" alt="">
-                                    </span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
-                            
-                        </li>
-                    </ul>
+                    
                 </div>
 
                 <div class="clearfix"></div>
@@ -174,7 +162,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     <h4>List Of Products</h4>
                                 </div>
                                 <div class="form-body">
-                                    <table class="table table-bordered">
+                                    <table class="table table-striped table-bordered bootstrap-datatable datatable">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
