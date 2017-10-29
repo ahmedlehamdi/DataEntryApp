@@ -293,6 +293,7 @@
     <Content Include="Pages\Login.aspx" />
     <Content Include="Pages\UserManagment.aspx" />
     <Content Include="Pages\UsersList.aspx" />
+    <None Include="Properties\PublishProfiles\DataEntryPubProfile.pubxml" />
     <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
     <None Include="Service References\ServiceReference1\configuration.svcinfo" />
     <None Include="Service References\ServiceReference1\Reference.svcmap">
@@ -313,14 +314,14 @@
     <Content Include="maps\mideast.json" />
     <Content Include="maps\risk.json" />
     <Content Include="maps\usofa.json" />
-    <None Include="Service References\ServiceReference1\Service1.wsdl" />
-    <None Include="Service References\ServiceReference1\Service1.xsd">
+    <None Include="Service References\ServiceReference1\Service11.wsdl" />
+    <None Include="Service References\ServiceReference1\Service13.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\Service11.xsd">
+    <None Include="Service References\ServiceReference1\Service131.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\Service12.xsd">
+    <None Include="Service References\ServiceReference1\Service132.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Web.Debug.config">
