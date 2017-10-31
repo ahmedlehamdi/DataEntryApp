@@ -215,6 +215,7 @@
     <Content Include="DataTables\Responsive-2.2.0\js\responsive.semanticui.js" />
     <Content Include="DataTables\Responsive-2.2.0\js\responsive.semanticui.min.js" />
     <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="Global.asax" />
     <Content Include="images\1.png" />
     <Content Include="images\2.png" />
     <Content Include="images\3.png" />
@@ -334,10 +335,22 @@
   <ItemGroup>
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="UploadedImages\bo_db.PNG" />
+    <Content Include="UploadedImages\Capture.PNG" />
+    <Content Include="UploadedImages\IMG_3459 %281%29.JPG" />
+    <Content Include="UploadedImages\IMG_3459.JPG" />
+    <Content Include="UploadedImages\IMG_4879.JPG" />
+    <Content Include="UploadedImages\IMG_4880.JPG" />
+    <Content Include="UploadedImages\maliha_logo.png" />
+    <Content Include="UploadedImages\Sarprofil_uygulamalar_28.jpg" />
+    <Content Include="UploadedImages\splash_bg.png" />
     <Content Include="w3layouts-License.txt" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AddNewFlyer.aspx.cs">
       <DependentUpon>AddNewFlyer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -439,9 +452,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ServiceReference1\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UploadedImages\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

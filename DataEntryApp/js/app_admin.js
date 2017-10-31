@@ -3,7 +3,7 @@
 
 $(document).ready(function () {
     var userType = localStorage.getItem("UType");
-    if(userType == "SuperAdmin")
+    if (userType == "sAdmin")
     {
         $("#userListDiv").removeClass('hidden');
         $("#userListDiv").on('click', function () {

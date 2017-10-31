@@ -50,7 +50,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="header-left">
 				<!--logo -->
 				<div class="logo">
-					<a href="index.html">
+					<a  href="/Pages/Home.apsx">
 						<ul>	
 							<li><img src="../images/logo1.png" alt="" /></li>
 							<li><h1>Data Entry</h1></li>

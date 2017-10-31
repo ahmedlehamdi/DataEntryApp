@@ -54,7 +54,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="header-left">
                 <!--logo -->
                 <div class="logo">
-                    <a href="index.html">
+                    <a  href="/Pages/Home.apsx">
                         <ul>
                             <li>
                                 <img src="/images/logo1.png" alt="" /></li>
@@ -98,7 +98,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         </div>
                     </div>
                     <div class="panel panel-widget forms-panel">
-                         <asp:Label ID="errorLbl" Text=""  ForeColor="#CC3300" runat="server" />
                         <div class="forms">
                             <div class="form-grids widget-shadow" data-example-id="basic-forms">
                                 <div class="form-title">
@@ -108,50 +107,50 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     <form id="flyerDataForm" method="post" enctype="multipart/form-data" runat="server">
                                         <div class="form-group">
                                             <label for="flyerNameEn">Name EN</label>
-                                            <asp:TextBox data-validation="required  alphanumeric" required="" CssClass="form-control" id="flyerNameEn" ViewStateMode="Enabled" runat="server" placeholder="Flyer Name En" />
+                                            <input type="text" data-validation="required" required="" class="form-control" id="flyerNameEn" placeholder="Flyer Name En" />
                                         </div>
                                         <div class="form-group">
                                             <label for="flyerNameAr">Name AR</label>
-                                            <asp:TextBox data-validation="required" required=""  CssClass="form-control" id="flyerNameAr" ViewStateMode="Enabled" runat="server" placeholder="Flyer Name Ar" />
+                                            <input type="text" data-validation="required" required=""  class="form-control" id="flyerNameAr" placeholder="Flyer Name Ar" />
                                         </div>
                                         <div class="form-group">
                                             <label for="flyerImageFile">Image</label>
-                                            <asp:FileUpload data-validation="required" required="" id="flyerImageFile" name="flyerImageFile" runat="server"  />
+                                            <input type="file" data-validation="required" multiple required="" id="flyerImageFile" name="flyerImageFile" />
                                             <p class="help-block">Upload Flyer Image - Available Formats : pdf/png/jpg</p>
                                         </div>
                                         <div class="form-group">
                                             <label for="providerDD">Provider / Retailer</label>
-                                            <asp:DropDownList runat="server" name="providerDD" id="providerDD" class="form-control1" data-validation="selected" required="" ViewStateMode="Enabled">
-                                                <asp:ListItem Text="Please select an option" Value="-1" />
-                                            </asp:DropDownList>
+                                            <select name="providerDD" id="providerDD" class="form-control1" data-validation="selected" required="">
+                                                <option Value="-1">Please select an option</option>
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="offerTypeDD">Offer Type</label>
-                                            <asp:DropDownList runat="server" name="offerTypeDD" id="offerTypeDD" class="form-control1" data-validation="selected" required="">
-                                                <asp:ListItem Text="Please select an option" Value="-1" />
-                                            </asp:DropDownList>
+                                            <select name="offerTypeDD" id="offerTypeDD" class="form-control1" data-validation="selected" required="">
+                                                <option Value="-1">Please select an option</option>
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="timeFrameDD">Offer Time Frame</label>
-                                            <asp:DropDownList runat="server" name="timeFrameDD" id="timeFrameDD" CssClass="form-control1" data-validation="selected" required="">
-                                                <asp:ListItem Text="Please select an option" Value="-1" />
-                                            </asp:DropDownList>
+                                            <select name="timeFrameDD" id="timeFrameDD" class="form-control1" data-validation="selected" required="">
+                                                <option Value="-1">Please select an option</option>
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="frameNameAr">Time Frame Name Ar</label>
-                                            <asp:TextBox data-validation="required" required="" ViewStateMode="Enabled" runat="server" CssClass="form-control" id="frameNameAr" name="frameNameAr" />
+                                            <input type="text" data-validation="required" required="" Class="form-control" id="frameNameAr" name="frameNameAr" />
                                         </div>
                                         <div class="form-group">
                                             <label for="frameNameEn">Time Frame Name En</label>
-                                            <asp:TextBox data-validation="required" required="" ViewStateMode="Enabled" runat="server" CssClass="form-control" id="frameNameEn" name="frameNameEn" />
+                                            <input type="text" data-validation="required" required="" Class="form-control" id="frameNameEn" name="frameNameEn" />
                                         </div>
                                         <div class="form-group">
                                             <label for="dateFrom">Date From</label>
-                                            <asp:TextBox data-validation="required" ReadOnly="true" required="" ViewStateMode="Enabled" runat="server" CssClass="form-control" id="dateFrom" name="dateFrom" />
+                                            <input type="text" data-validation="required" ReadOnly="readonly" required="" Class="form-control" id="dateFrom" name="dateFrom" />
                                         </div>
                                         <div class="form-group">
                                             <label for="dateTo">Date To</label>
-                                            <asp:TextBox data-validation="required" ReadOnly="true" required="" ViewStateMode="Enabled" runat="server" CssClass="form-control" id="dateTo" name="dateTo" />
+                                            <input type="text" data-validation="required" ReadOnly="readonly" required="" class="form-control" id="dateTo" name="dateTo" />
                                         </div>
                                         <input type="submit" value="Add Products" class="btn btn-default btn-success btn-lg" ID="flyerSubmitBtn" OnClick="submitFlyerForm('insert')" />
                                     </form>

@@ -42,8 +42,10 @@ function HideMyLoginSpinner() {
 }
 
 
+
 $(document).ready(function () {
    
+    S
     $("#submitButton").on('click', function () {
         ShowMyLoginSpinner();
         $("#submitButton").attr('disabled', true);
@@ -104,7 +106,24 @@ function displayFlyerList(flyerList)
         //console.log(flyerList[i]);
         xtemp = xtemp.replace('#NUM#', i + 1);
         xtemp = xtemp.replace('#NAME#', flyerList[i].FLYER_NAME_EN);
-        xtemp = xtemp.replace('#IMAGE#', "<a target='_blank' href='" + flyerList[i].FLYER_IMAGE_URL + "' download='" + flyerList[i].FLYER_IMAGE_URL.split('/')[2] + "'>" + flyerList[i].FLYER_IMAGE_URL.split('/')[2] + "</a>");
+        var imagesURLs = flyerList[i].FLYER_IMAGE_URL.split('&&');
+        //alert("imagesURLs.length  : " + imagesURLs.length);
+        if (imagesURLs.length > 1)
+        {
+            //alert("URL > 1" + imagesURLs);
+            imagesURLs.pop();
+            var imageData = '';
+            for (var u = 0 ; u < imagesURLs.length; u++)
+            {
+                imageData += "<a target='_blank' href='" + imagesURLs[u] + "' download='" + imagesURLs[u].split('/')[2] + "'>" + imagesURLs[u].split('/')[2] + "</a><br/>";
+            }
+            xtemp = xtemp.replace('#IMAGE#', imageData);
+        }
+        else {
+            //alert("URL < 1" + imagesURLs);
+            xtemp = xtemp.replace('#IMAGE#', "<a target='_blank' href='" + flyerList[i].FLYER_IMAGE_URL + "' download='" + flyerList[i].FLYER_IMAGE_URL.split('/')[2] + "'>" + flyerList[i].FLYER_IMAGE_URL.split('/')[2] + "</a>");
+        }
+        
         xtemp = xtemp.replace('#STATUS#', (flyerList[i].FLYER_APPROVED == null) ? "Under Processing" : (flyerList[i].FLYER_APPROVED == true ) ? "Approved" : "Rejected");
         xtemp = xtemp.replace('#FROM#', (flyerList[i].FRAME_DATE_FROM).replace("T", " "));
         xtemp = xtemp.replace('#TO#', (flyerList[i].FRAME_DATE_TO).replace("T", " "));
@@ -167,9 +186,30 @@ function loadFlyerDetails()
            if (flyerData != '') {
                $("#flyerNameEN").text(flyerData.FLYER_NAME_EN);
                $("#flyerNameAR").text(flyerData.FLYER_NAME_AR);
-               $("#flyerImg").attr('href', flyerData.FLYER_IMAGE_URL);
-               $("#flyerImg").attr('download', flyerData.FLYER_IMAGE_URL.split('/')[2]);
-               $("#flyerImg").text(flyerData.FLYER_IMAGE_URL.split('/')[2]);
+               var imageURLs = flyerData.FLYER_IMAGE_URL.split("&&");
+               if (imageURLs.length > 1)
+               {
+                   var parentDiv = $("#flyerImg").parent();
+                   $(parentDiv).html('');
+                   imageURLs.pop();
+                   //alert(imageURLs.length);
+                   var template = "<a target='_blank' href='#HREF#' download='#DOWNLOAD#'>#TEXT#</a><br/>";
+                   for(var i = 0 ; i < imageURLs.length ; i++)
+                   {
+                       var temp = template;
+                       //alert(imageURLs[i]);
+                       temp = temp.replace("#HREF#", imageURLs[i]);
+                       temp = temp.replace("#DOWNLOAD#", imageURLs[i].split('/')[2]);
+                       temp = temp.replace("#TEXT#", imageURLs[i].split('/')[2]);
+                       //alert(temp);
+                       $(parentDiv).append(temp);
+                   }
+               } else {
+                   $("#flyerImg").attr('href', flyerData.FLYER_IMAGE_URL);
+                   $("#flyerImg").attr('download', flyerData.FLYER_IMAGE_URL.split('/')[2]);
+                   $("#flyerImg").text(flyerData.FLYER_IMAGE_URL.split('/')[2]);
+               }
+               
                $("#flyerProvider").text(flyerData.PROVIDER_NAME_EN);
                $("#flyerOfferType").text(flyerData.OFFER_TYPE_NAME_EN);
                $("#FRAME_NAME_EN").text(flyerData.FLYER_NAME_EN);
@@ -351,11 +391,15 @@ function validateForm(formID) {
                     if ($(inputs[i]).val().trim() == '') {
                         $(inputs[i]).css('border', '1px solid red');
                         return false;
-                    } else { $(inputs[i]).style('border', ''); }
+                    } else {
+                        $(inputs[i]).css('border', '');
+                    }
                     if ($(inputs[i]).val() == '-1') {
                         $(inputs[i]).css('border', '1px solid red');
                         return false;
-                    } else { $(inputs[i]).style('border', ''); }
+                    } else {
+                        $(inputs[i]).css('border', '');
+                    }
                 }
             }
             return true;
@@ -368,11 +412,11 @@ function validateForm(formID) {
                 if ($(inputs[i]).val().trim() == '') {
                     $(inputs[i]).css('border', '1px solid red');
                     return false;
-                } else { $(inputs[i]).style('border', ''); }
+                } else { $(inputs[i]).css('border', ''); }
                 if ($(inputs[i]).val() == '-1') {
                     $(inputs[i]).css('border', '1px solid red');
                     return false;
-                } else { $(inputs[i]).style('border', ''); }
+                } else { $(inputs[i]).css('border', ''); }
             }
         }
         return true;
@@ -392,15 +436,22 @@ function submitFlyerForm(action) {
         //console.log(file.files[0].type);    
         if (filetype.indexOf("image") != -1 || filetype.indexOf("pdf") != -1) {
             for (var i = 0; i < file.files.length; i++) {
-                fd.append('_file', file.files[i]);
+                fd.append('_file_' + i, file.files[i]);
             }
+            fd.append('files_count', i);
         }
     }
     else if (action == 'edit')
     {
-        fd.append('oldImage', $("#oldImage").attr('href'));
+        var oldImages = $("#previousIMGS a");
+        var oldURLS = '';
+        for (var o = 0 ; o < oldImages.length; o++)
+        {
+            oldURLS += $(oldImages[o]).attr('href')+"&&";
+        }
+        fd.append('oldImage', oldURLS);
     }
-
+    //alert(action);
     fd.append('flyerNameAr', $("#flyerNameAr").val());
     fd.append('flyerNameEn', $("#flyerNameEn").val());
     fd.append('providerDD', $("#providerDD").val());
@@ -573,9 +624,28 @@ function loadFlyerDetailsForEdit() {
                $("#flyerNameEn").val(flyerData.FLYER_NAME_EN);
                $("#flyerNameAr").val(flyerData.FLYER_NAME_AR);
                $("#flyerNameAr").attr('data-old', flyerData.FLYER_ID);
-               $("#oldImage").attr('href', flyerData.FLYER_IMAGE_URL);
-               $("#oldImage").attr('download', flyerData.FLYER_IMAGE_URL.split('/')[2]);
-               $("#oldImage").text(flyerData.FLYER_IMAGE_URL.split('/')[2]);
+               var imageURLs = flyerData.FLYER_IMAGE_URL.split("&&");
+               if (imageURLs.length > 1) {
+                   var parentDiv = $("#oldImage").parent();
+                   $(parentDiv).html('');
+                   imageURLs.pop();
+                   //alert(imageURLs.length);
+                   var template = "<a target='_blank' href='#HREF#' download='#DOWNLOAD#'>#TEXT#</a><br/>";
+                   for (var i = 0 ; i < imageURLs.length ; i++) {
+                       var temp = template;
+                       //alert(imageURLs[i]);
+                       temp = temp.replace("#HREF#", imageURLs[i]);
+                       temp = temp.replace("#DOWNLOAD#", imageURLs[i].split('/')[2]);
+                       temp = temp.replace("#TEXT#", imageURLs[i].split('/')[2]);
+                       //alert(temp);
+                       $(parentDiv).append(temp);
+                   }
+               } else {
+                   $("#oldImage").attr('href', flyerData.FLYER_IMAGE_URL);
+                   $("#oldImage").attr('download', flyerData.FLYER_IMAGE_URL.split('/')[2]);
+                   $("#oldImage").text(flyerData.FLYER_IMAGE_URL.split('/')[2]);
+               }
+               
                $("#providerDD").attr('data-old', flyerData.PROVIDER_ID);
                $("#offerTypeDD").attr('data-old', flyerData.OFFER_TYPE_ID);
                $("#timeFrameDD").attr('data-old', flyerData.FRAME_TYPE_ID);
@@ -590,7 +660,7 @@ function loadFlyerDetailsForEdit() {
                loadOffersTypesData();
                loadTimeFramesData();
            }
-           localStorage.removeItem("flyerID")
+           localStorage.removeItem("flyerID");
        });
 }
 

@@ -211,29 +211,38 @@ namespace DataEntryApp.Pages
 
         protected void flyerSubmitData()
         {
+            HttpContext.Current.Response.Clear();
+            HttpContext.Current.Response.ClearHeaders();
+            HttpContext.Current.Response.ClearContent();
+            HttpContext.Current.Response.ContentType = "application/json";
             try
             {
-                HttpContext.Current.Response.Clear();
-                HttpContext.Current.Response.ClearHeaders();
-                HttpContext.Current.Response.ClearContent();
-                HttpContext.Current.Response.ContentType = "application/json";
-
-                HttpPostedFile file = HttpContext.Current.Request.Files["_file"];
-                string fileName = "";
-                if (file != null)
+                string fileName = "", filesNames = "";
+                var filesCount = Request.Form["files_count"];
+                if (filesCount != null)
                 {
-                    fileName = Path.GetFileName(file.FileName);
-                    string filename = !(file.FileName == "NoImage") ? Path.Combine(this.Server.MapPath("~/UploadedImages/"), fileName) : "";
-                    file.SaveAs(filename);
+                    for (int i = 0; i < int.Parse(filesCount); i++)
+                    {
+                        HttpPostedFile file = HttpContext.Current.Request.Files["_file_" + i];
+                        
+                        if (file != null)
+                        {
+                            fileName = Path.GetFileName(file.FileName);
+                            string filename = !(file.FileName == "NoImage") ? Path.Combine(this.Server.MapPath("~/UploadedImages/"), fileName) : "";
+                            file.SaveAs(filename);
+                        }
+                        
+                        filesNames += "/UploadedImages/" + fileName + "&&";
+                    }
                 }
                 else
                 {
-                    fileName = Request.Form["oldImage"].Replace("/UploadedImages/", "");
+                    filesNames = Request.Form["oldImage"];
                 }
                 OFFER_FLYER flyerData = new OFFER_FLYER();
                 flyerData.FLYER_NAME_AR = Request.Form["flyerNameAr"];
                 flyerData.FLYER_NAME_EN = Request.Form["flyerNameEn"];
-                flyerData.FLYER_IMAGE_URL = "/UploadedImages/" + fileName;
+                flyerData.FLYER_IMAGE_URL = filesNames;
                 flyerData.PROVIDER_ID = int.Parse(Request.Form["providerDD"]);
                 flyerData.OFFER_TYPE_ID = int.Parse(Request.Form["offerTypeDD"]);
                 flyerData.FLYER_APPROVED = false;
@@ -266,7 +275,7 @@ namespace DataEntryApp.Pages
                 else
                 {
                     Session["flyerID"] = null;
-                    errorLbl.Text = flyerObj.returnObj.ToString();
+                    //errorLbl.Text = flyerObj.returnObj.ToString();
                     HttpContext.Current.Response.Write("flyerID = null;alert('"+ flyerObj.returnObj.ToString() + "')");
                 }
                 
@@ -279,7 +288,11 @@ namespace DataEntryApp.Pages
             }
             catch (Exception ex)
             {
-                errorLbl.Text = ex.Message;
+                //errorLbl.Text = ex.Message;
+                HttpContext.Current.Response.Write("flyerID = null;alert('" + ex.Message + "')");
+                HttpContext.Current.Response.Flush();
+                HttpContext.Current.ApplicationInstance.CompleteRequest();
+                HttpContext.Current.Response.SuppressContent = true;
             }
             
         }
