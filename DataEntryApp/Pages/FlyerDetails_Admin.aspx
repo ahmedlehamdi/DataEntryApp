@@ -43,6 +43,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <link href='../css/jquery-loading.min.css' rel='stylesheet' type='text/css'>
 
     <script src="../js/jquery-loading.js"></script>
+    
+    <script src="../js/jquery.dataTables.min.js"></script>
 </head>
 <body class="cbp-spmenu-push">
     <div class="main-content">
@@ -51,7 +53,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="header-left">
                 <!--logo -->
                 <div class="logo">
-                    <a  href="/Pages/Home.apsx">
+                    <a  href="/Pages/Home.aspx">
                         <ul>
                             <li>
                                 <img src="/images/logo1.png" alt="" /></li>
@@ -238,10 +240,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script src="/js/jquery.nicescroll.js"></script>
     <script src="/js/scripts.js"></script>
     <script src="/js/app.js"></script>
+    <script src="/js/app_admin.js"></script>
     <!--//scrolling js-->
     <script>
         $(document).ready(function () {
             loadFlyerDetails();
+            var flyerID = localStorage.getItem('flyerID');
+            $("#approvBtnGroup").find(".btn-success").on('click', function () {
+
+                approveRejectFlyer(true, flyerID);
+            });
+            $("#approvBtnGroup").find(".btn-danger").on('click', function () {
+                approveRejectFlyer(false, flyerID);
+            });
         });
     </script>
 </body>

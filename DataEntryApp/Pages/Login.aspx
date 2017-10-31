@@ -78,7 +78,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</div>
 		</div>
 		<!--<div class="go-back login-go-back">
-				<a  href="/Pages/Home.apsx">Go To Home</a>
+				<a  href="/Pages/Home.aspx">Go To Home</a>
 			</div>-->
 		<div class="copyright login-copyright">
            <p>© 2018 Best Offers . All Rights Reserved . Design by <a href="http://w3layouts.com/">W3layouts</a></p>    

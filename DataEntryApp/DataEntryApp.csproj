@@ -335,15 +335,6 @@
   <ItemGroup>
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
-    <Content Include="UploadedImages\bo_db.PNG" />
-    <Content Include="UploadedImages\Capture.PNG" />
-    <Content Include="UploadedImages\IMG_3459 %281%29.JPG" />
-    <Content Include="UploadedImages\IMG_3459.JPG" />
-    <Content Include="UploadedImages\IMG_4879.JPG" />
-    <Content Include="UploadedImages\IMG_4880.JPG" />
-    <Content Include="UploadedImages\maliha_logo.png" />
-    <Content Include="UploadedImages\Sarprofil_uygulamalar_28.jpg" />
-    <Content Include="UploadedImages\splash_bg.png" />
     <Content Include="w3layouts-License.txt" />
     <Content Include="Web.config" />
   </ItemGroup>

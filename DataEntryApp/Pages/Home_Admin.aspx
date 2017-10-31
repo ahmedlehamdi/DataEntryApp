@@ -48,6 +48,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     
 <link href="../css/demo-page.css" rel="stylesheet" media="all">
 <link href="../css/hover.css" rel="stylesheet" media="all">
+    
+    <script src="../js/jquery.dataTables.min.js"></script>
 </head> 
 <body class="cbp-spmenu-push">
 	<div class="main-content">
@@ -56,7 +58,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="header-left">
 				<!--logo -->
 				<div class="logo">
-					<a  href="/Pages/Home.apsx">
+					<a  href="/Pages/Home.aspx">
 						<ul>	
 							<li><img src="../images/logo1.png" alt="" /></li>
 							<li><h1>Data Entry</h1></li>
