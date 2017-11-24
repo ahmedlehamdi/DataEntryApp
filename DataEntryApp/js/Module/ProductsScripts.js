@@ -338,8 +338,8 @@ function createProductObject(div)
     for (var i = 0; i < $(div).find("#prodSpecs input").size() ; i++) {
         var inputObj = $($(div).find("#prodSpecs input")[i]);
         var typeSPECS = new PRODUCT_TYPE_SPECS();
-        typeSPECS.TEMPLATE_ID  = $(inputObj).val();
-        typeSPECS.TEMPLATE_VALUE = $(inputObj).attr('data-template');
+        typeSPECS.TEMPLATE_ID = $(inputObj).attr('data-template');
+        typeSPECS.TEMPLATE_VALUE = $(inputObj).val();
         typeSPECS.TYPE_ID = $(div).find('#productTypeDD').val();
         typeSpecsArr.push(typeSPECS);
     }
@@ -404,13 +404,13 @@ function SaveProduct()
 
         productList.push(productObject);
 
-        var temp = "<tr><td>#ProductName#</td><td>#Price#</td><td>#Manufacture#</td><td>#Category#</td><td>#Type#</td><td>#Branch#</td><td>#OfferType#</td><td>#OfferSpecs#</td><td onclick='loadProductToEdit($(this), " + productINDEX + ")'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></td><td onclick='deleteFromProducts($(this), " + productINDEX + ")'><i class='fa fa-trash-o' aria-hidden='true'></i></td></tr>";
+        var temp = "<tr><td>#ProductName#</td><td>#Price#</td><td>#Manufacture#</td><td>#Category#</td><td>#Type#</td><td>#Branch#</td><td>#OfferType#</td><td>#OfferSpecs#</td><td onclick='deleteFromProducts($(this), " + productINDEX + ")'><i class='fa fa-trash-o' aria-hidden='true'></i></td></tr>";
 
         temp = temp.replace('#ProductName#', $("#product_0 #productNameEn").val());
         temp = temp.replace('#Price#', $("#product_0 #productPrice").val());
         temp = temp.replace('#Manufacture#', $("#product_0 #manufactureDD option:selected").text());
         temp = temp.replace('#Category#', $("#product_0 #categoryDD option:selected").text());
-        temp = temp.replace('#Type#', $("#product_0 #productTypeDD :option:selected").text());
+        temp = temp.replace('#Type#', $("#product_0 #productTypeDD option:selected").text());
         temp = temp.replace('#Branch#', $("#product_0 #productLocationDD option:selected").text());
         temp = temp.replace('#OfferType#', $("#product_0 #offerTypeDD option:selected").text());
 
@@ -436,10 +436,106 @@ function SaveProduct()
         }
         
         $("#productTBody").append(temp);
+        resetProductForm("product_0");
     } else {
         alert('Please Review the Product Form');
     }
 }
+
+function resetProductForm(div) {
+    $("#" + div + " h4").text('Product Details : ');
+    $("#" + div + " input").val('');
+    $("#" + div + " input[type='checkbox']").attr('checked', false);
+    $("#" + div + " select").val('-1');
+    $("#" + div + " #smartTags").tagsinput('removeAll');
+}
+
+function deleteFromProducts(tdObj, index)
+{
+    productList = productList.filter(function (el) {
+        return el.PRODUCT_ID !== index;
+    });
+    $(tdObj).parent().remove();
+}
+
+function loadProductToEdit(tdObj, index)
+{
+    var product = productList.filter(function (el) {
+        return el.PRODUCT_ID === index;
+    });
+    product = product[0];
+    var div = $("#product_0");
+    $(div).find("#productNameEn").val(product.PRODUCT_NAME_EN);
+    $(div).find('#productNameAr').val(product.PRODUCT_NAME_AR);
+
+    $(div).find('#productPrice').val(product.PRODUCT_PRICE);
+
+    $(div).find('#manufactureDD').val(product.MANUFACTURE_ID);
+    $(div).find('#categoryDD').val(product.CATEGORY_ID);
+
+    ////////////////////////////////PRODUCT TYPE SPECS/////////////////////////////////////
+    $(div).find('#productTypeDD').val(product.TYPE_ID);
+    var typeSpecsArr = product.TYPE_SPECS;
+    for (var i = 0; i < typeSpecsArr.length ; i++) {
+        var typeSPECS = typeSpecsArr[i];
+        var inputObj = $($(div).find("#prodSpecs input[data-template='" + typeSPECS.TEMPLATE_ID + "']"));
+        $(inputObj).val(typeSPECS.TEMPLATE_VALUE);
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////
+
+    //var imageFile = getImageFileFromInput("productImageFile");
+    //if (imageFile != false)
+    //    product.PRODUCT_IMAGE = imageFile;
+    //else
+    //    return null;
+
+    //"<a target='_blank' href='" + flyerProducts[i].PRODUCT_IMAGE + "' download='" + flyerProducts[i].PRODUCT_IMAGE.split('/')[2] + "' > " + flyerProducts[i].PRODUCT_IMAGE.split('/')[2] + "</a>"
+
+    $(div).find('#productLocationDD').val(product.LOCATION_ID);
+    var tags = (product.PRODUCT_TAGS).split(',');
+    for (var i = 0 ; i < tags.length ; i++) {
+        $(div).find('#smartTags').tagsinput('add' , tags[i]);
+    }
+
+    $(div).find('#dateFrom').val(product.DATE_FROM);
+    $(div).find('#dateTo').val(product.DATE_TO);
+
+    ////////////////////////////////PRODUCT OFFER TYPE SPECS/////////////////////////////////////
+    $(div).find('#offerTypeDD').val(product.PROD_OFF_TYPE_ID);
+    if (product.PROD_OFF_TYPE_ID != '5') {
+        var offerTypeSPECS = product.PROD_OFF_TYP_SPECS;
+        for (var i = 0; i < $(div).find('#prodOfferTypeDiv input') ; i++)
+        {
+            $($(div).find('#prodOfferTypeDiv input')[i]).val(offerTypeSPECS["PROD_OFF_TYP_ATTR_" + (i + 1)]);
+        }
+    }
+    else {
+        bundleList = product.bundleList;
+        for(var i = 0 ; i < bundleList.length ; i++)
+        {
+            var bundleItem = bundleList[i];
+            var temp = "<tr><td>#NAME#</td><td>#CATEGORY#</td><td>#TYPE#</td><td>#MANUFACTURE#</td><td>#PRICE#</td><td onclick='deleteFromBundle($(this), " + parent.bundleINDEX + ")'><i class='fa fa-trash-o' aria-hidden='true'></i></td></tr>"
+
+            temp = temp.replace('#NAME#', bundleItem.PRODUCT_NAME_EN);
+            temp = temp.replace('#CATEGORY#', $(div).find('#categoryDD option[value="' + bundleItem.CATEGORY_ID + '"]').text());
+            temp = temp.replace('#TYPE#', $(div).find('#productTypeDD option[value="' + bundleItem.TYPE_ID + '"]').text());
+            temp = temp.replace('#MANUFACTURE#', $(div).find('#manufactureDD option[value="' + bundleItem.MANUFACTURE_ID + '"]').text());
+            temp = temp.replace('#PRICE#', bundleItem.PRODUCT_PRICE);
+
+            $(div).find("#productBundleTBody").append(temp);
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////
+
+    ////////////////////////////////PRODUCT OFFER TYPE SPECS/////////////////////////////////////
+     $(div).find("#productAttr_1").val(product.PRODUCT_ATTR_1);
+     $(div).find("#productAttr_2").val(product.PRODUCT_ATTR_2);
+     $(div).find("#productAttr_3").val(product.PRODUCT_ATTR_3);
+     $(div).find("#productAttr_4").val(product.PRODUCT_ATTR_4);
+     $(div).find("#productAttr_5").val(product.PRODUCT_ATTR_5);
+    /////////////////////////////////////////////////////////////////////////////////////////////
+}
+
 
 /*************************************************************************************************************************/
 

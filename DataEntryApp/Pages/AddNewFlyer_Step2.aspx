@@ -119,7 +119,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                                 <th>Branch</th>
                                                 <th>Offer Type</th>
                                                 <th>Offer Specs</th>
-                                                <th>Edit</th>
                                                 <th>Remove</th>
                                             </tr>
                                         </thead>
@@ -199,11 +198,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         </div>
                                         <div class="form-group">
                                             <label for="dateFrom">Date From</label>
-                                            <input type="text" data-validation="required" ReadOnly="readonly" required="" Class="form-control" id="dateFrom" name="dateFrom" />
+                                            <input type="text" data-validation="required" ReadOnly="readonly" required="" Class="form-control datePicker" id="dateFrom" name="dateFrom" />
                                         </div>
                                         <div class="form-group">
                                             <label for="dateTo">Date To</label>
-                                            <input type="text" data-validation="required" ReadOnly="readonly" required="" class="form-control" id="dateTo" name="dateTo" />
+                                            <input type="text" data-validation="required" ReadOnly="readonly" required="" class="form-control datePicker" id="dateTo" name="dateTo" />
                                         </div>
                                         <div class="form-group">
                                             <label for="productAttr_1">Product Attribute 1</label>
