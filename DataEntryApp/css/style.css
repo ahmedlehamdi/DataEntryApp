@@ -3948,3 +3948,8 @@ div.dataTables_length select {
 .paging_two_button{
 	margin: 0 15px;
 }
+
+iframe{
+    min-height: 400px;
+    width: 100%;
+}

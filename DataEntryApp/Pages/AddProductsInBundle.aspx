@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddNewFlyer_Step2.aspx.cs" Inherits="DataEntryApp.Pages.AddNewFlyer_Step2" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddProductsInBundle.aspx.cs" Inherits="DataEntryApp.Pages.AddProductsInBundle" %>
+
 
 
 <!--
@@ -41,7 +42,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script src="../js/custom.js"></script>
     <link href="../css/custom.css" rel="stylesheet">
     <link href='../css/jquery-loading.min.css' rel='stylesheet' type='text/css'>
-
+    
     <script src="../js/jquery.form-validator.min.js"></script>
     <script src="../js/jquery-loading.js"></script>
     
@@ -50,96 +51,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
     <link href="../js/tagsInput/bootstrap-tagsinput.css" rel="stylesheet" />
     <script src="../js/tagsInput/bootstrap-tagsinput.min.js"></script>
-
 </head>
 <body class="cbp-spmenu-push">
     <div class="main-content">
-        <!-- header-starts -->
-        <div class="sticky-header header-section ">
-            <div class="header-left">
-                <!--logo -->
-                <div class="logo">
-                    <a  href="/Pages/Home.aspx">
-                        <ul>
-                            <li>
-                                <img src="/images/logo1.png" alt="" /></li>
-                            <li>
-                                <h1>Data Entry</h1>
-                            </li>
-                            <div class="clearfix"></div>
-                        </ul>
-                    </a>
-                </div>
-
-                <div class="clearfix"></div>
-            </div>
-
-            <div class="header-right">
-
-                <!--notification menu end -->
-                <div class="profile_details">
-                    
-                </div>
-
-                <div class="clearfix"></div>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-        <!-- //header-ends -->
         <!-- main content start-->
-        <div id="page-wrapper">
+        <div id="page-wrapper" style="padding-top: 20px;margin-right:0px;padding: 0px;">
             <div class="main-page">
                 <!--grids-->
                 <div class="grids products">
-                    <div class="progressbar-heading grids-heading">
-                        <div class="row">
-                            <div class="progressbar-heading grids-heading col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                                <h2>Add Flyer Products</h2>
-                            </div>
-                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                
-                            </div>
-                        </div>
-                    </div>
-                   <div class="panel panel-widget forms-panel">
-                        <div class="forms">
-                            <div class="form-grids widget-shadow" data-example-id="basic-forms">
-                                <div class="form-title">
-                                    <h4>List Of Products</h4>
-                                </div>
-                                <div class="form-body">
-                                    <table class="table table-striped table-bordered bootstrap-datatable datatable">
-                                        <thead>
-                                            <tr>
-                                                <th>Product Name</th>
-                                                <th>Price</th>
-                                                <th>Manufacture</th>
-                                                <th>Category</th>
-                                                <th>Type</th>
-                                                <th>Branch</th>
-                                                <th>Offer Type</th>
-                                                <th>Offer Specs</th>
-                                                <th>Edit</th>
-                                                <th>Remove</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="productTBody">
-                                            
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="panel panel-widget forms-panel" id="product_0">
                         <div class="forms">
                             <div class="form-grids widget-shadow" data-example-id="basic-forms">
                                 <div class="form-title">
                                     <h4>Product Details :</h4>
-                                    <ul class="panel-tools">
-								        <li><button type="button" class="btn btn-default btn-success btn-lg" onclick="SaveProduct()">Save Product</button></li>
-                                        <li><a class="icon minimise-tool"><i class="fa fa-minus"></i></a></li>
-							          </ul>
                                 </div>
                                 <div class="form-body">
                                     <form>
@@ -199,11 +123,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         </div>
                                         <div class="form-group">
                                             <label for="dateFrom">Date From</label>
-                                            <input type="text" data-validation="required" ReadOnly="readonly" required="" Class="form-control" id="dateFrom" name="dateFrom" />
+                                            <input type="text" data-validation="required" ReadOnly="readonly" required="" Class="form-control datePicker" id="dateFrom" name="dateFrom" />
                                         </div>
                                         <div class="form-group">
                                             <label for="dateTo">Date To</label>
-                                            <input type="text" data-validation="required" ReadOnly="readonly" required="" class="form-control" id="dateTo" name="dateTo" />
+                                            <input type="text" data-validation="required" ReadOnly="readonly" required="" class="form-control datePicker" id="dateTo" name="dateTo" />
                                         </div>
                                         <div class="form-group">
                                             <label for="productAttr_1">Product Attribute 1</label>
@@ -227,74 +151,30 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         </div>
                                         <div class="form-group">
                                             <label for="smartTags">Tags</label>
-                                            <input type="text" data-role="tagsinput" class="form-control" id="smartTags" required="required" placeholder="Smart tags For Product">
+                                            <input type="text" data-role="tagsinput"  class="form-control" id="smartTags" required="required" placeholder="Smart tags For Product">
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
-                </div>
-                <!--//grids-->
+                    <!--//grids-->
                 <div class="grids">
                     <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                            <button type="button" class="btn btn-default btn-info btn-lg pull-left" onclick="window.location='/Pages/Home.aspx'">
-                                <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                                Back To Home
-                            </button>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                            <input type="submit" value="Submit Products" class="btn btn-default btn-warning btn-lg pull-right" ID="productSubmitBtn" OnClick="SubmitFlyerProducts()" />
+                            <input type="submit" value="Submit Product" class="btn btn-default btn-warning btn-lg pull-right" ID="productSubmitBtn" OnClick="saveProductsInBundle()" />
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <!--footer-->
-        <div class="dev-page">
-
-            <!-- page footer -->
-            <!-- dev-page-footer-closed dev-page-footer-fixed -->
-            <div class="dev-page-footer dev-page-footer-fixed">
-                <!-- container -->
-                <div class="container">
-                    <div class="copyright">
-                        <p>© 2018 Best Offers . All Rights Reserved . Design by <a href="http://w3layouts.com/">W3layouts</a></p>
-                    </div>
-                    <!-- page footer container -->
-
-                    <!-- //page footer container -->
-
                 </div>
-                <!-- //container -->
             </div>
-            <!-- /page footer -->
         </div>
-        <!--//footer-->
+        
     </div>
     <!-- MODAL -->
 
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog modal-lg">
-    
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" id="modalClose">&times;</button>
-              <h4 class="modal-title" id="modalHeader"></h4>
-            </div>
-            <div class="modal-body" id="modalBody">
-              
-            </div>
-            <div class="modal-footer" id="modalFooter">
-              
-            </div>
-          </div>
-      
-        </div>
-      </div>
+   
     <!-- Bootstrap Core JavaScript -->
 
     <script type="text/javascript" src="../js/bootstrap.min.js"></script>
@@ -316,16 +196,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
     <script>
         $(document).ready(function () {
-            productCount = 0;
-
-            getAllProductManufactures();
             loadProductCategoriesData();
+            getAllProductManufactures();
             getAllProductBranches();
-            getAllProductOfferTypes(false);
-            //$('.closed-tool').on('click', function () {
-            //    if (productCount > 0) productCount--;
-            //    //alert("In Page : " + productCount);
-            //});
+            getAllProductOfferTypes(true);
         });
     </script>
 </body>

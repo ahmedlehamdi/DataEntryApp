@@ -14,6 +14,26 @@
         $(".scrollbar1").getNiceScroll().hide();
     }
 
+    if ($.formUtils != null) {
+        $.formUtils.addValidator({
+            name: 'selected',
+            validatorFunction: function (value, $el, config, language, $form) {
+                return value != -1;
+            },
+            errorMessage: 'You have to Select Option from the list',
+            errorMessageKey: 'SelectOption'
+        });
+    }
+
+    // Validate All Forms
+    if ($('form').size() > 0)
+        $.validate();
+
+    //Add Date Picker For all 
+    if (jQuery('.datePicker').size() > 0) {
+        for (var i = 0 ; i < jQuery('.datePicker').length ; i++)
+            $(jQuery('.datePicker')[i]).datetimepicker();
+    }
 })(jQuery);
 
                      

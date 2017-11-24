@@ -136,7 +136,7 @@ Widget Tools
 $(document).ready(function(){
   $(".Modern-alert .closed").click(function(event){
   $(this).parents(".Modern-alert").fadeToggle(350);
-
+  alert(1);
   return false;
 }); 
 
@@ -177,12 +177,14 @@ $(document).ready(function(){
 
 /* Tooltips */
 $(function () {
-  $('[data-toggle="tooltip"]').tooltip()
+   // $('[data-toggle="tooltip"]').tooltip();
+    //alert(2);
 })
 
 /* Popover */
 $(function () {
-  $('[data-toggle="popover"]').popover()
+    //$('[data-toggle="popover"]').popover();
+    //alert(3);
 })
 
 
@@ -194,4 +196,4 @@ $(window).load(function() {
 
 /* Update Fixed */
 /* Version 1.2 */
-$('.profilebox').on('click',function(){ $(".sidepanel").hide(); })
+//$('.profilebox').on('click',function(){ $(".sidepanel").hide(); })

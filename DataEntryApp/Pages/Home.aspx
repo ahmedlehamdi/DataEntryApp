@@ -224,7 +224,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!--//scrolling js-->
 
     <script src="../js/jquery.form-validator.min.js"></script>
-    <script src="../js/app.js"></script>
+    
+    <script src="/js/Templates.js"></script>
+    <script src="/js/Utils.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/Module/FlyersScript.js"></script>
 
 
     <script>

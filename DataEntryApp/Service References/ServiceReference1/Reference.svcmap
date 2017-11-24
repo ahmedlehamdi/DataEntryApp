@@ -19,13 +19,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://dataentryservice.99dokan.com/Service1.svc?wsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:1876//Service1.svc?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Service13.xsd" MetadataType="Schema" ID="26213e17-1cae-48e5-b8d4-373f8bdf3b30" SourceId="1" SourceUrl="http://dataentryservice.99dokan.com/Service1.svc?xsd=xsd1" />
-    <MetadataFile FileName="Service131.xsd" MetadataType="Schema" ID="ecf9436a-e61e-4ad5-a18d-cefecc34d660" SourceId="1" SourceUrl="http://dataentryservice.99dokan.com/Service1.svc?xsd=xsd0" />
-    <MetadataFile FileName="Service11.wsdl" MetadataType="Wsdl" ID="ff5f8416-1ca0-4e8c-8456-38e0d70412a4" SourceId="1" SourceUrl="http://dataentryservice.99dokan.com/Service1.svc?wsdl" />
-    <MetadataFile FileName="Service132.xsd" MetadataType="Schema" ID="d6343235-2f64-467b-9e7e-f3198cca5472" SourceId="1" SourceUrl="http://dataentryservice.99dokan.com/Service1.svc?xsd=xsd2" />
+    <MetadataFile FileName="Service1.wsdl" MetadataType="Wsdl" ID="d08bc37e-85ab-4551-b485-f75bf241f7a6" SourceId="1" SourceUrl="http://localhost:1876//Service1.svc?wsdl" />
+    <MetadataFile FileName="Service1.xsd" MetadataType="Schema" ID="332d8db1-0d10-4cea-8210-dba33fbd2547" SourceId="1" SourceUrl="http://localhost:1876/Service1.svc?xsd=xsd1" />
+    <MetadataFile FileName="Service11.xsd" MetadataType="Schema" ID="b67891ec-28fb-4111-84ff-ed04fe7cb356" SourceId="1" SourceUrl="http://localhost:1876/Service1.svc?xsd=xsd2" />
+    <MetadataFile FileName="Service12.xsd" MetadataType="Schema" ID="57ba92a9-da40-494a-bf5e-d3e5b14e5626" SourceId="1" SourceUrl="http://localhost:1876/Service1.svc?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

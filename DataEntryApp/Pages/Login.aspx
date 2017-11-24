@@ -31,6 +31,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--//Spinner--> 
 <!-- js -->
 <script src="../js/jquery-1.11.1.min.js"></script>
+<script src="../js/Utils.js"></script>
 <script src="../js/app.js"></script>
 <script src="../js/jquery.form-validator.min.js"></script>
 <script src="../js/jquery-loading.js"></script>

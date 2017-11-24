@@ -229,7 +229,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<script src="../js/scripts.js"></script>
 		<!--//scrolling js-->
 		
-		<script src="../js/app.js"></script>
+        <script src="/js/Templates.js"></script>
+        <script src="/js/Utils.js"></script>
+        <script src="/js/app.js"></script>
+        <script src="/js/Module/FlyersScript.js"></script>
     
 		<script src="../js/app_admin.js"></script>
     

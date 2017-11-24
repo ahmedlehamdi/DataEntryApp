@@ -100,7 +100,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     <h4>Basic Flyer Details :</h4>
                                 </div>
                                 <div class="form-body">
-                                    <form class="form-horizontal">
+                                    <div class="form-horizontal">
                                         <div class="form-group">
                                            <label class="col-sm-2 control-label">Name EN</label> 
 											<div class="col-sm-9">
@@ -132,12 +132,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 											</div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Offer Time Frame</label> 
-											<div class="col-sm-9">
-                                                <label class="control-label" id="flyerTimeFrame"></label> 
-											</div>
-                                        </div>
-                                        <div class="form-group">
                                             <label class="col-sm-2 control-label">Offer Date To</label> 
 											<div class="col-sm-9">
                                                 <label class="control-label" id="flyerFromDate"></label> 
@@ -149,7 +143,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                                 <label class="control-label" id="flyerToDate"></label> 
 											</div>
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -226,7 +220,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!--scrolling js-->
     <script src="/js/jquery.nicescroll.js"></script>
     <script src="/js/scripts.js"></script>
+    <script src="/js/Templates.js"></script>
+    <script src="/js/Utils.js"></script>
     <script src="/js/app.js"></script>
+    <script src="/js/Module/FlyersScript.js"></script>
     <!--//scrolling js-->
     <script>
         $(document).ready(function () {

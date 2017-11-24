@@ -44,6 +44,22 @@ namespace DataEntryApp.Pages
                 {
                     submitProducts();
                 }
+                else if (HttpContext.Current.Request.QueryString["fnID"] != null && HttpContext.Current.Request.QueryString["fnID"] == "30")
+                {
+                    getAllManufactures();
+                }
+                else if (HttpContext.Current.Request.QueryString["fnID"] != null && HttpContext.Current.Request.QueryString["fnID"] == "31")
+                {
+                    getAllBranches();
+                }
+                else if (HttpContext.Current.Request.QueryString["fnID"] != null && HttpContext.Current.Request.QueryString["fnID"] == "32")
+                {
+                    getTypeAllSpecs();
+                }
+                else if (HttpContext.Current.Request.QueryString["fnID"] != null && HttpContext.Current.Request.QueryString["fnID"] == "33")
+                {
+                    getProductOfferTypes();
+                }
             }
         }
 
@@ -124,10 +140,15 @@ namespace DataEntryApp.Pages
             try
             {
                 var flyerID = int.Parse(Session["flyerID"] != null ? Session["flyerID"].ToString() : HttpContext.Current.Request.Form["flyerID"]);
-                Session["flyerID"] = null;
+                //Session["flyerID"] = null;
+
                 var productCount = int.Parse(HttpContext.Current.Request.Form["productCount"]);
-                PRODUCT_SPEC[] specs = new PRODUCT_SPEC[productCount];
                 PRODUCT[] products = new PRODUCT[productCount];
+
+                PROD_OFF_TYP_ATTR[] offerTypeAttrArr = new PROD_OFF_TYP_ATTR[productCount];
+
+                PROD_TYPE_SPEC[][] allTypeSpecsArr = new PROD_TYPE_SPEC[productCount][];
+
                 for (int i = 0; i < productCount; i++)
                 {
                     string fileName = "";
@@ -142,26 +163,77 @@ namespace DataEntryApp.Pages
                     {
                         fileName = HttpContext.Current.Request.Form["_imgFile_" + i].Replace("/UploadedImages/", "");
                     }
-                    PRODUCT_SPEC spec = new PRODUCT_SPEC();
-                    spec.SPECS_ATTR_1 = HttpContext.Current.Request.Form["productSpecs_1_" + i];
-                    spec.SPECS_ATTR_2 = HttpContext.Current.Request.Form["productSpecs_2_" + i];
-                    spec.SPECS_ATTR_3 = HttpContext.Current.Request.Form["productSpecs_3_" + i];
-                    spec.SPECS_ATTR_4 = HttpContext.Current.Request.Form["productSpecs_4_" + i];
-                    spec.SPECS_ATTR_5 = HttpContext.Current.Request.Form["productSpecs_5_" + i];
-
-                    specs[i] = spec;
 
                     PRODUCT prod = new PRODUCT();
-                    prod.PRODUCT_NAME_EN = HttpContext.Current.Request.Form["productNameEn_" + i];
-                    prod.PRODUCT_NAME_AR = HttpContext.Current.Request.Form["productNameAr_" + i];
-                    prod.TYPE_ID = int.Parse(HttpContext.Current.Request.Form["productTypeDD_" + i]);
-                    prod.PROVIDER_ID = int.Parse(HttpContext.Current.Request.Form["providerDD_" + i]);
-                    prod.PRODUCT_IMAGE = "/UploadedImages/" + fileName;
                     prod.FLYER_ID = flyerID;
 
-                    products[i]  = prod;
+                    prod.PRODUCT_NAME_EN = HttpContext.Current.Request.Form["productNameEn_" + i];
+                    prod.PRODUCT_NAME_AR = HttpContext.Current.Request.Form["productNameAr_" + i];
+
+                    prod.TYPE_ID = int.Parse(HttpContext.Current.Request.Form["productTypeDD_" + i]);
+                    
+                    prod.PRODUCT_IMAGE = "/UploadedImages/" + fileName;
+                    prod.PRODUCT_PRICE = HttpContext.Current.Request.Form["productPrice_" + i];
+
+                    prod.LOCATION_ID = int.Parse(HttpContext.Current.Request.Form["productLocationDD_" + i]);
+                    prod.MANUFACTURE_ID = int.Parse(HttpContext.Current.Request.Form["manufactureDD_" + i]);
+
+                    prod.PRODUCT_TAGS = HttpContext.Current.Request.Form["smartTags_" + i];
+
+                    ///// To be Edited while adding Offer Type  
+                    var offerTypeAttrCount = int.Parse(HttpContext.Current.Request.Form["offerTypeAttrCount_" + i]);
+                    var offerTypeID = int.Parse(HttpContext.Current.Request.Form["offerTypeDD_" + i]);
+
+
+                    PROD_OFF_TYP_ATTR offerTypeAttr = new PROD_OFF_TYP_ATTR();
+                    
+                    if(HttpContext.Current.Request.Form["offerTypeAttr_" + i+ "_0"] != null) offerTypeAttr.PROD_OFF_TYP_ATTR_1 = HttpContext.Current.Request.Form["offerTypeAttr_" + i + "_0"];
+                    if (HttpContext.Current.Request.Form["offerTypeAttr_" + i + "_1"] != null) offerTypeAttr.PROD_OFF_TYP_ATTR_1 = HttpContext.Current.Request.Form["offerTypeAttr_" + i + "_1"];
+                    if (HttpContext.Current.Request.Form["offerTypeAttr_" + i + "_2"] != null) offerTypeAttr.PROD_OFF_TYP_ATTR_3 = HttpContext.Current.Request.Form["offerTypeAttr_" + i + "_2"];
+                    if (HttpContext.Current.Request.Form["offerTypeAttr_" + i + "_3"] != null) offerTypeAttr.PROD_OFF_TYP_ATTR_4 = HttpContext.Current.Request.Form["offerTypeAttr_" + i + "_3"];
+                    if (HttpContext.Current.Request.Form["offerTypeAttr_" + i + "_4"] != null) offerTypeAttr.PROD_OFF_TYP_ATTR_5 = HttpContext.Current.Request.Form["offerTypeAttr_" + i + "_4"];
+                    if (HttpContext.Current.Request.Form["offerTypeAttr_" + i + "_5"] != null) offerTypeAttr.PROD_OFF_TYP_ATTR_6 = HttpContext.Current.Request.Form["offerTypeAttr_" + i + "_5"];
+                    if (HttpContext.Current.Request.Form["offerTypeAttr_" + i + "_6"] != null) offerTypeAttr.PROD_OFF_TYP_ATTR_7 = HttpContext.Current.Request.Form["offerTypeAttr_" + i + "_6"];
+                    if (HttpContext.Current.Request.Form["offerTypeAttr_" + i + "_7"] != null) offerTypeAttr.PROD_OFF_TYP_ATTR_8 = HttpContext.Current.Request.Form["offerTypeAttr_" + i + "_7"];
+                    if (HttpContext.Current.Request.Form["offerTypeAttr_" + i + "_8"] != null) offerTypeAttr.PROD_OFF_TYP_ATTR_9 = HttpContext.Current.Request.Form["offerTypeAttr_" + i + "_8"];
+                    if (HttpContext.Current.Request.Form["offerTypeAttr_" + i + "_9"] != null) offerTypeAttr.PROD_OFF_TYP_ATTR_10 = HttpContext.Current.Request.Form["offerTypeAttr_" + i + "_9"];
+
+                    offerTypeAttr.PROD_OFF_TYPE_ID = offerTypeID;
+
+                    offerTypeAttrArr[i] = offerTypeAttr;
+                    
+
+                    prod.DATE_FROM = DateTime.Parse(HttpContext.Current.Request.Form["dateFrom_" + i]);
+                    prod.DATE_TO = DateTime.Parse(HttpContext.Current.Request.Form["dateTo_" + i]);
+
+                    // Product Specs
+                    prod.PRODUCT_ATTR_1 = HttpContext.Current.Request.Form["productSpecs_1_" + i];
+                    prod.PRODUCT_ATTR_2 = HttpContext.Current.Request.Form["productSpecs_2_" + i];
+                    prod.PRODUCT_ATTR_3 = HttpContext.Current.Request.Form["productSpecs_3_" + i];
+                    prod.PRODUCT_ATTR_4 = HttpContext.Current.Request.Form["productSpecs_4_" + i];
+                    prod.PRODUCT_ATTR_5 = HttpContext.Current.Request.Form["productSpecs_5_" + i];
+
+
+                    // Product Type Specs
+                    var typeSpecsCount = int.Parse(HttpContext.Current.Request.Form["prodSpecsAttrCount_" + i]);
+                    PROD_TYPE_SPEC[] typeSpecsArr = new PROD_TYPE_SPEC[typeSpecsCount];
+                    for (int y = 0; y < typeSpecsCount; y++)
+                    {
+                        PROD_TYPE_SPEC typeSpecs = new PROD_TYPE_SPEC();
+
+                        var value = (HttpContext.Current.Request.Form["prodSpecsAttr_" + i + "_" + y]).ToString().Split(',');
+                        typeSpecs.TEMPLATE_VALUE = value[0];
+                        typeSpecs.TEMPLATE_ID = int.Parse(value[1]);
+                        typeSpecs.TYPE_ID = prod.TYPE_ID;
+                        typeSpecsArr[y] = typeSpecs;
+                    }
+                    allTypeSpecsArr[i] = typeSpecsArr;
+
+
+
+                    products[i] = prod;
                 }
-                ReturnObject<object> prodObj = ServiceResponseUnMarshaller<object>.unmarshall(new Service1Client().submitFlyerAllProducts(products, specs));
+                ReturnObject<object> prodObj = ServiceResponseUnMarshaller<object>.unmarshall(new Service1Client().submitFlyerAllProducts(products, allTypeSpecsArr, offerTypeAttrArr));
                 if (prodObj.statusCode == 0)
                 {
                     HttpContext.Current.Response.Write("window.location = '/Pages/Home.aspx';alert('Flyer Have been created, Please wait for the approval')");
@@ -174,7 +246,124 @@ namespace DataEntryApp.Pages
             }
             catch (Exception ex)
             {
-                HttpContext.Current.Response.Write("alert('Somethinf Went wrong please try again later.\n "+ex.Message+"')");
+                HttpContext.Current.Response.Write("alert('Somethinf Went wrong please try again later.\n " + ex.Message + "')");
+            }
+            HttpContext.Current.Response.Flush();
+            HttpContext.Current.ApplicationInstance.CompleteRequest();
+            HttpContext.Current.Response.SuppressContent = true;
+
+        }
+
+        private void getAllManufactures()
+        {
+            HttpContext.Current.Response.Clear();
+            HttpContext.Current.Response.ClearHeaders();
+            HttpContext.Current.Response.ClearContent();
+            HttpContext.Current.Response.ContentType = "application/json";
+            try
+            {
+                ReturnObject<object> output = ServiceResponseUnMarshaller<object>.unmarshall(new Service1Client().getAllProductManufactures());
+                if (output.statusCode == 0)
+                {
+                    HttpContext.Current.Response.Write("prodManufacture=" + output.returnObj + ";");
+                }
+                else
+                {
+                    HttpContext.Current.Response.Write("alert('Error Getting Manufacture List please try again later.')");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                HttpContext.Current.Response.Write("alert('Something Went wrong please try again later.\n " + ex.Message + "')");
+            }
+            HttpContext.Current.Response.Flush();
+            HttpContext.Current.ApplicationInstance.CompleteRequest();
+            HttpContext.Current.Response.SuppressContent = true;
+
+        }
+
+        private void getAllBranches()
+        {
+            HttpContext.Current.Response.Clear();
+            HttpContext.Current.Response.ClearHeaders();
+            HttpContext.Current.Response.ClearContent();
+            HttpContext.Current.Response.ContentType = "application/json";
+            try
+            {
+                ReturnObject<object> output = ServiceResponseUnMarshaller<object>.unmarshall(new Service1Client().getAllProductBranches(int.Parse(HttpContext.Current.Request.QueryString["providerID"])));
+                if (output.statusCode == 0)
+                {
+                    HttpContext.Current.Response.Write("prodBranches=" + output.returnObj + ";");
+                }
+                else
+                {
+                    HttpContext.Current.Response.Write("alert('Error Getting Branches List please try again later.')");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                HttpContext.Current.Response.Write("alert('Something is wrong please try again later.\n " + ex.Message + "')");
+            }
+            HttpContext.Current.Response.Flush();
+            HttpContext.Current.ApplicationInstance.CompleteRequest();
+            HttpContext.Current.Response.SuppressContent = true;
+
+        }
+
+        private void getTypeAllSpecs()
+        {
+            HttpContext.Current.Response.Clear();
+            HttpContext.Current.Response.ClearHeaders();
+            HttpContext.Current.Response.ClearContent();
+            HttpContext.Current.Response.ContentType = "application/json";
+            try
+            {
+                var typeID = int.Parse(Request.QueryString["typeID"]);
+                ReturnObject<object> output = ServiceResponseUnMarshaller<object>.unmarshall(new Service1Client().getTypeAllSpecs(typeID));
+                if (output.statusCode == 0)
+                {
+                    HttpContext.Current.Response.Write("typeSpecs=" + output.returnObj + ";");
+                }
+                else
+                {
+                    HttpContext.Current.Response.Write("alert('Error Getting Type Specs please try again later.')");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                HttpContext.Current.Response.Write("alert('Something is wrong please try again later.\n " + ex.Message + "')");
+            }
+            HttpContext.Current.Response.Flush();
+            HttpContext.Current.ApplicationInstance.CompleteRequest();
+            HttpContext.Current.Response.SuppressContent = true;
+
+        }
+
+        private void getProductOfferTypes()
+        {
+            HttpContext.Current.Response.Clear();
+            HttpContext.Current.Response.ClearHeaders();
+            HttpContext.Current.Response.ClearContent();
+            HttpContext.Current.Response.ContentType = "application/json";
+            try
+            {
+                ReturnObject<object> output = ServiceResponseUnMarshaller<object>.unmarshall(new Service1Client().getAllProductOfferTypes());
+                if (output.statusCode == 0)
+                {
+                    HttpContext.Current.Response.Write("prodOfferTypes=" + output.returnObj + ";");
+                }
+                else
+                {
+                    HttpContext.Current.Response.Write("alert('Error Getting Type Specs please try again later.')");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                HttpContext.Current.Response.Write("alert('Something is wrong please try again later.\n " + ex.Message + "')");
             }
             HttpContext.Current.Response.Flush();
             HttpContext.Current.ApplicationInstance.CompleteRequest();

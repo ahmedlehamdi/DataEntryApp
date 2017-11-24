@@ -61,7 +61,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <li>
                                 <h1>Data Entry</h1>
                             </li>
-                            <div class="clearfix"></div>
                         </ul>
                     </a>
                 </div>
@@ -107,50 +106,50 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     <form id="flyerDataForm" method="post" enctype="multipart/form-data" runat="server">
                                         <div class="form-group">
                                             <label for="flyerNameEn">Name EN</label>
-                                            <input type="text" data-validation="required" required="" class="form-control" id="flyerNameEn" placeholder="Flyer Name En" />
+                                            <input type="text" data-validation="required"  class="form-control" id="flyerNameEn" placeholder="Flyer Name En" />
                                         </div>
                                         <div class="form-group">
                                             <label for="flyerNameAr">Name AR</label>
-                                            <input type="text" data-validation="required" required=""  class="form-control" id="flyerNameAr" placeholder="Flyer Name Ar" />
+                                            <input type="text" data-validation="required"   class="form-control" id="flyerNameAr" placeholder="Flyer Name Ar" />
                                         </div>
                                         <div class="form-group">
                                             <label for="flyerImageFile">Image</label>
-                                            <input type="file" data-validation="required" multiple required="" id="flyerImageFile" name="flyerImageFile" />
+                                            <input type="file" data-validation="required" multiple  id="flyerImageFile" name="flyerImageFile" />
                                             <p class="help-block">Upload Flyer Image - Available Formats : pdf/png/jpg</p>
                                         </div>
                                         <div class="form-group">
                                             <label for="providerDD">Provider / Retailer</label>
-                                            <select name="providerDD" id="providerDD" class="form-control1" data-validation="selected" required="">
+                                            <select name="providerDD" id="providerDD" class="form-control1" data-validation="selected" >
                                                 <option Value="-1">Please select an option</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="offerTypeDD">Offer Type</label>
-                                            <select name="offerTypeDD" id="offerTypeDD" class="form-control1" data-validation="selected" required="">
+                                            <select name="offerTypeDD" id="offerTypeDD" class="form-control1" data-validation="selected" >
                                                 <option Value="-1">Please select an option</option>
                                             </select>
                                         </div>
-                                        <div class="form-group">
+                                        <!--div class="form-group">
                                             <label for="timeFrameDD">Offer Time Frame</label>
-                                            <select name="timeFrameDD" id="timeFrameDD" class="form-control1" data-validation="selected" required="">
+                                            <select name="timeFrameDD" id="timeFrameDD" class="form-control1" data-validation="selected" >
                                                 <option Value="-1">Please select an option</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="frameNameAr">Time Frame Name Ar</label>
-                                            <input type="text" data-validation="required" required="" Class="form-control" id="frameNameAr" name="frameNameAr" />
+                                            <input type="text" data-validation="required"  Class="form-control" id="frameNameAr" name="frameNameAr" />
                                         </div>
                                         <div class="form-group">
                                             <label for="frameNameEn">Time Frame Name En</label>
-                                            <input type="text" data-validation="required" required="" Class="form-control" id="frameNameEn" name="frameNameEn" />
-                                        </div>
+                                            <input type="text" data-validation="required"  Class="form-control" id="frameNameEn" name="frameNameEn" />
+                                        </div-->
                                         <div class="form-group">
                                             <label for="dateFrom">Date From</label>
-                                            <input type="text" data-validation="required" ReadOnly="readonly" required="" Class="form-control" id="dateFrom" name="dateFrom" />
+                                            <input type="text" data-validation="required" ReadOnly="readonly"  Class="form-control datePicker" id="dateFrom" name="dateFrom" />
                                         </div>
                                         <div class="form-group">
                                             <label for="dateTo">Date To</label>
-                                            <input type="text" data-validation="required" ReadOnly="readonly" required="" class="form-control" id="dateTo" name="dateTo" />
+                                            <input type="text" data-validation="required" ReadOnly="readonly"  class="form-control datePicker" id="dateTo" name="dateTo" />
                                         </div>
                                         <input type="submit" value="Add Products" class="btn btn-default btn-success btn-lg" ID="flyerSubmitBtn" OnClick="submitFlyerForm('insert')" />
                                     </form>
@@ -202,22 +201,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!--scrolling js-->
     <script src="/js/jquery.nicescroll.js"></script>
     <script src="/js/scripts.js"></script>
-     <script src="/js/app.js"></script>
+    <script src="/js/Templates.js"></script>
+    <script src="/js/Utils.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/Module/FlyersScript.js"></script>
     <!--//scrolling js-->
     <script>
         $(document).ready(function () {
             loadAddFlyerData();
-            $.formUtils.addValidator({
-                name: 'selected',
-                validatorFunction: function (value, $el, config, language, $form) {
-                    return value != -1;
-                },
-                errorMessage: 'You have to Select Option from the list',
-                errorMessageKey: 'SelectOption'
-            });
-            $.validate();
-            jQuery('#dateFrom, #dateTo').datetimepicker();
-
         });
         
     </script>

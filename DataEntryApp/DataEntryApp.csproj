@@ -250,6 +250,7 @@
     <Content Include="js\dev-layout-default.js" />
     <Content Include="js\dev-loaders.js" />
     <Content Include="js\fabochart.js" />
+    <Content Include="js\Module\FlyersScript.js" />
     <Content Include="js\gmaps.js" />
     <Content Include="js\jquery-1.11.1.min.js" />
     <Content Include="js\jquery-loading.js" />
@@ -270,11 +271,16 @@
     <Content Include="js\material.min.js" />
     <Content Include="js\metisMenu.min.js" />
     <Content Include="js\modernizr.custom.js" />
+    <Content Include="js\Module\ProductsScripts.js" />
     <Content Include="js\moment-with-locales.min.js" />
     <Content Include="js\pie-chart.js" />
     <Content Include="js\plugins.js" />
     <Content Include="js\prettymaps.js" />
     <Content Include="js\scripts.js" />
+    <Content Include="js\tagsInput\bootstrap-tagsinput.css" />
+    <Content Include="js\tagsInput\bootstrap-tagsinput.min.js" />
+    <Content Include="js\Templates.js" />
+    <Content Include="js\Utils.js" />
     <Content Include="js\valida.2.1.6.min.js" />
     <Content Include="js\validator.min.js" />
     <Content Include="js\wow.min.js" />
@@ -284,6 +290,7 @@
     </Content>
     <Content Include="Pages\AddNewFlyer.aspx" />
     <Content Include="Pages\AddNewFlyer_Step2.aspx" />
+    <Content Include="Pages\AddProductsInBundle.aspx" />
     <Content Include="Pages\EditFlyerDetails.aspx" />
     <Content Include="Pages\EditFlyerDetails_Step2.aspx" />
     <Content Include="Pages\FlyerDetails.aspx" />
@@ -294,6 +301,7 @@
     <Content Include="Pages\Login.aspx" />
     <Content Include="Pages\UserManagment.aspx" />
     <Content Include="Pages\UsersList.aspx" />
+    <Content Include="js\tagsInput\bootstrap-tagsinput.min.js.map" />
     <None Include="Properties\PublishProfiles\DataEntryPubProfile.pubxml" />
     <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
     <None Include="Service References\ServiceReference1\configuration.svcinfo" />
@@ -315,14 +323,14 @@
     <Content Include="maps\mideast.json" />
     <Content Include="maps\risk.json" />
     <Content Include="maps\usofa.json" />
-    <None Include="Service References\ServiceReference1\Service11.wsdl" />
-    <None Include="Service References\ServiceReference1\Service13.xsd">
+    <None Include="Service References\ServiceReference1\Service1.wsdl" />
+    <None Include="Service References\ServiceReference1\Service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\Service131.xsd">
+    <None Include="Service References\ServiceReference1\Service11.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\Service132.xsd">
+    <None Include="Service References\ServiceReference1\Service12.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Web.Debug.config">
@@ -355,6 +363,13 @@
     </Compile>
     <Compile Include="Pages\AddNewFlyer_Step2.aspx.designer.cs">
       <DependentUpon>AddNewFlyer_Step2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddProductsInBundle.aspx.cs">
+      <DependentUpon>AddProductsInBundle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\AddProductsInBundle.aspx.designer.cs">
+      <DependentUpon>AddProductsInBundle.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\EditFlyerDetails.aspx.cs">
       <DependentUpon>EditFlyerDetails.aspx</DependentUpon>

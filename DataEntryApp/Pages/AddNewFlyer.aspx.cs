@@ -185,14 +185,14 @@ namespace DataEntryApp.Pages
                 else
                     HttpContext.Current.Response.Write("alert('" + offerTypes.returnObj + "');");
 
-                ReturnObject<object> timeFrames = ServiceResponseUnMarshaller<object>.unmarshall(new Service1Client().getAllTimeFrames());
-                if (timeFrames.statusCode == 0)
-                {
-                    HttpContext.Current.Response.Write("timeFramesList = " + timeFrames.returnObj + ";");
-                    Session["timeFramesList"] = timeFrames.returnObj;
-                }
-                else
-                    HttpContext.Current.Response.Write("alert('" + timeFrames.returnObj + "');");
+                //ReturnObject<object> timeFrames = ServiceResponseUnMarshaller<object>.unmarshall(new Service1Client().getAllTimeFrames());
+                //if (timeFrames.statusCode == 0)
+                //{
+                //    HttpContext.Current.Response.Write("timeFramesList = " + timeFrames.returnObj + ";");
+                //    Session["timeFramesList"] = timeFrames.returnObj;
+                //}
+                //else
+                //    HttpContext.Current.Response.Write("alert('" + timeFrames.returnObj + "');");
                 HttpContext.Current.Response.Flush();
                 HttpContext.Current.ApplicationInstance.CompleteRequest();
                 HttpContext.Current.Response.SuppressContent = true;
@@ -217,8 +217,8 @@ namespace DataEntryApp.Pages
             HttpContext.Current.Response.ContentType = "application/json";
             try
             {
-                string fileName = "", filesNames = "";
-                var filesCount = Request.Form["files_count"];
+                string filesNames = "";
+                var filesCount = Request.Form["IMAGES_COUNT"];
                 if (filesCount != null)
                 {
                     for (int i = 0; i < int.Parse(filesCount); i++)
@@ -227,45 +227,41 @@ namespace DataEntryApp.Pages
                         
                         if (file != null)
                         {
-                            fileName = Path.GetFileName(file.FileName);
-                            string filename = !(file.FileName == "NoImage") ? Path.Combine(this.Server.MapPath("~/UploadedImages/"), fileName) : "";
+                            var Name = Path.GetFileName(file.FileName);
+                            var type = Name.Split('.')[1];
+                            string filename = !(file.FileName == "NoImage") ? Path.Combine(this.Server.MapPath("~/UploadedImages/Flyers/"), "Flyer_" + Request.Form["FLYER_NAME_AR"] + "_" + i + "." + type) : "";
                             file.SaveAs(filename);
+                            filesNames += "/UploadedImages/Flyers/" + "Flyer_" + Request.Form["FLYER_NAME_AR"] + "_" + i + "." + type + "&&";
                         }
-                        
-                        filesNames += "/UploadedImages/" + fileName + "&&";
                     }
                 }
                 else
                 {
-                    filesNames = Request.Form["oldImage"];
+                    filesNames = Request.Form["FLYER_IMAGE_URL"];
                 }
                 OFFER_FLYER flyerData = new OFFER_FLYER();
-                flyerData.FLYER_NAME_AR = Request.Form["flyerNameAr"];
-                flyerData.FLYER_NAME_EN = Request.Form["flyerNameEn"];
+                flyerData.FLYER_NAME_AR = Request.Form["FLYER_NAME_AR"];
+                flyerData.FLYER_NAME_EN = Request.Form["FLYER_NAME_EN"];
                 flyerData.FLYER_IMAGE_URL = filesNames;
-                flyerData.PROVIDER_ID = int.Parse(Request.Form["providerDD"]);
-                flyerData.OFFER_TYPE_ID = int.Parse(Request.Form["offerTypeDD"]);
+                flyerData.PROVIDER_ID = int.Parse(Request.Form["PROVIDER_ID"]);
+                flyerData.OFFER_TYPE_ID = int.Parse(Request.Form["OFFER_TYPE_ID"]);
                 flyerData.FLYER_APPROVED = false;
                 flyerData.FLYER_EXPIRED = false;
                 flyerData.USER_ID = int.Parse(Session["UserID"].ToString());
-
-                TIME_FRAME frame = new TIME_FRAME();
-                frame.FRAME_TYPE_ID = int.Parse(Request.Form["timeFrameDD"]);
-                frame.FRAME_NAME_EN = Request.Form["frameNameAr"];
-                frame.FRAME_NAME_AR = Request.Form["frameNameEn"];
-                frame.FRAME_DATE_FROM = Convert.ToDateTime(Request.Form["dateFrom"]);
-                frame.FRAME_DATE_TO = Convert.ToDateTime(Request.Form["dateTo"]);
+                
+                flyerData.DATE_FROM = Convert.ToDateTime(Request.Form["DATE_FROM"]);
+                flyerData.DATE_TO = Convert.ToDateTime(Request.Form["DATE_TO"]);
 
                 //flyerID  -   frameID
                 var action = HttpContext.Current.Request.Form["action"];
                 if (action == "update")
                 {
-                    frame.FRAME_ID = int.Parse(HttpContext.Current.Request.Form["frameID"]);
-                    flyerData.FLYER_ID = int.Parse(HttpContext.Current.Request.Form["flyerID"]);
+                    //frame.FRAME_ID = int.Parse(HttpContext.Current.Request.Form["frameID"]);
+                    flyerData.FLYER_ID = int.Parse(HttpContext.Current.Request.Form["FLYER_ID"]);
                 }
 
 
-                ReturnObject<object> flyerObj = ServiceResponseUnMarshaller<object>.unmarshall(new Service1Client().addNewFlyerBasicData(flyerData, frame, action));
+                ReturnObject<object> flyerObj = ServiceResponseUnMarshaller<object>.unmarshall(new Service1Client().addNewFlyerBasicData(flyerData, action));
                 if (flyerObj.statusCode == 0)
                 {
                     Session["flyerID"] = int.Parse(flyerObj.returnObj.ToString());
