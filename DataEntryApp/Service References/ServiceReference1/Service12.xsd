@@ -287,4 +287,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="submitAllProducts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productsListSTR" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="submitAllProductsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="submitAllProductsResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

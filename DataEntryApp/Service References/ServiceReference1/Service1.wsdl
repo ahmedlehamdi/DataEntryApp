@@ -133,6 +133,12 @@
   <wsdl:message name="IService1_getAllProductOfferTypes_OutputMessage">
     <wsdl:part name="parameters" element="tns:getAllProductOfferTypesResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_submitAllProducts_InputMessage">
+    <wsdl:part name="parameters" element="tns:submitAllProducts" />
+  </wsdl:message>
+  <wsdl:message name="IService1_submitAllProducts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:submitAllProductsResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="checkLogin">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/checkLogin" message="tns:IService1_checkLogin_InputMessage" />
@@ -217,6 +223,10 @@
     <wsdl:operation name="getAllProductOfferTypes">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/getAllProductOfferTypes" message="tns:IService1_getAllProductOfferTypes_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/getAllProductOfferTypesResponse" message="tns:IService1_getAllProductOfferTypes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="submitAllProducts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/submitAllProducts" message="tns:IService1_submitAllProducts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/submitAllProductsResponse" message="tns:IService1_submitAllProducts_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -403,6 +413,15 @@
     </wsdl:operation>
     <wsdl:operation name="getAllProductOfferTypes">
       <soap:operation soapAction="http://tempuri.org/IService1/getAllProductOfferTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="submitAllProducts">
+      <soap:operation soapAction="http://tempuri.org/IService1/submitAllProducts" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -280,10 +280,10 @@ function openAddBundleProductsModal(obj) {
 
 
 function saveProductsInBundle() {
-    
-    var productObject = createProductObject("#product_0");
+    parent.bundleINDEX++;
+    var productObject = createProductObject("#product_0", parent.bundleINDEX);
     if (productObject != null) {
-        parent.bundleINDEX++;
+        
         productObject.PRODUCT_ID = parent.bundleINDEX;
         parent.bundleList.push(productObject);
         
@@ -320,9 +320,11 @@ function deleteFromBundle(tdObj, index) {
     $(tdObj).parent().remove();
 }
 
-function createProductObject(div)
+function createProductObject(div, index)
 {
     var product = new PRODUCT();
+
+    product.FLYER_ID = localStorage.getItem("flyerID");
 
     product.PRODUCT_NAME_EN = $(div).find('#productNameEn').val();
     product.PRODUCT_NAME_AR = $(div).find('#productNameAr').val();
@@ -346,7 +348,7 @@ function createProductObject(div)
     product.TYPE_SPECS = typeSpecsArr;
     /////////////////////////////////////////////////////////////////////////////////////////////
 
-    var imageFile = getImageFileFromInput("productImageFile");
+    var imageFile = getImageFileFromInput("productImageFile", "Products", localStorage.getItem('flyerID') + "_" + $(div).find('#productNameEn').val());
     if (imageFile != false)
         product.PRODUCT_IMAGE = imageFile;
     else
@@ -396,10 +398,10 @@ function createProductObject(div)
 
 function SaveProduct()
 {
-    var productObject = createProductObject("#product_0");
+    productINDEX++;
+    var productObject = createProductObject("#product_0", productINDEX);
     if (productObject != null) {
 
-        productINDEX++;
         productObject.PRODUCT_ID = productINDEX;
 
         productList.push(productObject);
@@ -429,7 +431,7 @@ function SaveProduct()
             var offTypeSpecs = '';
             for (var i = 0 ; i < $("#prodOfferTypeDiv input").length ; i++)
             {
-                var parentDIV = $($("#prodOfferTypeDiv input")[i]).parent();
+                var parentDIV = $($("#prodOfferTypeDiv div.form-group")[i]);
                 offTypeSpecs += $(parentDIV).find('label').text() + " : " + $(parentDIV).find('input').val() + "<br/>";
             }
             temp = temp.replace('#OfferSpecs#', offTypeSpecs);
@@ -437,6 +439,7 @@ function SaveProduct()
         
         $("#productTBody").append(temp);
         resetProductForm("product_0");
+        goToByScroll("productTBody");
     } else {
         alert('Please Review the Product Form');
     }
@@ -448,6 +451,8 @@ function resetProductForm(div) {
     $("#" + div + " input[type='checkbox']").attr('checked', false);
     $("#" + div + " select").val('-1');
     $("#" + div + " #smartTags").tagsinput('removeAll');
+    
+    $("#" + div + " #prodOfferTypeDiv").html('');
 }
 
 function deleteFromProducts(tdObj, index)
@@ -460,82 +465,158 @@ function deleteFromProducts(tdObj, index)
 
 function loadProductToEdit(tdObj, index)
 {
-    var product = productList.filter(function (el) {
-        return el.PRODUCT_ID === index;
-    });
-    product = product[0];
-    var div = $("#product_0");
-    $(div).find("#productNameEn").val(product.PRODUCT_NAME_EN);
-    $(div).find('#productNameAr').val(product.PRODUCT_NAME_AR);
+    //var product = productList.filter(function (el) {
+    //    return el.PRODUCT_ID === index;
+    //});
+    //product = product[0];
+    //var div = $("#product_0");
+    //$(div).find("#productNameEn").val(product.PRODUCT_NAME_EN);
+    //$(div).find('#productNameAr').val(product.PRODUCT_NAME_AR);
 
-    $(div).find('#productPrice').val(product.PRODUCT_PRICE);
+    //$(div).find('#productPrice').val(product.PRODUCT_PRICE);
 
-    $(div).find('#manufactureDD').val(product.MANUFACTURE_ID);
-    $(div).find('#categoryDD').val(product.CATEGORY_ID);
+    //$(div).find('#manufactureDD').val(product.MANUFACTURE_ID);
+    //$(div).find('#categoryDD').val(product.CATEGORY_ID);
 
-    ////////////////////////////////PRODUCT TYPE SPECS/////////////////////////////////////
-    $(div).find('#productTypeDD').val(product.TYPE_ID);
-    var typeSpecsArr = product.TYPE_SPECS;
-    for (var i = 0; i < typeSpecsArr.length ; i++) {
-        var typeSPECS = typeSpecsArr[i];
-        var inputObj = $($(div).find("#prodSpecs input[data-template='" + typeSPECS.TEMPLATE_ID + "']"));
-        $(inputObj).val(typeSPECS.TEMPLATE_VALUE);
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////PRODUCT TYPE SPECS/////////////////////////////////////
+    //$(div).find('#productTypeDD').val(product.TYPE_ID);
+    //var typeSpecsArr = product.TYPE_SPECS;
+    //for (var i = 0; i < typeSpecsArr.length ; i++) {
+    //    var typeSPECS = typeSpecsArr[i];
+    //    var inputObj = $($(div).find("#prodSpecs input[data-template='" + typeSPECS.TEMPLATE_ID + "']"));
+    //    $(inputObj).val(typeSPECS.TEMPLATE_VALUE);
+    //}
+    ///////////////////////////////////////////////////////////////////////////////////////////////
 
-    //var imageFile = getImageFileFromInput("productImageFile");
-    //if (imageFile != false)
-    //    product.PRODUCT_IMAGE = imageFile;
-    //else
-    //    return null;
+    ////var imageFile = getImageFileFromInput("productImageFile");
+    ////if (imageFile != false)
+    ////    product.PRODUCT_IMAGE = imageFile;
+    ////else
+    ////    return null;
 
-    //"<a target='_blank' href='" + flyerProducts[i].PRODUCT_IMAGE + "' download='" + flyerProducts[i].PRODUCT_IMAGE.split('/')[2] + "' > " + flyerProducts[i].PRODUCT_IMAGE.split('/')[2] + "</a>"
+    ////"<a target='_blank' href='" + flyerProducts[i].PRODUCT_IMAGE + "' download='" + flyerProducts[i].PRODUCT_IMAGE.split('/')[2] + "' > " + flyerProducts[i].PRODUCT_IMAGE.split('/')[2] + "</a>"
 
-    $(div).find('#productLocationDD').val(product.LOCATION_ID);
-    var tags = (product.PRODUCT_TAGS).split(',');
-    for (var i = 0 ; i < tags.length ; i++) {
-        $(div).find('#smartTags').tagsinput('add' , tags[i]);
-    }
+    //$(div).find('#productLocationDD').val(product.LOCATION_ID);
+    //var tags = (product.PRODUCT_TAGS).split(',');
+    //for (var i = 0 ; i < tags.length ; i++) {
+    //    $(div).find('#smartTags').tagsinput('add' , tags[i]);
+    //}
 
-    $(div).find('#dateFrom').val(product.DATE_FROM);
-    $(div).find('#dateTo').val(product.DATE_TO);
+    //$(div).find('#dateFrom').val(product.DATE_FROM);
+    //$(div).find('#dateTo').val(product.DATE_TO);
 
-    ////////////////////////////////PRODUCT OFFER TYPE SPECS/////////////////////////////////////
-    $(div).find('#offerTypeDD').val(product.PROD_OFF_TYPE_ID);
-    if (product.PROD_OFF_TYPE_ID != '5') {
-        var offerTypeSPECS = product.PROD_OFF_TYP_SPECS;
-        for (var i = 0; i < $(div).find('#prodOfferTypeDiv input') ; i++)
-        {
-            $($(div).find('#prodOfferTypeDiv input')[i]).val(offerTypeSPECS["PROD_OFF_TYP_ATTR_" + (i + 1)]);
-        }
-    }
-    else {
-        bundleList = product.bundleList;
-        for(var i = 0 ; i < bundleList.length ; i++)
-        {
-            var bundleItem = bundleList[i];
-            var temp = "<tr><td>#NAME#</td><td>#CATEGORY#</td><td>#TYPE#</td><td>#MANUFACTURE#</td><td>#PRICE#</td><td onclick='deleteFromBundle($(this), " + parent.bundleINDEX + ")'><i class='fa fa-trash-o' aria-hidden='true'></i></td></tr>"
+    //////////////////////////////////PRODUCT OFFER TYPE SPECS/////////////////////////////////////
+    //$(div).find('#offerTypeDD').val(product.PROD_OFF_TYPE_ID);
+    //if (product.PROD_OFF_TYPE_ID != '5') {
+    //    var offerTypeSPECS = product.PROD_OFF_TYP_SPECS;
+    //    for (var i = 0; i < $(div).find('#prodOfferTypeDiv input') ; i++)
+    //    {
+    //        $($(div).find('#prodOfferTypeDiv input')[i]).val(offerTypeSPECS["PROD_OFF_TYP_ATTR_" + (i + 1)]);
+    //    }
+    //}
+    //else {
+    //    bundleList = product.bundleList;
+    //    for(var i = 0 ; i < bundleList.length ; i++)
+    //    {
+    //        var bundleItem = bundleList[i];
+    //        var temp = "<tr><td>#NAME#</td><td>#CATEGORY#</td><td>#TYPE#</td><td>#MANUFACTURE#</td><td>#PRICE#</td><td onclick='deleteFromBundle($(this), " + parent.bundleINDEX + ")'><i class='fa fa-trash-o' aria-hidden='true'></i></td></tr>"
 
-            temp = temp.replace('#NAME#', bundleItem.PRODUCT_NAME_EN);
-            temp = temp.replace('#CATEGORY#', $(div).find('#categoryDD option[value="' + bundleItem.CATEGORY_ID + '"]').text());
-            temp = temp.replace('#TYPE#', $(div).find('#productTypeDD option[value="' + bundleItem.TYPE_ID + '"]').text());
-            temp = temp.replace('#MANUFACTURE#', $(div).find('#manufactureDD option[value="' + bundleItem.MANUFACTURE_ID + '"]').text());
-            temp = temp.replace('#PRICE#', bundleItem.PRODUCT_PRICE);
+    //        temp = temp.replace('#NAME#', bundleItem.PRODUCT_NAME_EN);
+    //        temp = temp.replace('#CATEGORY#', $(div).find('#categoryDD option[value="' + bundleItem.CATEGORY_ID + '"]').text());
+    //        temp = temp.replace('#TYPE#', $(div).find('#productTypeDD option[value="' + bundleItem.TYPE_ID + '"]').text());
+    //        temp = temp.replace('#MANUFACTURE#', $(div).find('#manufactureDD option[value="' + bundleItem.MANUFACTURE_ID + '"]').text());
+    //        temp = temp.replace('#PRICE#', bundleItem.PRODUCT_PRICE);
 
-            $(div).find("#productBundleTBody").append(temp);
-        }
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////
+    //        $(div).find("#productBundleTBody").append(temp);
+    //    }
+    //}
+    ///////////////////////////////////////////////////////////////////////////////////////////////
 
-    ////////////////////////////////PRODUCT OFFER TYPE SPECS/////////////////////////////////////
-     $(div).find("#productAttr_1").val(product.PRODUCT_ATTR_1);
-     $(div).find("#productAttr_2").val(product.PRODUCT_ATTR_2);
-     $(div).find("#productAttr_3").val(product.PRODUCT_ATTR_3);
-     $(div).find("#productAttr_4").val(product.PRODUCT_ATTR_4);
-     $(div).find("#productAttr_5").val(product.PRODUCT_ATTR_5);
+    //////////////////////////////////PRODUCT OFFER TYPE SPECS/////////////////////////////////////
+    // $(div).find("#productAttr_1").val(product.PRODUCT_ATTR_1);
+    // $(div).find("#productAttr_2").val(product.PRODUCT_ATTR_2);
+    // $(div).find("#productAttr_3").val(product.PRODUCT_ATTR_3);
+    // $(div).find("#productAttr_4").val(product.PRODUCT_ATTR_4);
+    // $(div).find("#productAttr_5").val(product.PRODUCT_ATTR_5);
     /////////////////////////////////////////////////////////////////////////////////////////////
 }
 
+
+function submitProducts()
+{
+    if(productList.length > 0)
+    {
+        var prodList = clone(productList);
+        var imageFD = new FormData();
+        var imagesCount = 0;
+        for (var i = 0 ; i < prodList.length ; i++)
+        {
+            var imageObj = (prodList[i].PRODUCT_IMAGE)[0];
+            imageFD.append("_file_" + imagesCount, imageObj.imageFile);
+            imageFD.append("_file_Name_" + imagesCount, imageObj.fileName);
+            prodList[i].PRODUCT_IMAGE = imageObj.fileName;
+
+            imagesCount++;
+            if (prodList[i].bundleList.length > 0)
+            {
+                for (var u = 0 ; u < prodList[i].bundleList.length ; u++)
+                {
+                    var bndlImgObj = (prodList[i].bundleList[u].PRODUCT_IMAGE)[0];
+                    imageFD.append("_file_bundle_" + imagesCount, bndlImgObj.imageFile);
+                    imageFD.append("_file_bundle_Name_" + imagesCount, bndlImgObj.fileName);
+                    prodList[i].bundleList[u].PRODUCT_IMAGE = bndlImgObj.fileName;
+                    imagesCount++;
+                }
+            }
+        }
+        imageFD.append("fnID", "40");
+        imageFD.append("IMAGES_COUNT", imagesCount);
+        for (var pair of imageFD.entries()) {
+            console.log(pair[0] + ', ' + pair[1]);
+        }
+
+        /// Upload All Image Files
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/Pages/AddNewFlyer_Step2.aspx?", true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                //window.location = "/Pages/AddNewFlyer_Step2.aspx";
+            }
+            else if (xhr.readyState == 2) {
+                var error = false;
+                eval(xhr.responseText);
+                if(!error)
+                {
+                    var myData = JSON.stringify(prodList);
+                    $.ajax({
+                        url: '/Pages/AddNewFlyer_Step2.aspx/submitProductsObjects',
+                        type: 'POST',
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        data: "{obj:" + myData + "}",
+                        success: function (result) {
+                            eval(result);
+
+                        },
+                        error: function () {
+                            alert('Error');
+                        },
+                        failure: function () {
+                            alert('Failure');
+                        }
+                    });
+                    //productList = prodList;
+                }
+            }
+            HideMyLoginSpinner();
+        };
+        xhr.send(imageFD);
+    }
+    else
+    {
+        alert("Please Add products")
+    }
+}
 
 /*************************************************************************************************************************/
 

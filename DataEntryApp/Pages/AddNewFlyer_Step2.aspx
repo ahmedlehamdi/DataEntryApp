@@ -97,7 +97,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 <h2>Add Flyer Products</h2>
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                
+                                <button type="button" class="btn btn-default btn-success btn-lg" onclick="submitProducts()">Submit Products</button>
                             </div>
                         </div>
                     </div>
@@ -136,7 +136,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 <div class="form-title">
                                     <h4>Product Details :</h4>
                                     <ul class="panel-tools">
-								        <li><button type="button" class="btn btn-default btn-success btn-lg" onclick="SaveProduct()">Save Product</button></li>
                                         <li><a class="icon minimise-tool"><i class="fa fa-minus"></i></a></li>
 							          </ul>
                                 </div>
@@ -245,7 +244,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             </button>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                            <input type="submit" value="Submit Products" class="btn btn-default btn-warning btn-lg pull-right" ID="productSubmitBtn" OnClick="SubmitFlyerProducts()" />
+                            <input type="submit" value="Save Products" class="btn btn-default btn-warning btn-lg pull-right" ID="productSubmitBtn" OnClick="SaveProduct()" />
                         </div>
                     </div>
                 </div>

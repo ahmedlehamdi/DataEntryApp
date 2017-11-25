@@ -1,10 +1,12 @@
 ﻿using DataEntryApp.ServiceIntegration;
 using DataEntryApp.ServiceReference1;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -60,6 +62,15 @@ namespace DataEntryApp.Pages
                 {
                     getProductOfferTypes();
                 }
+                else if (HttpContext.Current.Request.Form["fnID"] != null && HttpContext.Current.Request.Form["fnID"] == "40")
+                {
+                    uploadProductsImages();
+                    //submitProductsObjects
+                }
+                //else if (HttpContext.Current.Request.QueryString["fnID"] != null && HttpContext.Current.Request.QueryString["fnID"] == "41")
+                //{
+                //    submitProductsObjects();
+                //}
             }
         }
 
@@ -369,6 +380,61 @@ namespace DataEntryApp.Pages
             HttpContext.Current.ApplicationInstance.CompleteRequest();
             HttpContext.Current.Response.SuppressContent = true;
 
+        }
+
+        private void uploadProductsImages()
+        {
+            HttpContext.Current.Response.Clear();
+            HttpContext.Current.Response.ClearHeaders();
+            HttpContext.Current.Response.ClearContent();
+            HttpContext.Current.Response.ContentType = "application/json";
+            var filesCount = Request.Form["IMAGES_COUNT"];
+            if (filesCount != null)
+            {
+                for (int i = 0; i < int.Parse(filesCount); i++)
+                {
+                    HttpPostedFile file = HttpContext.Current.Request.Files["_file_" + i] != null ? HttpContext.Current.Request.Files["_file_" + i] : HttpContext.Current.Request.Files["_file_bundle_" + i];
+                    string fileName = HttpContext.Current.Request.Form["_file_Name_" + i] != null ? HttpContext.Current.Request.Form["_file_Name_" + i] : HttpContext.Current.Request.Form["_file_bundle_Name_" + i];
+
+                    if (file != null)
+                    {
+                        var nameArr = fileName.Split('/');
+                        var Name = Path.GetFileName(nameArr[3]);
+                        string filename = !(file.FileName == "NoImage") ? Path.Combine(this.Server.MapPath("~/" + nameArr[1] + "/" + nameArr[2] + "/"), nameArr[3]) : "";
+                        file.SaveAs(filename);
+                    }
+                }
+            }
+            else
+            {
+                HttpContext.Current.Response.Write("error = true;alert('Error Uploading Images ');");
+            }
+            
+            HttpContext.Current.Response.Flush();
+            HttpContext.Current.ApplicationInstance.CompleteRequest();
+            HttpContext.Current.Response.SuppressContent = true;
+
+        }
+
+        [System.Web.Services.WebMethod]
+        public static string submitProductsObjects(List<ServiceIntegration.ServiceObjects.PRODUCT> obj)
+        {
+            try
+            {
+                ReturnObject<object> output = ServiceResponseUnMarshaller<object>.unmarshall(new Service1Client().submitAllProducts(JsonConvert.SerializeObject(obj)));
+                if (output.statusCode == 0)
+                {
+                    return "alert('Product Inserted');window.location = '/Pages/Home.aspx';";
+                }
+                else
+                {
+                    return ("alert('Error Getting Type Specs please try again later.')");
+                }
+            }
+            catch (Exception ex)
+            {
+                return ("alert('Something is wrong please try again later.\n " + ex.Message + "')");
+            }
         }
     }
 }

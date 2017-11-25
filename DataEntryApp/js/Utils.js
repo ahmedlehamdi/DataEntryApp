@@ -1,5 +1,5 @@
 ﻿
-function AjaxCall(PageURL, CallBackFunc) {
+function AjaxCall(PageURL, CallBackFunc, data) {
     try {
         // alert(33)
         ShowMyLoginSpinner();
@@ -7,6 +7,7 @@ function AjaxCall(PageURL, CallBackFunc) {
             url: PageURL,
             contentType: "application/text; charset=UTF-8",
             type: 'POST',
+            data : data,
             success: function (msg) {
                 //alert(msg.d);
                 //return msg;
@@ -269,7 +270,7 @@ function GetElementInsideContainer(containerID, childID) {
 
 
 
-function getImageFileFromInput(inputID)
+function getImageFileFromInput(inputID, folder, prodName)
 {
     var filesList = new Array();
     var file = document.getElementById(inputID);
@@ -277,7 +278,15 @@ function getImageFileFromInput(inputID)
         var filetype = file.files[0].type;
         if (filetype.indexOf("image") != -1 || filetype.indexOf("pdf") != -1) {
             for (var i = 0; i < file.files.length; i++) {
-                filesList.push(file.files[i]);
+                //filesList.push(file.files[i]);
+                var fileObj = new IMAGE_OBJECT();
+
+                // Naming of image files is as follow:
+                // /UploadedImages/Products/Products_flyerID_ProdNAmeEN_fileName.ext
+                fileObj.fileName = "/UploadedImages/" + folder + "/" + folder + "_" + prodName + "_" +   file.files[i].name;
+                fileObj.productName = prodName;
+                fileObj.imageFile = file.files[i];
+                filesList.push(fileObj);
             }
         }
         else {

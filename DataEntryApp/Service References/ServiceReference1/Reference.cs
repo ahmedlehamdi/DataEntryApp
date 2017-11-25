@@ -1231,6 +1231,12 @@ namespace DataEntryApp.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getAllProductOfferTypes", ReplyAction="http://tempuri.org/IService1/getAllProductOfferTypesResponse")]
         System.Threading.Tasks.Task<string> getAllProductOfferTypesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/submitAllProducts", ReplyAction="http://tempuri.org/IService1/submitAllProductsResponse")]
+        string submitAllProducts(string productsListSTR);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/submitAllProducts", ReplyAction="http://tempuri.org/IService1/submitAllProductsResponse")]
+        System.Threading.Tasks.Task<string> submitAllProductsAsync(string productsListSTR);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1426,6 +1432,14 @@ namespace DataEntryApp.ServiceReference1 {
         
         public System.Threading.Tasks.Task<string> getAllProductOfferTypesAsync() {
             return base.Channel.getAllProductOfferTypesAsync();
+        }
+        
+        public string submitAllProducts(string productsListSTR) {
+            return base.Channel.submitAllProducts(productsListSTR);
+        }
+        
+        public System.Threading.Tasks.Task<string> submitAllProductsAsync(string productsListSTR) {
+            return base.Channel.submitAllProductsAsync(productsListSTR);
         }
     }
 }

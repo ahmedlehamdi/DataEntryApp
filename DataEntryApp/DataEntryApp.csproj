@@ -76,8 +76,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\zpc\zpcservice.it4soft.com\wwwroot\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -449,6 +450,9 @@
     </Compile>
     <Compile Include="ServiceIntegration\ReturnObject.cs" />
     <Compile Include="ServiceIntegration\ServiceObjects\FLyer.cs" />
+    <Compile Include="ServiceIntegration\ServiceObjects\PRODUCT.cs" />
+    <Compile Include="ServiceIntegration\ServiceObjects\PRODUCT_OFFER_TYPE_SPECS.cs" />
+    <Compile Include="ServiceIntegration\ServiceObjects\PRODUCT_TYPE_SPECS.cs" />
     <Compile Include="ServiceIntegration\ServiceObjects\PROVIDER.cs" />
     <Compile Include="ServiceIntegration\ServiceResponseUnMarshaller.cs" />
   </ItemGroup>

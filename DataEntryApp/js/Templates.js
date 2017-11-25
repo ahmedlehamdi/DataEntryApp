@@ -37,7 +37,7 @@ var PRODUCT = function () {
 
         TYPE_SPECS : new Array(),
 
-        PRODUCT_IMAGE : '' ,
+        PRODUCT_IMAGE: new IMAGE_OBJECT(),
         LOCATION_ID : 0 ,
 		
         PRODUCT_TAGS : '' ,
@@ -120,5 +120,14 @@ var CATEGORY = function () {
         CATEGORY_ATTR_8: '',
         CATEGORY_ATTR_9: '',
         CATEGORY_ATTR_10: ''
+    }
+}
+
+var IMAGE_OBJECT = function()
+{
+    return {
+        fileName: '',
+        productName: 0,
+        imageFile: null
     }
 }
