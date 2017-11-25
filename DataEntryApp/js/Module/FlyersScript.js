@@ -1,6 +1,24 @@
 ﻿var flyerData = '';
-
+var uploadedImages = new Array();
 /************************************Load Flyers *********************************/
+$(document).ready(function () {
+    //flyerImageFile
+    $("#flyerImageFile").on("change", function () {
+        var file = document.getElementById("flyerImageFile");
+        var filetype = file.files[0].type;
+        if (filetype.indexOf("image") != -1 || filetype.indexOf("pdf") != -1) {
+            for (var i = 0; i < file.files.length; i++) {
+                uploadedImages.push(file.files[i]);
+                $("#uploadedImagesList").append("<li>" + file.files[i].name + "</li>");
+            }
+        }
+        else
+        {
+            alert("Please Select a Valid image file JPG/PNG/PDF");
+        }
+    });
+});
+
 
 function loadAllFlyers() {
     //alert(12);
@@ -317,16 +335,20 @@ function submitFlyerForm(action) {
     
     localStorage.setItem('providerID', $("#providerDD").val());
 
-    var file = document.getElementById('flyerImageFile');
-    if (file.files.length != 0) {
-        flyer.IMAGES_COUNT = file.files.length;
+    //var file = document.getElementById('flyerImageFile');
+    if (uploadedImages.length != 0) {
+        //flyer.IMAGES_COUNT = file.files.length;
+        flyer.IMAGES_COUNT = uploadedImages.length;
         fd = toFormData(flyer);
-        var filetype = file.files[0].type;
-        if (filetype.indexOf("image") != -1 || filetype.indexOf("pdf") != -1) {
-            for (var i = 0; i < file.files.length; i++) {
-                fd.append("_file_" + i ,file.files[i]);
-            }
+        //var filetype = file.files[0].type;
+        //if (filetype.indexOf("image") != -1 || filetype.indexOf("pdf") != -1) {
+        //    for (var i = 0; i < file.files.length; i++) {
+        //        fd.append("_file_" + i ,file.files[i]);
+        //    }
             
+        //}
+        for (var i = 0; i < uploadedImages.length; i++) {
+            fd.append("_file_" + i ,uploadedImages[i]);
         }
     }
     else if (action == 'edit') {

@@ -439,7 +439,7 @@ function SaveProduct()
         
         $("#productTBody").append(temp);
         resetProductForm("product_0");
-        goToByScroll("productTBody");
+        goToByScroll("page-wrapper");
     } else {
         alert('Please Review the Product Form');
     }
@@ -595,8 +595,8 @@ function submitProducts()
                         dataType: 'json',
                         data: "{obj:" + myData + "}",
                         success: function (result) {
-                            eval(result);
-
+                            alert('Product Inserted');
+                            window.location = '/Pages/Home.aspx';
                         },
                         error: function () {
                             alert('Error');

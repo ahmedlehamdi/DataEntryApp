@@ -251,6 +251,7 @@
     <Content Include="js\dev-layout-default.js" />
     <Content Include="js\dev-loaders.js" />
     <Content Include="js\fabochart.js" />
+    <Content Include="js\FileUploader-CopyPaste.js" />
     <Content Include="js\Module\FlyersScript.js" />
     <Content Include="js\gmaps.js" />
     <Content Include="js\jquery-1.11.1.min.js" />

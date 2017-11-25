@@ -424,7 +424,7 @@ namespace DataEntryApp.Pages
                 ReturnObject<object> output = ServiceResponseUnMarshaller<object>.unmarshall(new Service1Client().submitAllProducts(JsonConvert.SerializeObject(obj)));
                 if (output.statusCode == 0)
                 {
-                    return "alert('Product Inserted');window.location = '/Pages/Home.aspx';";
+                    return "";
                 }
                 else
                 {
