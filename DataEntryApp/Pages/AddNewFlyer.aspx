@@ -114,19 +114,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         </div>
                                         <div class="form-group">
                                             <label for="flyerImageFile">Image</label>
-                                            <input type="file" multiple  id="flyerImageFile" name="flyerImageFile" />
+                                            <input type="file" data-validation="required" multiple  id="flyerImageFile" name="flyerImageFile" />
                                             <p class="help-block">Upload Flyer Image - Available Formats : pdf/png/jpg</p>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="flyerImageFile">Paste Image</label>
-                                            <div>
-                                                <div style="width: 200px; height: 200px; border: 1px solid #d2d2d2;" id="pasteTarget">
-                                                    Click and paste here.
-                                                </div>
-                                                <ul id="uploadedImagesList">
-                                                    
-                                                </ul>
-                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="providerDD">Provider / Retailer</label>
@@ -217,7 +206,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script src="/js/app.js"></script>
     <script src="/js/Module/FlyersScript.js"></script>
 
-    <script src="../js/FileUploader-CopyPaste.js"></script>
+
     <!--//scrolling js-->
     <script>
         $(document).ready(function () {

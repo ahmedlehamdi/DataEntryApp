@@ -38,7 +38,7 @@ var PRODUCT = function () {
         TYPE_SPECS : new Array(),
 
         PRODUCT_IMAGE: new IMAGE_OBJECT(),
-        LOCATION_ID : 0 ,
+        BRANCH_ID: 0,
 		
         PRODUCT_TAGS : '' ,
 		

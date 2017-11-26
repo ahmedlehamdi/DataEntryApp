@@ -260,6 +260,9 @@ namespace DataEntryApp.ServiceReference1 {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> BRANCH_IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<System.DateTime> DATE_FROMField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -267,9 +270,6 @@ namespace DataEntryApp.ServiceReference1 {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int FLYER_IDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> LOCATION_IDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> MANUFACTURE_IDField;
@@ -342,6 +342,19 @@ namespace DataEntryApp.ServiceReference1 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        internal System.Nullable<int> BRANCH_ID {
+            get {
+                return this.BRANCH_IDField;
+            }
+            set {
+                if ((this.BRANCH_IDField.Equals(value) != true)) {
+                    this.BRANCH_IDField = value;
+                    this.RaisePropertyChanged("BRANCH_ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         internal System.Nullable<System.DateTime> DATE_FROM {
             get {
                 return this.DATE_FROMField;
@@ -376,19 +389,6 @@ namespace DataEntryApp.ServiceReference1 {
                 if ((this.FLYER_IDField.Equals(value) != true)) {
                     this.FLYER_IDField = value;
                     this.RaisePropertyChanged("FLYER_ID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        internal System.Nullable<int> LOCATION_ID {
-            get {
-                return this.LOCATION_IDField;
-            }
-            set {
-                if ((this.LOCATION_IDField.Equals(value) != true)) {
-                    this.LOCATION_IDField = value;
-                    this.RaisePropertyChanged("LOCATION_ID");
                 }
             }
         }
@@ -1237,6 +1237,12 @@ namespace DataEntryApp.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/submitAllProducts", ReplyAction="http://tempuri.org/IService1/submitAllProductsResponse")]
         System.Threading.Tasks.Task<string> submitAllProductsAsync(string productsListSTR);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getAllProductsList", ReplyAction="http://tempuri.org/IService1/getAllProductsListResponse")]
+        string getAllProductsList(int flyerID, int parentID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getAllProductsList", ReplyAction="http://tempuri.org/IService1/getAllProductsListResponse")]
+        System.Threading.Tasks.Task<string> getAllProductsListAsync(int flyerID, int parentID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1440,6 +1446,14 @@ namespace DataEntryApp.ServiceReference1 {
         
         public System.Threading.Tasks.Task<string> submitAllProductsAsync(string productsListSTR) {
             return base.Channel.submitAllProductsAsync(productsListSTR);
+        }
+        
+        public string getAllProductsList(int flyerID, int parentID) {
+            return base.Channel.getAllProductsList(flyerID, parentID);
+        }
+        
+        public System.Threading.Tasks.Task<string> getAllProductsListAsync(int flyerID, int parentID) {
+            return base.Channel.getAllProductsListAsync(flyerID, parentID);
         }
     }
 }

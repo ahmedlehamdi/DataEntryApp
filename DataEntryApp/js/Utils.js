@@ -14,6 +14,7 @@ function AjaxCall(PageURL, CallBackFunc, data) {
                 try {
                     CallBackFunc(msg);
                     //disableCheckboxes();
+                    applyDataTable(true);
                 } catch (e) { }
                 HideMyLoginSpinner();
             },
@@ -64,17 +65,24 @@ function openPageWithPostData(pageURL, dataArr, callback) {
 function applyDataTable(id) {
     try {
         if (!id) {
-            $('#' + id).dataTable({
-                paging: false
-            });
+            if ($('#' + id).find("tbody tr").size() > 0) {
+                $('#' + id).dataTable({
+                    paging: false
+                });
+            }
+            $('.dataTables_length select').addClass('form-control');
+            $('.dataTables_filter input').addClass('form-control');
         }
         else {
-            $('.datatable').dataTable({
-                paging: false
-            });
+            if ($('.datatable').find("tbody tr").size() > 0) {
+                $('.datatable').dataTable({
+                    paging: false
+                });
+            }
+            $('.dataTables_length select').addClass('form-control');
+            $('.dataTables_filter input').addClass('form-control');
         }
-        $('.dataTables_length select').addClass('form-control');
-        $('.dataTables_filter input').addClass('form-control');
+        
     } catch (e) { }
 }
 
@@ -272,6 +280,7 @@ function GetElementInsideContainer(containerID, childID) {
 
 function getImageFileFromInput(inputID, folder, prodName)
 {
+    //imagesList
     var filesList = new Array();
     var file = document.getElementById(inputID);
     if (file.files != null && file.files.length != 0) {
@@ -280,7 +289,6 @@ function getImageFileFromInput(inputID, folder, prodName)
             for (var i = 0; i < file.files.length; i++) {
                 //filesList.push(file.files[i]);
                 var fileObj = new IMAGE_OBJECT();
-
                 // Naming of image files is as follow:
                 // /UploadedImages/Products/Products_flyerID_ProdNAmeEN_fileName.ext
                 fileObj.fileName = "/UploadedImages/" + folder + "/" + folder + "_" + prodName + "_" +   file.files[i].name;
@@ -294,9 +302,33 @@ function getImageFileFromInput(inputID, folder, prodName)
             return false;
         }
     }
-    else {
+    else if ((file.files == null || file.files.length == 0) && imagesList.length > 0)
+    {
+        for (var i = 0; i < imagesList.length; i++) {
+            var fileObj = new IMAGE_OBJECT();
+            // Naming of image files is as follow:
+            // /UploadedImages/Products/Products_flyerID_ProdNAmeEN_fileName.ext
+            fileObj.fileName = "/UploadedImages/" + folder + "/" + folder + "_" + prodName + "_" + makeNameRNDM() + ".PNG";
+            fileObj.productName = prodName;
+            fileObj.imageFile = imagesList[i];
+            filesList.push(fileObj);
+        }
+    }
+    else
+    {
         alert('Please Upload File');
         return false;
     }
     return filesList;
+}
+
+
+function makeNameRNDM() {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for (var i = 0; i < 5; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
 }

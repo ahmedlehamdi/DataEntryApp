@@ -1,24 +1,6 @@
 ﻿var flyerData = '';
-var uploadedImages = new Array();
-/************************************Load Flyers *********************************/
-$(document).ready(function () {
-    //flyerImageFile
-    $("#flyerImageFile").on("change", function () {
-        var file = document.getElementById("flyerImageFile");
-        var filetype = file.files[0].type;
-        if (filetype.indexOf("image") != -1 || filetype.indexOf("pdf") != -1) {
-            for (var i = 0; i < file.files.length; i++) {
-                uploadedImages.push(file.files[i]);
-                $("#uploadedImagesList").append("<li>" + file.files[i].name + "</li>");
-            }
-        }
-        else
-        {
-            alert("Please Select a Valid image file JPG/PNG/PDF");
-        }
-    });
-});
 
+/************************************Load Flyers *********************************/
 
 function loadAllFlyers() {
     //alert(12);
@@ -194,7 +176,7 @@ function loadFlyerDetails() {
     AjaxCall("../Pages/FlyerDetails.aspx?fnID=11&flyerID=" + flyerID
        , function (data) {
            flyerProducts = '';
-           eval(flyerProducts);
+           eval(data);
            if (flyerProducts != '') {
                var template = '<tr> <td>#ID#</td><td>#ProductName#</td><td>#Category#</td><td>#Type#</td><td>#Provider#</td><td>#Image#</td><td>#Specs#</td></tr>';
                for (var i = 0 ; i < flyerProducts.length ; i++) {
@@ -335,20 +317,16 @@ function submitFlyerForm(action) {
     
     localStorage.setItem('providerID', $("#providerDD").val());
 
-    //var file = document.getElementById('flyerImageFile');
-    if (uploadedImages.length != 0) {
-        //flyer.IMAGES_COUNT = file.files.length;
-        flyer.IMAGES_COUNT = uploadedImages.length;
+    var file = document.getElementById('flyerImageFile');
+    if (file.files.length != 0) {
+        flyer.IMAGES_COUNT = file.files.length;
         fd = toFormData(flyer);
-        //var filetype = file.files[0].type;
-        //if (filetype.indexOf("image") != -1 || filetype.indexOf("pdf") != -1) {
-        //    for (var i = 0; i < file.files.length; i++) {
-        //        fd.append("_file_" + i ,file.files[i]);
-        //    }
+        var filetype = file.files[0].type;
+        if (filetype.indexOf("image") != -1 || filetype.indexOf("pdf") != -1) {
+            for (var i = 0; i < file.files.length; i++) {
+                fd.append("_file_" + i ,file.files[i]);
+            }
             
-        //}
-        for (var i = 0; i < uploadedImages.length; i++) {
-            fd.append("_file_" + i ,uploadedImages[i]);
         }
     }
     else if (action == 'edit') {

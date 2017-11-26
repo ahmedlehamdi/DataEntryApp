@@ -59,29 +59,29 @@ namespace DataEntryApp.Pages
             {
                 if (flyerID > 0)
                 {
-                    ReturnObject<object> FlyerBasicData = ServiceResponseUnMarshaller<object>.unmarshall(new Service1Client().getFlyerBasicData(flyerID));
-                    if (FlyerBasicData.statusCode == 0)
-                    {
-                        HttpContext.Current.Response.Write("flyerData = " + FlyerBasicData.returnObj + ";");
-                        var userType = Session["UserType"].ToString();
-                        var flyerData = ServiceResponseUnMarshaller< FLyer >.deserializer(FlyerBasicData.returnObj.ToString());
-                        if (userType != null && (userType == "Admin" || userType == "SuperAdmin"))
-                        {
-                            if(flyerData != null && flyerData.FLYER_APPROVED != null)
-                            {
-                                HttpContext.Current.Response.Write("buttonFlag = false;");
-                            }
-                            else
-                            {
-                                HttpContext.Current.Response.Write("buttonFlag = true;");
-                            }
+                    //ReturnObject<object> FlyerBasicData = ServiceResponseUnMarshaller<object>.unmarshall(new Service1Client().getFlyerBasicData(flyerID));
+                    //if (FlyerBasicData.statusCode == 0)
+                    //{
+                    //    HttpContext.Current.Response.Write("flyerData = " + FlyerBasicData.returnObj + ";");
+                    //    var userType = Session["UserType"].ToString();
+                    //    var flyerData = ServiceResponseUnMarshaller< FLyer >.deserializer(FlyerBasicData.returnObj.ToString());
+                    //    if (userType != null && (userType == "Admin" || userType == "SuperAdmin"))
+                    //    {
+                    //        if(flyerData != null && flyerData.FLYER_APPROVED != null)
+                    //        {
+                    //            HttpContext.Current.Response.Write("buttonFlag = false;");
+                    //        }
+                    //        else
+                    //        {
+                    //            HttpContext.Current.Response.Write("buttonFlag = true;");
+                    //        }
                             
-                        }
-                    }
-                    else
-                        HttpContext.Current.Response.Write("alert('" + FlyerBasicData.returnObj + "');");
+                    //    }
+                    //}
+                    //else
+                    //    HttpContext.Current.Response.Write("alert('" + FlyerBasicData.returnObj + "');");
 
-                    ReturnObject<object> FlyerProducts = ServiceResponseUnMarshaller<object>.unmarshall(new Service1Client().getFlyerProducts(flyerID));
+                    ReturnObject<object> FlyerProducts = ServiceResponseUnMarshaller<object>.unmarshall(new Service1Client().getAllProductsList(flyerID, -1));
                     if (FlyerProducts.statusCode == 0)
                     {
                         HttpContext.Current.Response.Write("flyerProducts = " + FlyerProducts.returnObj + ";");

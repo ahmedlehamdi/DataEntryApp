@@ -186,7 +186,7 @@ namespace DataEntryApp.Pages
                     prod.PRODUCT_IMAGE = "/UploadedImages/" + fileName;
                     prod.PRODUCT_PRICE = HttpContext.Current.Request.Form["productPrice_" + i];
 
-                    prod.LOCATION_ID = int.Parse(HttpContext.Current.Request.Form["productLocationDD_" + i]);
+                    prod.BRANCH_ID = int.Parse(HttpContext.Current.Request.Form["productLocationDD_" + i]);
                     prod.MANUFACTURE_ID = int.Parse(HttpContext.Current.Request.Form["manufactureDD_" + i]);
 
                     prod.PRODUCT_TAGS = HttpContext.Current.Request.Form["smartTags_" + i];

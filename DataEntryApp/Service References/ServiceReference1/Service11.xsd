@@ -20,10 +20,10 @@
   <xs:element name="OFFER_FLYER" nillable="true" type="tns:OFFER_FLYER" />
   <xs:complexType name="PRODUCT">
     <xs:sequence>
+      <xs:element minOccurs="0" name="BRANCH_ID" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="DATE_FROM" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="DATE_TO" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="FLYER_ID" type="xs:int" />
-      <xs:element minOccurs="0" name="LOCATION_ID" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="MANUFACTURE_ID" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="PRODUCT_ATTR_1" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PRODUCT_ATTR_10" nillable="true" type="xs:string" />

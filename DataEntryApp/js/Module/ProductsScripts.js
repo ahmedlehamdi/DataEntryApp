@@ -1,6 +1,6 @@
 ﻿var bundleList = new Array(), bundleINDEX = 0;
 var productList = new Array(), productINDEX = 0;
-
+var imagesList = new Array();
 
 /*****************************************Retrieveing Required Data  To Add Product **************************************/
 
@@ -353,7 +353,7 @@ function createProductObject(div, index)
         product.PRODUCT_IMAGE = imageFile;
     else
         return null;
-    product.LOCATION_ID = $(div).find('#productLocationDD').val();
+    product.BRANCH_ID = $(div).find('#productLocationDD').val();
     product.PRODUCT_TAGS = $(div).find('#smartTags').val();
 
     product.DATE_FROM = $(div).find('#dateFrom').val();
@@ -544,6 +544,7 @@ function loadProductToEdit(tdObj, index)
 
 function submitProducts()
 {
+    ShowMyLoginSpinner();
     if(productList.length > 0)
     {
         var prodList = clone(productList);
@@ -595,20 +596,23 @@ function submitProducts()
                         dataType: 'json',
                         data: "{obj:" + myData + "}",
                         success: function (result) {
+                            HideMyLoginSpinner();
                             alert('Product Inserted');
                             window.location = '/Pages/Home.aspx';
                         },
                         error: function () {
-                            alert('Error');
+                            HideMyLoginSpinner();
+                            alert('Error Saving Products');
                         },
                         failure: function () {
-                            alert('Failure');
+                            HideMyLoginSpinner();
+                            alert('Failure Sending Products');
                         }
                     });
                     //productList = prodList;
                 }
             }
-            HideMyLoginSpinner();
+            
         };
         xhr.send(imageFD);
     }

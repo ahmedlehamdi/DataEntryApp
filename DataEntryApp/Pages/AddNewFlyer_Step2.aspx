@@ -181,6 +181,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                             <p class="help-block">Upload Product Image - Available Formats : pdf/png/jpg</p>
                                         </div>
                                         <div class="form-group">
+                                            <label for="productImageFile">Image</label>
+                                            <table style="width: 100%;">
+                                                <tr>
+                                                    <td>
+                                                         <div style="width: 200px; height: 200px; border: 1px solid #d2d2d2;" id="pasteTarget">
+                                                            Click and paste here.
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <ul id="uploadedImagesList">
+                                                            <li>Pasted Files : </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="form-group">
                                             <label for="productLocationDD">Product Location in Branch</label>
                                             <select name="productLocationDD" id="productLocationDD" class="form-control1" required="required">
                                                 <option value="-1">Product Location in Branch</option>
@@ -311,7 +328,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script src="../js/Utils.js"></script>
     <script src="../js/app.js"></script>
     <script src="../js/Module/ProductsScripts.js"></script>
-
+    <script src="../js/FileUploader-CopyPaste.js"></script>
     <script>
         $(document).ready(function () {
             productCount = 0;

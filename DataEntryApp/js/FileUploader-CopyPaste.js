@@ -26,8 +26,8 @@ function uploadFile(file) {
     reader.onload = function(e) {
         $('#pasteTarget').html("<img src='' id='imgy' style='width:100%;height:100%;' />");
         $("#imgy").attr('src', e.target.result);
-        $("#uploadedImagesList").append("<li>File " + filesCount + "</li>");
-        uploadedImages.push(file);
+        $("#uploadedImagesList").append("<li>File_" + filesCount + "</li>");
+        imagesList.push(file);
         filesCount++;
     }
     reader.readAsDataURL(file);

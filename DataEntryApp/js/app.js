@@ -7,7 +7,7 @@ var buttonFlag = false;
 
 
 $(document).ready(function () {
-   
+    
     $("#submitButton").on('click', function () {
         ShowMyLoginSpinner();
         $("#submitButton").attr('disabled', true);
