@@ -61,7 +61,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						</div>
 						<div class="clearfix"> </div>
 					</div>-->
-                    <input id="submitButton" type="submit" name="Sign In" value="Login"  />
+                    <input id="submitButton" type="button" name="Sign In" value="Login"  />
 					<!--<div class="signup-text">
 						<a href="signup.html">Don't have an account? Create one now</a>
 					</div>

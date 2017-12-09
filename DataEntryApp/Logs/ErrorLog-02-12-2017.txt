@@ -1,0 +1,8 @@
+********** 12/2/2017 11:30:44 PM **********
+Exception Type: System.ArgumentException
+Exception: Parameter cannot be null
+Parameter name: original
+Source: AddNewFlyer.aspx/flyerSubmitData
+Stack Trace: 
+   at DataEntryApp.Pages.AddNewFlyer.flyerSubmitData() in C:\Users\ahmed\Desktop\Work\Best Offer\DataEntryApp\DataEntryApp\Pages\AddNewFlyer.aspx.cs:line 222
+

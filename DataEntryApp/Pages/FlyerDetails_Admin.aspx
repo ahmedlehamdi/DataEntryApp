@@ -245,7 +245,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script>
         $(document).ready(function () {
             loadFlyerDetails();
-            var flyerID = localStorage.getItem('flyerID');
+            var flyerID = getUrlQString().FlyerID;
             $("#approvBtnGroup").find(".btn-success").on('click', function () {
 
                 approveRejectFlyer(true, flyerID);

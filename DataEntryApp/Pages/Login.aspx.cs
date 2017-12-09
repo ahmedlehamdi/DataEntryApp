@@ -14,13 +14,21 @@ namespace DataEntryApp.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (this.Request.QueryString["fnID"] != null && this.Request.QueryString["fnID"] == "1")
             {
                 doLogin();
             }
-            if (this.Request.QueryString["fnID"] != null && this.Request.QueryString["fnID"] == "3")
+            else if (this.Request.QueryString["fnID"] != null && this.Request.QueryString["fnID"] == "3")
             {
                 doLogout();
+            }
+            else
+            {
+                Session["UserID"] = null;
+                Session.Clear();
+                Session.Abandon();
+                Session.RemoveAll();
             }
         }
 
@@ -78,8 +86,9 @@ namespace DataEntryApp.Pages
             HttpContext.Current.Response.ClearHeaders();
             HttpContext.Current.Response.ClearContent();
             Session["UserID"] = null;
-            Session.RemoveAll();
+            Session.Clear();
             Session.Abandon();
+            Session.RemoveAll();
             HttpContext.Current.Response.Flush();
             HttpContext.Current.ApplicationInstance.CompleteRequest();
             HttpContext.Current.Response.SuppressContent = true;

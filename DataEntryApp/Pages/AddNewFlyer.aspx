@@ -41,7 +41,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <link href="../css/custom.css" rel="stylesheet">
     <link href='../css/jquery-loading.min.css' rel='stylesheet' type='text/css'>
     
-    <script src="../js/jquery.form-validator.min.js"></script>
+    <script src="../js/validator.min.js"></script>
+    <%--<script src="../js/jquery.form-validator.min.js"></script>--%>
+    
     <script src="../js/jquery-loading.js"></script>
     
     <link href="../css/jquery.datetimepicker.min.css" rel='stylesheet' type='text/css'>
@@ -103,29 +105,29 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     <h4>Basic Flyer Details :</h4>
                                 </div>
                                 <div class="form-body">
-                                    <form id="flyerDataForm" method="post" enctype="multipart/form-data" runat="server">
+                                    <form id="flyerDataForm" method="post" enctype="multipart/form-data" runat="server" role="form" data-toggle="validator">
                                         <div class="form-group">
                                             <label for="flyerNameEn">Name EN</label>
-                                            <input type="text" data-validation="required"  class="form-control" id="flyerNameEn" placeholder="Flyer Name En" />
+                                            <input type="text" required="required" data-validation="required"  class="form-control" id="flyerNameEn" placeholder="Flyer Name En" />
                                         </div>
                                         <div class="form-group">
                                             <label for="flyerNameAr">Name AR</label>
-                                            <input type="text" data-validation="required"   class="form-control" id="flyerNameAr" placeholder="Flyer Name Ar" />
+                                            <input type="text" required="required" data-validation="required"   class="form-control" id="flyerNameAr" placeholder="Flyer Name Ar" />
                                         </div>
                                         <div class="form-group">
                                             <label for="flyerImageFile">Image</label>
-                                            <input type="file" data-validation="required" multiple  id="flyerImageFile" name="flyerImageFile" />
+                                            <input type="file" required="required" data-validation="required" multiple  id="flyerImageFile" name="flyerImageFile" />
                                             <p class="help-block">Upload Flyer Image - Available Formats : pdf/png/jpg</p>
                                         </div>
                                         <div class="form-group">
                                             <label for="providerDD">Provider / Retailer</label>
-                                            <select name="providerDD" id="providerDD" class="form-control1" data-validation="selected" >
+                                            <select name="providerDD" required="required" id="providerDD" class="form-control1" data-validation="selected" >
                                                 <option Value="-1">Please select an option</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="offerTypeDD">Offer Type</label>
-                                            <select name="offerTypeDD" id="offerTypeDD" class="form-control1" data-validation="selected" >
+                                            <select name="offerTypeDD" required="required" id="offerTypeDD" class="form-control1" data-validation="selected" >
                                                 <option Value="-1">Please select an option</option>
                                             </select>
                                         </div>
@@ -145,13 +147,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         </div-->
                                         <div class="form-group">
                                             <label for="dateFrom">Date From</label>
-                                            <input type="text" data-validation="required" ReadOnly="readonly"  Class="form-control datePicker" id="dateFrom" name="dateFrom" />
+                                            <input type="text" required="required" data-validation="required" ReadOnly="readonly"  Class="form-control datePicker" id="dateFrom" name="dateFrom" />
                                         </div>
                                         <div class="form-group">
                                             <label for="dateTo">Date To</label>
-                                            <input type="text" data-validation="required" ReadOnly="readonly"  class="form-control datePicker" id="dateTo" name="dateTo" />
+                                            <input type="text" required="required" data-validation="required" ReadOnly="readonly"  class="form-control datePicker" id="dateTo" name="dateTo" />
                                         </div>
-                                        <input type="submit" value="Add Products" class="btn btn-default btn-success btn-lg" ID="flyerSubmitBtn" OnClick="submitFlyerForm('insert')" />
+                                        <input type="button" value="Add Products" class="btn btn-default btn-success btn-lg" ID="flyerSubmitBtn" OnClick="submitFlyerForm('insert')" />
                                     </form>
                                 </div>
                             </div>

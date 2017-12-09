@@ -26,8 +26,8 @@
     }
 
     // Validate All Forms
-    if ($('form').size() > 0)
-        $.validate();
+    //if ($('form').size() > 0)
+    //    $.validate();
 
     //Add Date Picker For all 
     if (jQuery('.datePicker').size() > 0) {

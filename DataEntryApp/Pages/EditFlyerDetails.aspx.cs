@@ -23,6 +23,7 @@ namespace DataEntryApp.Pages
             }
             catch (Exception ex)
             {
+                ExceptionUtility.LogException(ex, "EditFlyerDetails.aspx/Page_Load");
                 this.Response.Redirect("Login.aspx");
             }
             if (num == -1)
@@ -39,39 +40,40 @@ namespace DataEntryApp.Pages
         }
         private void retrieveFlyerDetails(int flyerID)
         {
-            HttpContext.Current.Response.Clear();
-            HttpContext.Current.Response.ClearHeaders();
-            HttpContext.Current.Response.ClearContent();
-            try
-            {
-                if (flyerID > 0)
-                {
-                    ReturnObject<object> FlyerBasicData = ServiceResponseUnMarshaller<object>.unmarshall(new Service1Client().getFlyerBasicData(flyerID));
-                    if (FlyerBasicData.statusCode == 0)
-                    {
-                        HttpContext.Current.Response.Write("flyerData = " + FlyerBasicData.returnObj + ";");
-                    }
-                    else
-                        HttpContext.Current.Response.Write("alert('" + FlyerBasicData.returnObj + "');");
-                }
-                else
-                {
-                    HttpContext.Current.Response.Write("alert('Failed To retrieve Flyer Data');");
-                }
-                HttpContext.Current.Response.Flush();
-                HttpContext.Current.ApplicationInstance.CompleteRequest();
-                HttpContext.Current.Response.SuppressContent = true;
-            }
-            catch (Exception ex)
-            {
-                HttpContext.Current.Response.Clear();
-                HttpContext.Current.Response.ClearHeaders();
-                HttpContext.Current.Response.ClearContent();
-                HttpContext.Current.Response.Write("alert('Error Retrieving Flyer Data');");
-                HttpContext.Current.Response.Flush();
-                HttpContext.Current.ApplicationInstance.CompleteRequest();
-                HttpContext.Current.Response.SuppressContent = true;
-            }
+            //HttpContext.Current.Response.Clear();
+            //HttpContext.Current.Response.ClearHeaders();
+            //HttpContext.Current.Response.ClearContent();
+            //try
+            //{
+            //    if (flyerID > 0)
+            //    {
+            //        ReturnObject<object> FlyerBasicData = ServiceResponseUnMarshaller<object>.unmarshall(new Service1Client().getFlyerBasicData(flyerID));
+            //        if (FlyerBasicData.statusCode == 0)
+            //        {
+            //            HttpContext.Current.Response.Write("flyerData = " + FlyerBasicData.returnObj + ";");
+            //        }
+            //        else
+            //            HttpContext.Current.Response.Write("alert('" + FlyerBasicData.returnObj + "');");
+            //    }
+            //    else
+            //    {
+            //        HttpContext.Current.Response.Write("alert('Failed To retrieve Flyer Data');");
+            //    }
+            //    HttpContext.Current.Response.Flush();
+            //    HttpContext.Current.ApplicationInstance.CompleteRequest();
+            //    HttpContext.Current.Response.SuppressContent = true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    ExceptionUtility.LogException(ex, "EditFlyerDetails.aspx/retrieveFlyerDetails");
+            //    HttpContext.Current.Response.Clear();
+            //    HttpContext.Current.Response.ClearHeaders();
+            //    HttpContext.Current.Response.ClearContent();
+            //    HttpContext.Current.Response.Write("alert('Error Retrieving Flyer Data');");
+            //    HttpContext.Current.Response.Flush();
+            //    HttpContext.Current.ApplicationInstance.CompleteRequest();
+            //    HttpContext.Current.Response.SuppressContent = true;
+            //}
         }
     }
 }

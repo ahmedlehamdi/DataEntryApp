@@ -137,6 +137,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         <th>Flyer Name</th>
                                         <th>Image</th>
                                         <th>Status</th>
+                                        <th>Provider</th>
                                         <th>From</th>
                                         <th>To</th>
                                         <th>View Products</th>

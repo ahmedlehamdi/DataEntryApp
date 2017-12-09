@@ -48,13 +48,14 @@ namespace DataEntryApp.Pages
                 int flyerID = int.Parse(HttpContext.Current.Request.QueryString["flyerID"]);
                 if (flyerID > 0)
                 {
-                    ReturnObject<object> FlyerProducts = ServiceResponseUnMarshaller<object>.unmarshall(new Service1Client().getFlyerProducts(flyerID));
+                    ReturnObject<object> FlyerProducts = ServiceResponseUnMarshaller<object>.unmarshall(new Service1Client().getAllProductsList(flyerID, -1));
                     if (FlyerProducts.statusCode == 0)
                     {
-                        HttpContext.Current.Response.Write("flyerProducts = " + FlyerProducts.returnObj + ";");
+                        HttpContext.Current.Response.Write( FlyerProducts.returnObj);
                     }
                     else
                         HttpContext.Current.Response.Write("alert('" + FlyerProducts.returnObj + "');");
+
                 }
                 else
                 {

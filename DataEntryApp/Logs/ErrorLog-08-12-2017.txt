@@ -1,0 +1,74 @@
+********** 12/8/2017 10:22:36 PM **********
+Exception Type: System.ServiceModel.FaultException
+Exception: The server was unable to process the request due to an internal error.  For more information about the error, either turn on IncludeExceptionDetailInFaults (either from ServiceBehaviorAttribute or from the <serviceDebug> configuration behavior) on the server in order to send the exception information back to the client, or turn on tracing as per the Microsoft .NET Framework SDK documentation and inspect the server trace logs.
+Source: AddNewFlyer_Step2.aspx/submitProductsObjects
+Stack Trace: 
+
+Server stack trace: 
+   at System.ServiceModel.Channels.ServiceChannel.ThrowIfFaultUnderstood(Message reply, MessageFault fault, String action, MessageVersion version, FaultConverter faultConverter)
+   at System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   at System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   at System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   at System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   at DataEntryApp.ServiceReference1.IService1.submitAllProducts(String productsListSTR)
+   at DataEntryApp.ServiceReference1.Service1Client.submitAllProducts(String productsListSTR) in C:\Users\ahmed\Desktop\Work\Best Offer\DataEntryApp\DataEntryApp\Service References\ServiceReference1\Reference.cs:line 1444
+   at DataEntryApp.Pages.AddNewFlyer_Step2.submitProductsObjects(List`1 obj) in C:\Users\ahmed\Desktop\Work\Best Offer\DataEntryApp\DataEntryApp\Pages\AddNewFlyer_Step2.aspx.cs:line 432
+
+********** 12/8/2017 10:24:20 PM **********
+Exception Type: System.NullReferenceException
+Exception: Object reference not set to an instance of an object.
+Source: FlyerDetails.aspx/PageLoad
+Stack Trace: 
+   at DataEntryApp.Pages.FlyerDetails.Page_Load(Object sender, EventArgs e) in C:\Users\ahmed\Desktop\Work\Best Offer\DataEntryApp\DataEntryApp\Pages\FlyerDetails.aspx.cs:line 23
+
+********** 12/8/2017 10:58:09 PM **********
+Exception Type: System.NullReferenceException
+Exception: Object reference not set to an instance of an object.
+Source: Home.aspx/PageLoad
+Stack Trace: 
+   at DataEntryApp.Pages.Home.Page_Load(Object sender, EventArgs e) in C:\Users\ahmed\Desktop\Work\Best Offer\DataEntryApp\DataEntryApp\Pages\Home.aspx.cs:line 23
+
+********** 12/8/2017 11:02:27 PM **********
+Exception Type: System.ServiceModel.FaultException
+Exception: The server was unable to process the request due to an internal error.  For more information about the error, either turn on IncludeExceptionDetailInFaults (either from ServiceBehaviorAttribute or from the <serviceDebug> configuration behavior) on the server in order to send the exception information back to the client, or turn on tracing as per the Microsoft .NET Framework SDK documentation and inspect the server trace logs.
+Source: AddNewFlyer_Step2.aspx/submitProductsObjects
+Stack Trace: 
+
+Server stack trace: 
+   at System.ServiceModel.Channels.ServiceChannel.ThrowIfFaultUnderstood(Message reply, MessageFault fault, String action, MessageVersion version, FaultConverter faultConverter)
+   at System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   at System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   at System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   at System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   at DataEntryApp.ServiceReference1.IService1.submitAllProducts(String productsListSTR)
+   at DataEntryApp.ServiceReference1.Service1Client.submitAllProducts(String productsListSTR) in C:\Users\ahmed\Desktop\Work\Best Offer\DataEntryApp\DataEntryApp\Service References\ServiceReference1\Reference.cs:line 1444
+   at DataEntryApp.Pages.AddNewFlyer_Step2.submitProductsObjects(List`1 obj) in C:\Users\ahmed\Desktop\Work\Best Offer\DataEntryApp\DataEntryApp\Pages\AddNewFlyer_Step2.aspx.cs:line 432
+
+********** 12/8/2017 11:05:10 PM **********
+Exception Type: System.ServiceModel.FaultException
+Exception: The server was unable to process the request due to an internal error.  For more information about the error, either turn on IncludeExceptionDetailInFaults (either from ServiceBehaviorAttribute or from the <serviceDebug> configuration behavior) on the server in order to send the exception information back to the client, or turn on tracing as per the Microsoft .NET Framework SDK documentation and inspect the server trace logs.
+Source: AddNewFlyer_Step2.aspx/submitProductsObjects
+Stack Trace: 
+
+Server stack trace: 
+   at System.ServiceModel.Channels.ServiceChannel.ThrowIfFaultUnderstood(Message reply, MessageFault fault, String action, MessageVersion version, FaultConverter faultConverter)
+   at System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   at System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   at System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   at System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   at DataEntryApp.ServiceReference1.IService1.submitAllProducts(String productsListSTR)
+   at DataEntryApp.ServiceReference1.Service1Client.submitAllProducts(String productsListSTR) in C:\Users\ahmed\Desktop\Work\Best Offer\DataEntryApp\DataEntryApp\Service References\ServiceReference1\Reference.cs:line 1444
+   at DataEntryApp.Pages.AddNewFlyer_Step2.submitProductsObjects(List`1 obj) in C:\Users\ahmed\Desktop\Work\Best Offer\DataEntryApp\DataEntryApp\Pages\AddNewFlyer_Step2.aspx.cs:line 432
+

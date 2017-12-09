@@ -25,6 +25,7 @@ namespace DataEntryApp.Pages
             }
             catch (Exception ex)
             {
+                ExceptionUtility.LogException(ex, "AddNewFlyer.aspx/PAGE_LOAD");
                 this.Response.Redirect("Login.aspx");
             }
             if (num == -1)
@@ -88,6 +89,7 @@ namespace DataEntryApp.Pages
             }
             catch (Exception ex)
             {
+                ExceptionUtility.LogException(ex, "AddNewFlyer.aspx/RETRIEVE_PROVIDERS_DATA");
                 HttpContext.Current.Response.Clear();
                 HttpContext.Current.Response.ClearHeaders();
                 HttpContext.Current.Response.ClearContent();
@@ -119,6 +121,7 @@ namespace DataEntryApp.Pages
             }
             catch (Exception ex)
             {
+                ExceptionUtility.LogException(ex, "AddNewFlyer.aspx/RETRIEVE_OFFERS_TYPES_DATA");
                 HttpContext.Current.Response.Clear();
                 HttpContext.Current.Response.ClearHeaders();
                 HttpContext.Current.Response.ClearContent();
@@ -150,6 +153,7 @@ namespace DataEntryApp.Pages
             }
             catch (Exception ex)
             {
+                ExceptionUtility.LogException(ex, "AddNewFlyer.aspx/RETRIEVE_TIME_FRAMES_DATA");
                 HttpContext.Current.Response.Clear();
                 HttpContext.Current.Response.ClearHeaders();
                 HttpContext.Current.Response.ClearContent();
@@ -199,6 +203,7 @@ namespace DataEntryApp.Pages
             }
             catch (Exception ex)
             {
+                ExceptionUtility.LogException(ex, "AddNewFlyer.aspx/RETRIEVE_ADD_FLYER_DATA");
                 HttpContext.Current.Response.Clear();
                 HttpContext.Current.Response.ClearHeaders();
                 HttpContext.Current.Response.ClearContent();
@@ -211,6 +216,8 @@ namespace DataEntryApp.Pages
 
         protected void flyerSubmitData()
         {
+            
+
             HttpContext.Current.Response.Clear();
             HttpContext.Current.Response.ClearHeaders();
             HttpContext.Current.Response.ClearContent();
@@ -219,7 +226,7 @@ namespace DataEntryApp.Pages
             {
                 string filesNames = "";
                 var filesCount = Request.Form["IMAGES_COUNT"];
-                if (filesCount != null)
+                if (filesCount != null && int.Parse(filesCount) > 0)
                 {
                     for (int i = 0; i < int.Parse(filesCount); i++)
                     {
@@ -266,7 +273,7 @@ namespace DataEntryApp.Pages
                 {
                     Session["flyerID"] = int.Parse(flyerObj.returnObj.ToString());
                     var redURL = (action == "insert") ? "/Pages/AddNewFlyer_Step2.aspx" : "/Pages/EditFlyerDetails_Step2.aspx";
-                    HttpContext.Current.Response.Write("window.location = '" + redURL + "';localStorage.setItem('flyerID', '" + flyerObj.returnObj.ToString() + "');");
+                    HttpContext.Current.Response.Write("window.location = '" + redURL + "?FlyerID=" + flyerObj.returnObj.ToString() + "';");
                 }
                 else
                 {
@@ -284,6 +291,7 @@ namespace DataEntryApp.Pages
             }
             catch (Exception ex)
             {
+                ExceptionUtility.LogException(ex, "AddNewFlyer.aspx/flyerSubmitData");
                 //errorLbl.Text = ex.Message;
                 HttpContext.Current.Response.Write("flyerID = null;alert('" + ex.Message + "')");
                 HttpContext.Current.Response.Flush();

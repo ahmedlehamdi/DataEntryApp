@@ -24,6 +24,7 @@ namespace DataEntryApp.Pages
             }
             catch (Exception ex)
             {
+                ExceptionUtility.LogException(ex, "FlyerDetails.aspx/PageLoad");
                 this.Response.Redirect("Login.aspx");
             }
             if (num == -1)
@@ -103,6 +104,7 @@ namespace DataEntryApp.Pages
             }
             catch (Exception ex)
             {
+                ExceptionUtility.LogException(ex, "FlyerDetails.aspx/retrieveFlyerDetails");
                 HttpContext.Current.Response.Clear();
                 HttpContext.Current.Response.ClearHeaders();
                 HttpContext.Current.Response.ClearContent();

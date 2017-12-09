@@ -3953,3 +3953,7 @@ iframe{
     min-height: 400px;
     width: 100%;
 }
+
+.fa{
+    cursor: pointer;
+}

@@ -64,23 +64,23 @@ function openPageWithPostData(pageURL, dataArr, callback) {
 
 function applyDataTable(id) {
     try {
-        if (!id) {
+        if (id) {
             if ($('#' + id).find("tbody tr").size() > 0) {
                 $('#' + id).dataTable({
                     paging: false
                 });
+                $('.dataTables_length select').addClass('form-control');
+                $('.dataTables_filter input').addClass('form-control');
             }
-            $('.dataTables_length select').addClass('form-control');
-            $('.dataTables_filter input').addClass('form-control');
         }
         else {
             if ($('.datatable').find("tbody tr").size() > 0) {
                 $('.datatable').dataTable({
                     paging: false
                 });
+                $('.dataTables_length select').addClass('form-control');
+                $('.dataTables_filter input').addClass('form-control');
             }
-            $('.dataTables_length select').addClass('form-control');
-            $('.dataTables_filter input').addClass('form-control');
         }
         
     } catch (e) { }
@@ -171,49 +171,71 @@ function getInputHTML(type, preLabel, postLabel, index, id) {
 
 
 function validateForm(formID) {
+    var result = true;
     if (!formID) {
-        var forms = $('body form');
+        var forms = $('form');
         for (var u = 0 ; u < forms.size() ; u++) {
             var inputs = $(forms[u]).find("input,select");
             for (var i = 0 ; i < inputs.size() ; i++) {
                 if ($(inputs[i]).attr('required') == 'required' || $(inputs[i]).attr('required') == '') {
-                    if ($(inputs[i]).val().trim() == '') {
-                        $(inputs[i]).css('border', '1px solid red');
-                        goToByScroll($(inputs[i]).attr('id'));
-                        return false;
-                    } else {
-                        $(inputs[i]).css('border', '');
+                    if ($(inputs[i]).is('input')) {
+                        if ($(inputs[i]).val().trim() == '') {
+                            $(inputs[i]).css('border', '1px solid red');
+                            $(inputs[i]).on('change', function () {
+                                if ($(this).val().trim() != '') $(this).css('border', '');
+                            });
+                            //goToByScroll($(inputs[i]).attr('id'));
+                            result = false;
+                        } else {
+                            $(inputs[i]).css('border', '');
+                        }
                     }
-                    if ($(inputs[i]).val() == '-1') {
-                        $(inputs[i]).css('border', '1px solid red');
-                        goToByScroll($(inputs[i]).attr('id'));
-                        return false;
-                    } else {
-                        $(inputs[i]).css('border', '');
+                    else if ($(inputs[i]).is('select')) {
+                        if ($(inputs[i]).val() == '-1') {
+                            $(inputs[i]).css('border', '1px solid red');
+                            $(inputs[i]).on('change', function () {
+                                if ($(this).val() != '-1') $(this).css('border', '');
+                            });
+                            // goToByScroll($(inputs[i]).attr('id'));
+                            result = false;
+                        } else {
+                            $(inputs[i]).css('border', '');
+                        }
                     }
                 }
             }
-            return true;
+            //result = true;
         }
     }
     else {
         var inputs = $("#" + formID + " input, #" + formID + " select");
         for (var i = 0 ; i < inputs.size() ; i++) {
             if ($(inputs[i]).attr('required') == 'required' || $(inputs[i]).attr('required') == '') {
-                if ($(inputs[i]).val().trim() == '') {
-                    $(inputs[i]).css('border', '1px solid red');
-                    goToByScroll($(inputs[i]).attr('id'));
-                    return false;
-                } else { $(inputs[i]).css('border', ''); }
-                if ($(inputs[i]).val() == '-1') {
-                    $(inputs[i]).css('border', '1px solid red');
-                    goToByScroll($(inputs[i]).attr('id'));
-                    return false;
-                } else { $(inputs[i]).css('border', ''); }
+                if ($(inputs[i]).is('input')) {
+                    if ($(inputs[i]).val().trim() == '') {
+                        $(inputs[i]).css('border', '1px solid red');
+                        $(inputs[i]).on('change', function () {
+                            if ($(this).val().trim() != '') $(this).css('border', '');
+                        });
+                        //goToByScroll($(inputs[i]).attr('id'));
+                        result = false;
+                    } else { $(inputs[i]).css('border', ''); }
+                }
+                else if ($(inputs[i]).is('select')) {
+                    if ($(inputs[i]).val() == '-1') {
+                        $(inputs[i]).css('border', '1px solid red');
+                        //goToByScroll($(inputs[i]).attr('id'));
+                        $(inputs[i]).on('change', function () {
+                            if ($(this).val() != '-1') $(this).css('border', '');
+                        });
+                        result = false;
+                    } else { $(inputs[i]).css('border', ''); }
+                }
             }
         }
-        return true;
+        //result = true;
     }
+    return result;
 }
 
 

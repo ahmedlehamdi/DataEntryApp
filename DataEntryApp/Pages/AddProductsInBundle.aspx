@@ -69,31 +69,31 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     <form>
                                          <div class="form-group">
                                             <label for="productNameEn">Name EN</label>
-                                            <input type="text" class="form-control" id="productNameEn" required="required" placeholder="Product Name En" onkeydown="$(this).parents('.forms').find('h4').text('Product Details : ' + $(this).val());">
+                                            <input required="required" type="text" class="form-control" id="productNameEn" required="required" placeholder="Product Name En" onkeydown="$(this).parents('.forms').find('h4').text('Product Details : ' + $(this).val());">
                                         </div>
                                         <div class="form-group">
                                             <label for="productNameAr">Name AR</label>
-                                            <input type="text" class="form-control" id="productNameAr" required="required" placeholder="Product Name Ar">
+                                            <input required="required" type="text" class="form-control" id="productNameAr" required="required" placeholder="Product Name Ar">
                                         </div>
                                         <div class="form-group">
                                             <label for="productPrice">Price</label>
-                                            <input type="text" class="form-control" id="productPrice" required="required" placeholder="Product Price">
+                                            <input required="required" type="number" class="form-control" id="productPrice" required="required" placeholder="Product Price">
                                         </div>
                                         <div class="form-group">
                                             <label for="manufactureDD">Manufacturer</label>
-                                            <select name="manufactureDD" id="manufactureDD" class="form-control1" required="required">
+                                            <select required="required" name="manufactureDD" id="manufactureDD" class="form-control1" required="required">
                                                 <option value="-1">Select Product Manufacturer</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="categoryDD">Category</label>
-                                            <select name="categoryDD" id="categoryDD" class="form-control1" required="required">
+                                            <select required="required" name="categoryDD" id="categoryDD" class="form-control1" required="required">
                                                 <option value="-1">Select Product Category</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="productTypeDD">Product Type</label>
-                                            <select name="productTypeDD" id="productTypeDD" class="form-control1" required="required">
+                                            <select required="required" name="productTypeDD" id="productTypeDD" class="form-control1" required="required">
                                                 <option value="-1">Select Product Type</option>
                                             </select>
                                         </div>
@@ -103,18 +103,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         </div>
                                         <div class="form-group">
                                             <label for="productImageFile">Image</label>
-                                            <input type="file" id="productImageFile" name="productImageFile" required="required">
+                                            <input required="required" type="file" id="productImageFile" name="productImageFile" required="required">
                                             <p class="help-block">Upload Product Image - Available Formats : pdf/png/jpg</p>
                                         </div>
                                         <div class="form-group">
                                             <label for="productLocationDD">Product Location in Branch</label>
-                                            <select name="productLocationDD" id="productLocationDD" class="form-control1" required="required">
+                                            <select required="required" name="productLocationDD" id="productLocationDD" class="form-control1" required="required">
                                                 <option value="-1">Product Location in Branch</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="offerTypeDD">Offer Type</label>
-                                            <select name="offerTypeDD" id="offerTypeDD" class="form-control1" required="required">
+                                            <select required="required" name="offerTypeDD" id="offerTypeDD" class="form-control1" required="required">
                                                 <option value="-1">Select Product Type</option>
                                             </select>
                                         </div>
@@ -123,35 +123,35 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         </div>
                                         <div class="form-group">
                                             <label for="dateFrom">Date From</label>
-                                            <input type="text" data-validation="required" ReadOnly="readonly" required="" Class="form-control datePicker" id="dateFrom" name="dateFrom" />
+                                            <input required="required" type="text" data-validation="required" ReadOnly="readonly" required="" Class="form-control datePicker" id="dateFrom" name="dateFrom" />
                                         </div>
                                         <div class="form-group">
                                             <label for="dateTo">Date To</label>
-                                            <input type="text" data-validation="required" ReadOnly="readonly" required="" class="form-control datePicker" id="dateTo" name="dateTo" />
+                                            <input required="required" type="text" data-validation="required" ReadOnly="readonly" required="" class="form-control datePicker" id="dateTo" name="dateTo" />
                                         </div>
                                         <div class="form-group">
                                             <label for="productAttr_1">Product Attribute 1</label>
-                                            <input type="text" class="form-control" id="productAttr_1" placeholder="Product Specs">
+                                            <input required="required" type="text" class="form-control" id="productAttr_1" placeholder="Product Specs">
                                         </div>
                                         <div class="form-group">
                                             <label for="productAttr_2">Product Attribute 2</label>
-                                            <input type="text" class="form-control" id="productAttr_2" placeholder="Product Specs">
+                                            <input required="required" type="text" class="form-control" id="productAttr_2" placeholder="Product Specs">
                                         </div>
                                         <div class="form-group">
                                             <label for="productAttr_3">Product Attribute 3</label>
-                                            <input type="text" class="form-control" id="productAttr_3" placeholder="Product Specs">
+                                            <input required="required" type="text" class="form-control" id="productAttr_3" placeholder="Product Specs">
                                         </div>
                                         <div class="form-group">
                                             <label for="productAttr_4">Product Attribute 4</label>
-                                            <input type="text" class="form-control" id="productAttr_4" placeholder="Product Specs">
+                                            <input required="required" type="text" class="form-control" id="productAttr_4" placeholder="Product Specs">
                                         </div>
                                         <div class="form-group">
                                             <label for="productAttr_5">Product Attribute 5</label>
-                                            <input type="text" class="form-control" id="productAttr_5" placeholder="Product Specs">
+                                            <input required="required" type="text" class="form-control" id="productAttr_5" placeholder="Product Specs">
                                         </div>
                                         <div class="form-group">
                                             <label for="smartTags">Tags</label>
-                                            <input type="text" data-role="tagsinput"  class="form-control" id="smartTags" required="required" placeholder="Smart tags For Product">
+                                            <input required="required" type="text" data-role="tagsinput"  class="form-control" id="smartTags" required="required" placeholder="Smart tags For Product">
                                         </div>
                                     </form>
                                 </div>
@@ -200,6 +200,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             getAllProductManufactures();
             getAllProductBranches();
             getAllProductOfferTypes(true);
+            if(parent.bundleProduct != null)
+            {
+                loadBundleProductForEdit();
+            }
         });
     </script>
 </body>

@@ -24,6 +24,7 @@ namespace DataEntryApp.Pages
             }
             catch (Exception ex)
             {
+                ExceptionUtility.LogException(ex, "Home.aspx/PageLoad");
                 this.Response.Redirect("Login.aspx");
             }
             if (num == -1)
@@ -64,6 +65,7 @@ namespace DataEntryApp.Pages
             }
             catch (Exception ex)
             {
+                ExceptionUtility.LogException(ex, "Home.aspx/retrieveAllFlyersData");
                 HttpContext.Current.Response.Clear();
                 HttpContext.Current.Response.ClearHeaders();
                 HttpContext.Current.Response.ClearContent();
@@ -123,6 +125,7 @@ namespace DataEntryApp.Pages
             }
             catch (Exception ex)
             {
+                ExceptionUtility.LogException(ex, "Home.aspx/updateUserPassword");
                 HttpContext.Current.Response.Clear();
                 HttpContext.Current.Response.ClearHeaders();
                 HttpContext.Current.Response.ClearContent();

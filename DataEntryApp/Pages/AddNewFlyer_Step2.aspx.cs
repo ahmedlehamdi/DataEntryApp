@@ -26,6 +26,7 @@ namespace DataEntryApp.Pages
             }
             catch (Exception ex)
             {
+                ExceptionUtility.LogException(ex, "AddNewFlyer_Step2.aspx/Page_Load");
                 this.Response.Redirect("Login.aspx");
             }
             if (num == -1)
@@ -95,6 +96,7 @@ namespace DataEntryApp.Pages
             }
             catch (Exception ex)
             {
+                ExceptionUtility.LogException(ex, "AddNewFlyer_Step2.aspx/loadProductCategroies");
                 HttpContext.Current.Response.Clear();
                 HttpContext.Current.Response.ClearHeaders();
                 HttpContext.Current.Response.ClearContent();
@@ -132,6 +134,7 @@ namespace DataEntryApp.Pages
             }
             catch (Exception ex)
             {
+                ExceptionUtility.LogException(ex, "AddNewFlyer_Step2.aspx/loadCategoryTypes");
                 HttpContext.Current.Response.Clear();
                 HttpContext.Current.Response.ClearHeaders();
                 HttpContext.Current.Response.ClearContent();
@@ -257,6 +260,7 @@ namespace DataEntryApp.Pages
             }
             catch (Exception ex)
             {
+                ExceptionUtility.LogException(ex, "AddNewFlyer_Step2.aspx/submitProducts");
                 HttpContext.Current.Response.Write("alert('Somethinf Went wrong please try again later.\n " + ex.Message + "')");
             }
             HttpContext.Current.Response.Flush();
@@ -286,6 +290,7 @@ namespace DataEntryApp.Pages
             }
             catch (Exception ex)
             {
+                ExceptionUtility.LogException(ex, "AddNewFlyer_Step2.aspx/getAllManufactures");
                 HttpContext.Current.Response.Write("alert('Something Went wrong please try again later.\n " + ex.Message + "')");
             }
             HttpContext.Current.Response.Flush();
@@ -315,6 +320,7 @@ namespace DataEntryApp.Pages
             }
             catch (Exception ex)
             {
+                ExceptionUtility.LogException(ex, "AddNewFlyer_Step2.aspx/getAllBranches");
                 HttpContext.Current.Response.Write("alert('Something is wrong please try again later.\n " + ex.Message + "')");
             }
             HttpContext.Current.Response.Flush();
@@ -345,6 +351,7 @@ namespace DataEntryApp.Pages
             }
             catch (Exception ex)
             {
+                ExceptionUtility.LogException(ex, "AddNewFlyer_Step2.aspx/getTypeAllSpecs");
                 HttpContext.Current.Response.Write("alert('Something is wrong please try again later.\n " + ex.Message + "')");
             }
             HttpContext.Current.Response.Flush();
@@ -374,6 +381,7 @@ namespace DataEntryApp.Pages
             }
             catch (Exception ex)
             {
+                ExceptionUtility.LogException(ex, "AddNewFlyer_Step2.aspx/getProductOfferTypes");
                 HttpContext.Current.Response.Write("alert('Something is wrong please try again later.\n " + ex.Message + "')");
             }
             HttpContext.Current.Response.Flush();
@@ -433,6 +441,7 @@ namespace DataEntryApp.Pages
             }
             catch (Exception ex)
             {
+                ExceptionUtility.LogException(ex, "AddNewFlyer_Step2.aspx/submitProductsObjects");
                 return ("alert('Something is wrong please try again later.\n " + ex.Message + "')");
             }
         }

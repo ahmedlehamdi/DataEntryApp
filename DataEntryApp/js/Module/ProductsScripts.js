@@ -1,6 +1,7 @@
 ﻿var bundleList = new Array(), bundleINDEX = 0;
 var productList = new Array(), productINDEX = 0;
 var imagesList = new Array();
+var bundleProduct = null;
 
 /*****************************************Retrieveing Required Data  To Add Product **************************************/
 
@@ -64,7 +65,7 @@ function loadProductCategoriesData() {
 }
 
 // Load Product Types Based on Category
-function loadCategoriesTypesData(catID, obj) {
+function loadCategoriesTypesData(catID, obj, callback) {
     AjaxCall("../Pages/AddNewFlyer_Step2.aspx?fnID=9&catID=" + catID
         , function (data) {
             catTypes = '';
@@ -78,6 +79,7 @@ function loadCategoriesTypesData(catID, obj) {
                     temp = temp.replace("#DETAILS#", catTypes[i].TYPE_NAME_EN);
                     $("#product_0 #productTypeDD").append(temp);
                 }
+                if (callback) callback();
                 $("#product_0 #productTypeDD").on('change', function () {
                     $("#product_0 #prodSpecs").html('').addClass('hidden');
                     loadTypeSpecs(this);
@@ -91,7 +93,7 @@ function loadCategoriesTypesData(catID, obj) {
         });
 }
 
-function loadTypeSpecs(obj) {
+function loadTypeSpecs(obj, callbackfn) {
     //console.log(obj);
     if ($(obj).val() != -1) {
         AjaxCall("../Pages/AddNewFlyer_Step2.aspx?fnID=32&typeID=" + $(obj).val()
@@ -108,6 +110,7 @@ function loadTypeSpecs(obj) {
                         specsFinal += temp;
                     }
                     $("#product_0 #prodSpecs").html(specsFinal).removeClass('hidden');
+                    if (callbackfn) callbackfn();
                 }
                 else {
                     alert("Empty Type Specs, Please try again later.")
@@ -223,7 +226,7 @@ function loadProductOfferTypeFields(obj) {
         $(prodWidget).find("#prodOfferTypeDiv").html(temp);
         bundleProdCount = 0;
         bundleProducts = {};
-        var tableTemp = '<div class="form-body"> <table class="table table-striped table-bordered bootstrap-datatable datatable"> <thead> <tr><th>Product Name</th> <th>Category</th> <th>Type</th> <th>Provider</th> <th>Price</th> <th>Remove</th> </tr></thead> <tbody id="productBundleTBody"></tbody> </table> </div>';
+        var tableTemp = '<div class="form-body"> <table class="table table-striped table-bordered bootstrap-datatable datatable"> <thead> <tr><th>Product Name</th> <th>Category</th> <th>Type</th> <th>Provider</th> <th>Price</th> <th>Remove</th> <th>Edit</th> </tr></thead> <tbody id="productBundleTBody"></tbody> </table> </div>';
         $(prodWidget).find("#prodOfferTypeDiv").append(tableTemp);
         $("#productBundleTBody").html('');
     }
@@ -324,7 +327,7 @@ function createProductObject(div, index)
 {
     var product = new PRODUCT();
 
-    product.FLYER_ID = localStorage.getItem("flyerID");
+    product.FLYER_ID = getUrlQString().FlyerID;
 
     product.PRODUCT_NAME_EN = $(div).find('#productNameEn').val();
     product.PRODUCT_NAME_AR = $(div).find('#productNameAr').val();
@@ -348,7 +351,7 @@ function createProductObject(div, index)
     product.TYPE_SPECS = typeSpecsArr;
     /////////////////////////////////////////////////////////////////////////////////////////////
 
-    var imageFile = getImageFileFromInput("productImageFile", "Products", localStorage.getItem('flyerID') + "_" + $(div).find('#productNameEn').val());
+    var imageFile = getImageFileFromInput("productImageFile", "Products", getUrlQString().FlyerID + "_" + $(div).find('#productNameEn').val());
     if (imageFile != false)
         product.PRODUCT_IMAGE = imageFile;
     else
@@ -398,6 +401,9 @@ function createProductObject(div, index)
 
 function SaveProduct()
 {
+    if (!validateForm()) {
+        return false;
+    }
     productINDEX++;
     var productObject = createProductObject("#product_0", productINDEX);
     if (productObject != null) {
@@ -453,6 +459,7 @@ function resetProductForm(div) {
     $("#" + div + " #smartTags").tagsinput('removeAll');
     
     $("#" + div + " #prodOfferTypeDiv").html('');
+    $("#" + div + " #uploadedImagesList").html('<li>Pasted Files : </li>');
 }
 
 function deleteFromProducts(tdObj, index)
@@ -462,85 +469,6 @@ function deleteFromProducts(tdObj, index)
     });
     $(tdObj).parent().remove();
 }
-
-function loadProductToEdit(tdObj, index)
-{
-    //var product = productList.filter(function (el) {
-    //    return el.PRODUCT_ID === index;
-    //});
-    //product = product[0];
-    //var div = $("#product_0");
-    //$(div).find("#productNameEn").val(product.PRODUCT_NAME_EN);
-    //$(div).find('#productNameAr').val(product.PRODUCT_NAME_AR);
-
-    //$(div).find('#productPrice').val(product.PRODUCT_PRICE);
-
-    //$(div).find('#manufactureDD').val(product.MANUFACTURE_ID);
-    //$(div).find('#categoryDD').val(product.CATEGORY_ID);
-
-    //////////////////////////////////PRODUCT TYPE SPECS/////////////////////////////////////
-    //$(div).find('#productTypeDD').val(product.TYPE_ID);
-    //var typeSpecsArr = product.TYPE_SPECS;
-    //for (var i = 0; i < typeSpecsArr.length ; i++) {
-    //    var typeSPECS = typeSpecsArr[i];
-    //    var inputObj = $($(div).find("#prodSpecs input[data-template='" + typeSPECS.TEMPLATE_ID + "']"));
-    //    $(inputObj).val(typeSPECS.TEMPLATE_VALUE);
-    //}
-    ///////////////////////////////////////////////////////////////////////////////////////////////
-
-    ////var imageFile = getImageFileFromInput("productImageFile");
-    ////if (imageFile != false)
-    ////    product.PRODUCT_IMAGE = imageFile;
-    ////else
-    ////    return null;
-
-    ////"<a target='_blank' href='" + flyerProducts[i].PRODUCT_IMAGE + "' download='" + flyerProducts[i].PRODUCT_IMAGE.split('/')[2] + "' > " + flyerProducts[i].PRODUCT_IMAGE.split('/')[2] + "</a>"
-
-    //$(div).find('#productLocationDD').val(product.LOCATION_ID);
-    //var tags = (product.PRODUCT_TAGS).split(',');
-    //for (var i = 0 ; i < tags.length ; i++) {
-    //    $(div).find('#smartTags').tagsinput('add' , tags[i]);
-    //}
-
-    //$(div).find('#dateFrom').val(product.DATE_FROM);
-    //$(div).find('#dateTo').val(product.DATE_TO);
-
-    //////////////////////////////////PRODUCT OFFER TYPE SPECS/////////////////////////////////////
-    //$(div).find('#offerTypeDD').val(product.PROD_OFF_TYPE_ID);
-    //if (product.PROD_OFF_TYPE_ID != '5') {
-    //    var offerTypeSPECS = product.PROD_OFF_TYP_SPECS;
-    //    for (var i = 0; i < $(div).find('#prodOfferTypeDiv input') ; i++)
-    //    {
-    //        $($(div).find('#prodOfferTypeDiv input')[i]).val(offerTypeSPECS["PROD_OFF_TYP_ATTR_" + (i + 1)]);
-    //    }
-    //}
-    //else {
-    //    bundleList = product.bundleList;
-    //    for(var i = 0 ; i < bundleList.length ; i++)
-    //    {
-    //        var bundleItem = bundleList[i];
-    //        var temp = "<tr><td>#NAME#</td><td>#CATEGORY#</td><td>#TYPE#</td><td>#MANUFACTURE#</td><td>#PRICE#</td><td onclick='deleteFromBundle($(this), " + parent.bundleINDEX + ")'><i class='fa fa-trash-o' aria-hidden='true'></i></td></tr>"
-
-    //        temp = temp.replace('#NAME#', bundleItem.PRODUCT_NAME_EN);
-    //        temp = temp.replace('#CATEGORY#', $(div).find('#categoryDD option[value="' + bundleItem.CATEGORY_ID + '"]').text());
-    //        temp = temp.replace('#TYPE#', $(div).find('#productTypeDD option[value="' + bundleItem.TYPE_ID + '"]').text());
-    //        temp = temp.replace('#MANUFACTURE#', $(div).find('#manufactureDD option[value="' + bundleItem.MANUFACTURE_ID + '"]').text());
-    //        temp = temp.replace('#PRICE#', bundleItem.PRODUCT_PRICE);
-
-    //        $(div).find("#productBundleTBody").append(temp);
-    //    }
-    //}
-    ///////////////////////////////////////////////////////////////////////////////////////////////
-
-    //////////////////////////////////PRODUCT OFFER TYPE SPECS/////////////////////////////////////
-    // $(div).find("#productAttr_1").val(product.PRODUCT_ATTR_1);
-    // $(div).find("#productAttr_2").val(product.PRODUCT_ATTR_2);
-    // $(div).find("#productAttr_3").val(product.PRODUCT_ATTR_3);
-    // $(div).find("#productAttr_4").val(product.PRODUCT_ATTR_4);
-    // $(div).find("#productAttr_5").val(product.PRODUCT_ATTR_5);
-    /////////////////////////////////////////////////////////////////////////////////////////////
-}
-
 
 function submitProducts()
 {
@@ -625,3 +553,154 @@ function submitProducts()
 /*************************************************************************************************************************/
 
 
+function loadFlyerProductsForEdit() {
+    AjaxCall("../Pages/EditFlyerDetails_Step2.aspx?fnID=13&flyerID=" + getUrlQString().FlyerID
+       , function (data) {
+           flyerProducts = '';
+           flyerProducts = jsonToObjList(data, new PRODUCT());
+           if (flyerProducts != '') {
+               for (var i = 0 ; i < flyerProducts.length ; i++) {
+                   var product = flyerProducts[i];
+                   var temp = "<tr><td>#ProductName#</td><td>#Price#</td><td>#Manufacture#</td><td>#Category#</td><td>#Type#</td><td>#Branch#</td><td>#OfferType#</td><td>#OfferSpecs#</td><td onclick='deleteFromProducts($(this), " + i + ")'><i class='fa fa-trash-o' aria-hidden='true'></i></td>"
+                       + "<td onclick='loadProductToEdit($(this), " + i + ")'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></td></tr>";
+
+                   temp = temp.replace('#ProductName#', product.PRODUCT_NAME_EN);
+                   temp = temp.replace('#Price#', product.PRODUCT_PRICE);
+                   temp = temp.replace('#Manufacture#', product.MANUFACTURE_NAME_EN);
+                   temp = temp.replace('#Category#', product.CATEGORY_NAME_EN);
+                   temp = temp.replace('#Type#', product.TYPE_NAME_EN);
+                   temp = temp.replace('#Branch#', product.BRANCH_NAME_EN);
+                   temp = temp.replace('#OfferType#', product.PROD_OFF_TYPE_NAME_EN);
+
+                   if (product.PROD_OFF_TYPE_ID == '5') {
+                       var prodBundleNames = '';
+                       for (var u = 0 ; u < product.bundleList.length ; u++) {
+                           var bundleProduct = product.bundleList[u];
+                           prodBundleNames += bundleProduct.PRODUCT_NAME_EN + "<br/>";
+                       }
+                       temp = temp.replace('#OfferSpecs#', prodBundleNames);
+                   }
+                   else {
+                       temp = temp.replace('#OfferSpecs#', "Offer Specs");
+                   }
+
+                   $("#productTBody").append(temp);
+               }
+               getAllProductManufactures();
+               loadProductCategoriesData();
+               getAllProductBranches();
+               getAllProductOfferTypes(false);
+           }
+       });
+}
+
+
+function loadProductToEdit(obj, index, selectedProd)
+{
+    resetProductForm("product_0");
+    var p = (selectedProd) ? selectedProd : flyerProducts[index];
+    console.log(p);
+    $("#productNameEn").val(p.PRODUCT_NAME_EN);
+    $("#productNameAr").val(p.PRODUCT_NAME_AR);
+    $("#productPrice").val(p.PRODUCT_PRICE);
+    $("#manufactureDD").val(p.MANUFACTURE_ID);
+    $("#manufactureDD").trigger('change');
+    $("#categoryDD").val(p.CATEGORY_ID);
+    loadCategoriesTypesData(p.CATEGORY_ID, $("#categoryDD"), function () {
+        $("#productTypeDD").val(p.TYPE_ID);
+        loadTypeSpecs($("#productTypeDD"), function () {
+            //p.TYPE_SPECS
+            for (var i = 0; i < p.TYPE_SPECS.length ; i++) {
+                var input = $("#prodSpecs").find("#typeSpecs" + i);
+                if($(input).is('input') && $(input).attr('type') == 'checkbox')
+                {
+                    if (p.TYPE_SPECS[i].TEMPLATE_VALUE == 'on') $(input).attr('checked', true);
+                    else $(input).attr('checked', false);
+                }
+                else if($(input).is('input') && $(input).attr('type') != 'checkbox')
+                {
+                    $(input).val(p.TYPE_SPECS[i].TEMPLATE_VALUE);
+                }
+            }
+        });
+    });
+    
+    var imgURLs = p.PRODUCT_IMAGE.split("&&");
+    for (var i = 0 ; i < imgURLs.length; i++)
+    {
+        var url = imgURLs[i];
+        if (url != '')
+            $("#uploadedImagesList").append('<li><a target="_blank" href="' + url + '" download="' + url.split('/')[3] + '" > ' + url.split('/')[3] + '</a></li>');
+    }
+    
+    $("#productLocationDD").val(p.BRANCH_ID);
+    $("#offerTypeDD").val(p.PROD_OFF_TYPE_ID);
+    $("#offerTypeDD").trigger("change");
+    $("#productLocationDD").trigger("change");
+
+    if(p.PROD_OFF_TYPE_ID == '5')
+    {
+        //productBundleTBody
+        //p.bundleList
+        bundleList = new Array();
+        for (var i = 0 ; i < p.bundleList.length ; i++)
+        {
+            var pInBundle = p.bundleList[i];
+            bundleINDEX = i + 1;
+            bundleList.push(pInBundle);
+
+            var temp = "<tr><td>#NAME#</td><td>#CATEGORY#</td><td>#TYPE#</td><td>#MANUFACTURE#</td><td>#PRICE#</td><td onclick='deleteFromBundle($(this), " + pInBundle.PRODUCT_ID + ")'><i class='fa fa-trash-o' aria-hidden='true'></i></td>" +
+                "<td onclick='editFromBundle($(this), " + pInBundle.PRODUCT_ID + ")'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></td></tr>"
+
+            temp = temp.replace('#NAME#', pInBundle.PRODUCT_NAME_EN);
+            temp = temp.replace('#CATEGORY#', pInBundle.CATEGORY_NAME_EN);
+            temp = temp.replace('#TYPE#', pInBundle.TYPE_NAME_EN);
+            temp = temp.replace('#MANUFACTURE#', pInBundle.MANUFACTURE_NAME_EN);
+            temp = temp.replace('#PRICE#', pInBundle.PRODUCT_PRICE);
+
+            $("#productBundleTBody").append(temp);
+        }
+    }
+    else
+    {
+        bundleList = null;
+        //p.PROD_OFF_TYP_SPECS
+        var offerTypeInputs = $("#prodOfferTypeDiv input");
+        for (var i = 0; i < offerTypeInputs.length ; i++)
+        {
+            $(offerTypeInputs[i]).val(p.PROD_OFF_TYP_SPECS["PROD_OFF_TYP_ATTR_" + (i + 1)]);
+        }
+    }
+
+    if (p.PRODUCT_ATTR_1 != null && p.PRODUCT_ATTR_1 != '') $("#productAttr_1").val(p.PRODUCT_ATTR_1);
+    if (p.PRODUCT_ATTR_2 != null && p.PRODUCT_ATTR_2 != '') $("#productAttr_2").val(p.PRODUCT_ATTR_2);
+    if (p.PRODUCT_ATTR_3 != null && p.PRODUCT_ATTR_3 != '') $("#productAttr_3").val(p.PRODUCT_ATTR_3);
+    if (p.PRODUCT_ATTR_4 != null && p.PRODUCT_ATTR_4 != '') $("#productAttr_4").val(p.PRODUCT_ATTR_4);
+    if (p.PRODUCT_ATTR_5 != null && p.PRODUCT_ATTR_5 != '') $("#productAttr_5").val(p.PRODUCT_ATTR_5);
+
+    $("#smartTags").tagsinput('add', p.PRODUCT_TAGS);
+
+    $("#dateFrom").val(p.DATE_FROM.replace('T', ' '));
+    $("#dateTo").val(p.DATE_TO.replace('T', ' '));
+    $("#product_0").attr('productIndex', index);
+}
+
+
+function editFromBundle(obj, index)
+{
+    bundleProduct = (bundleList.filter(function (el) {
+        return el.PRODUCT_ID === index;
+    }))[0];
+    openAddBundleProductsModal($("#prodOfferTypeDiv a")[0]);
+}
+
+function loadBundleProductForEdit()
+{
+    var myVar = setInterval(function () {
+        if ($("#manufactureDD option").size() > 1 && $("#categoryDD option").size() > 1 && $("#productLocationDD option").size() > 1) {
+            loadProductToEdit(null, parent.bundleProduct.PRODUCT_ID, parent.bundleProduct);
+            clearInterval(myVar);
+        }
+    }, 1000);
+    
+}

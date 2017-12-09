@@ -42,7 +42,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <link href="../css/custom.css" rel="stylesheet">
     <link href='../css/jquery-loading.min.css' rel='stylesheet' type='text/css'>
 
+    <script src="../js/jquery.form-validator.min.js"></script>
     <script src="../js/jquery-loading.js"></script>
+    
+    <link href="../css/jquery.datetimepicker.min.css" rel='stylesheet' type='text/css'>
+    <script src="../js/jquery.datetimepicker.full.min.js"></script>
+
+    <link href="../js/tagsInput/bootstrap-tagsinput.css" rel="stylesheet" />
+    <script src="../js/tagsInput/bootstrap-tagsinput.min.js"></script>
 </head>
 <body class="cbp-spmenu-push">
     <div class="main-content">
@@ -90,12 +97,161 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 <h2>Edit Flyer Products</h2>
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                <button type="button" class="btn btn-default btn-success btn-lg" onclick="AddMoreProduct()">Add more Product</button>
+                                <button type="button" class="btn btn-default btn-success btn-lg" onclick="submitProducts()">Submit Products</button>
                             </div>
                         </div>
                     </div>
 
+                    <div class="panel panel-widget forms-panel">
+                        <div class="forms">
+                            <div class="form-grids widget-shadow" data-example-id="basic-forms">
+                                <div class="form-title">
+                                    <h4>List Of Products</h4>
+                                </div>
+                                <div class="form-body">
+                                    <table class="table table-striped table-bordered bootstrap-datatable datatable">
+                                        <thead>
+                                            <tr>
+                                                <th>Product Name</th>
+                                                <th>Price</th>
+                                                <th>Manufacture</th>
+                                                <th>Category</th>
+                                                <th>Type</th>
+                                                <th>Branch</th>
+                                                <th>Offer Type</th>
+                                                <th>Offer Specs</th>
+                                                <th>Remove</th>
+                                                <th>Edit</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="productTBody">
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-widget forms-panel" id="product_0">
+                        <div class="forms">
+                            <div class="form-grids widget-shadow" data-example-id="basic-forms">
+                                <div class="form-title">
+                                    <h4>Product Details :</h4>
+                                    <ul class="panel-tools">
+                                        <li><a class="icon minimise-tool"><i class="fa fa-minus"></i></a></li>
+							          </ul>
+                                </div>
+                                <div class="form-body">
+                                    <form>
+                                         <div class="form-group">
+                                            <label for="productNameEn">Name EN</label>
+                                            <input type="text" required="required" class="form-control" id="productNameEn" required="required" placeholder="Product Name En" onkeydown="$(this).parents('.forms').find('h4').text('Product Details : ' + $(this).val());">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="productNameAr">Name AR</label>
+                                            <input type="text" required="required" class="form-control" id="productNameAr" required="required" placeholder="Product Name Ar">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="productPrice">Price</label>
+                                            <input type="number" required="required" class="form-control" id="productPrice" required="required" placeholder="Product Price">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="manufactureDD">Manufacturer</label>
+                                            <select name="manufactureDD" required="required" id="manufactureDD" class="form-control1" required="required">
+                                                <option value="-1">Select Product Manufacturer</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="categoryDD">Category</label>
+                                            <select name="categoryDD" required="required" id="categoryDD" class="form-control1" required="required">
+                                                <option value="-1">Select Product Category</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="productTypeDD">Product Type</label>
+                                            <select name="productTypeDD" required="required" id="productTypeDD" class="form-control1" required="required">
+                                                <option value="-1">Select Product Type</option>
+                                            </select>
+                                        </div>
+                                        <div class="hidden" id="prodSpecs">
+                                            <label for="prodSpecsDD"></label>
+                                            
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="productImageFile">Image</label>
+                                            <input type="file" required="required" id="productImageFile" name="productImageFile" required="required">
+                                            <p class="help-block">Upload Product Image - Available Formats : pdf/png/jpg</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="productImageFile">Image</label>
+                                            <table style="width: 100%;">
+                                                <tr>
+                                                    <td>
+                                                         <div style="width: 200px; height: 200px; border: 1px solid #d2d2d2;" id="pasteTarget">
+                                                            Click and paste here.
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <ul id="uploadedImagesList">
+                                                            <li>Pasted Files : </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="productLocationDD">Product Location in Branch</label>
+                                            <select required="required" name="productLocationDD" id="productLocationDD" class="form-control1" required="required">
+                                                <option value="-1">Product Location in Branch</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="offerTypeDD">Offer Type</label>
+                                            <select required="required" name="offerTypeDD" id="offerTypeDD" class="form-control1" required="required">
+                                                <option value="-1">Select Product Type</option>
+                                            </select>
+                                        </div>
+                                        <div id="prodOfferTypeDiv">
 
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="dateFrom">Date From</label>
+                                            <input type="text" required="required" data-validation="required" ReadOnly="readonly" required="" Class="form-control datePicker" id="dateFrom" name="dateFrom" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="dateTo">Date To</label>
+                                            <input type="text" required="required" data-validation="required" ReadOnly="readonly" required="" class="form-control datePicker" id="dateTo" name="dateTo" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="productAttr_1">Product Attribute 1</label>
+                                            <input type="text" required="required" class="form-control" id="productAttr_1" placeholder="Product Specs">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="productAttr_2">Product Attribute 2</label>
+                                            <input type="text" class="form-control" id="productAttr_2" placeholder="Product Specs">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="productAttr_3">Product Attribute 3</label>
+                                            <input type="text" class="form-control" id="productAttr_3" placeholder="Product Specs">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="productAttr_4">Product Attribute 4</label>
+                                            <input type="text" class="form-control" id="productAttr_4" placeholder="Product Specs">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="productAttr_5">Product Attribute 5</label>
+                                            <input type="text" class="form-control" id="productAttr_5" placeholder="Product Specs">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="smartTags">Tags</label>
+                                            <input type="text" data-role="tagsinput" class="form-control" id="smartTags" required="required" placeholder="Smart tags For Product">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                    
                    
                     
@@ -110,7 +266,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             </button>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                            <input type="submit" value="Submit Products" class="btn btn-default btn-warning btn-lg pull-right" ID="productSubmitBtn" OnClick="SubmitFlyerProducts()" />
+                            <input type="button" value="Save Products" class="btn btn-default btn-warning btn-lg pull-right" ID="productSubmitBtn" OnClick="SaveProduct()" />
                         </div>
                     </div>
                 </div>
@@ -138,6 +294,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </div>
         <!--//footer-->
     </div>
+    <!-- MODAL -->
+
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+    
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" id="modalClose">&times;</button>
+              <h4 class="modal-title" id="modalHeader"></h4>
+            </div>
+            <div class="modal-body" id="modalBody">
+              
+            </div>
+            <div class="modal-footer" id="modalFooter">
+              
+            </div>
+          </div>
+      
+        </div>
+      </div>
     <!-- Classie -->
     <script>
 			
@@ -154,10 +331,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!--//max-plugin-->
 
     <!--scrolling js-->
-    <script src="/js/jquery.nicescroll.js"></script>
-    <script src="/js/scripts.js"></script>
-    <!--//scrolling js-->
-    <script src="/js/app.js"></script>
+    <script src="../js/jquery.nicescroll.js"></script>
+    <script src="../js/scripts.js"></script>
+    <script src="../js/Templates.js"></script>
+    <script src="../js/Utils.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/Module/ProductsScripts.js"></script>
+    <script src="../js/FileUploader-CopyPaste.js"></script>
 
     <script>
         $(document).ready(function () {

@@ -29,23 +29,36 @@ var PRODUCT = function () {
 		
         PRODUCT_NAME_EN : '' ,
         PRODUCT_NAME_AR: '',
-        PRODUCT_PRICE: '',
+        PRODUCT_PRICE: 0.0,
 		
         TYPE_ID: 0,
+        TYPE_NAME_EN: '',
+        TYPE_NAME_AR: '',
+
         CATEGORY_ID: 0,
+        CATEGORY_NAME_EN: '',
+        CATEGORY_NAME_AR: '',
+
         MANUFACTURE_ID: 0,
+        MANUFACTURE_NAME_EN: '',
+        MANUFACTURE_NAME_AR: '',
 
         TYPE_SPECS : new Array(),
 
         PRODUCT_IMAGE: new IMAGE_OBJECT(),
+
         BRANCH_ID: 0,
+        BRANCH_NAME_EN: '',
+        BRANCH_NAME_AR: '',
 		
         PRODUCT_TAGS : '' ,
 		
         DATE_FROM : '' ,
         DATE_TO : '' ,
 
-        PROD_OFF_TYPE_ID : 0,
+        PROD_OFF_TYPE_ID: 0,
+        PROD_OFF_TYPE_NAME_EN: '',
+        PROD_OFF_TYPE_NAME_AR: '',
 
         PROD_OFF_TYP_ATTR_ID: 0,
         PROD_OFF_TYP_SPECS: new PRODUCT_OFFER_TYPE_SPECS(),
