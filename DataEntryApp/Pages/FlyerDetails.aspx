@@ -163,7 +163,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                                 <th>Product Name</th>
                                                 <th>Category</th>
                                                 <th>Type</th>
-                                                <th>Provider</th>
+                                                <th>Manufactures</th>
                                                 <th>Image</th>
                                                 <th>Specs</th>
                                             </tr>

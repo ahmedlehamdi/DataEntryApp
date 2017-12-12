@@ -179,7 +179,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         </div>
                                         <div class="form-group">
                                             <label for="productImageFile">Image</label>
-                                            <input type="file" required="required" id="productImageFile" name="productImageFile" required="required">
+                                            <input type="file" id="productImageFile" name="productImageFile" required="required">
                                             <p class="help-block">Upload Product Image - Available Formats : pdf/png/jpg</p>
                                         </div>
                                         <div class="form-group">
@@ -341,6 +341,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
     <script>
         $(document).ready(function () {
+            localStorage.setItem('actionType', 'edit');
             loadFlyerProductsForEdit();
         });
     </script>

@@ -332,7 +332,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script>
         $(document).ready(function () {
             productCount = 0;
-
+            localStorage.setItem('actionType', 'add');
             getAllProductManufactures();
             loadProductCategoriesData();
             getAllProductBranches();

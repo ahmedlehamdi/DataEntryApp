@@ -179,7 +179,24 @@ function validateForm(formID) {
             for (var i = 0 ; i < inputs.size() ; i++) {
                 if ($(inputs[i]).attr('required') == 'required' || $(inputs[i]).attr('required') == '') {
                     if ($(inputs[i]).is('input')) {
-                        if ($(inputs[i]).val().trim() == '') {
+                        if ($(inputs[i]).attr('type') == 'file')
+                        {
+                            var fileList = document.getElementById($(inputs[i]).attr('id')).files;
+                            if(fileList.length <= 0)
+                            {
+                                if($("#uploadedImagesList").find('li').size() <= 1)
+                                {
+                                    result = false;
+                                }
+                                else {
+                                    result = true;
+                                }
+                            }
+                            else {
+                                result = true;
+                            }
+                        }
+                        else if ($(inputs[i]).val().trim() == '') {
                             $(inputs[i]).css('border', '1px solid red');
                             $(inputs[i]).on('change', function () {
                                 if ($(this).val().trim() != '') $(this).css('border', '');
@@ -252,7 +269,7 @@ function jsonToObj(jsonStr, object) {
         }
         return object;
     }
-    catch (e) { console.log("Exception in jsonToObj"); console.log(e); }
+    catch (e) { console.log("Exception in jsonToObj"); console.log(e); eval(jsonStr); return '';}
 }
 
 function jsonToObjList(jsonStr, object) {
@@ -274,7 +291,7 @@ function jsonToObjList(jsonStr, object) {
         }
         return objList        
     }
-    catch (e) { console.log("Exception in jsonToObjList"); console.log(e); }
+    catch (e) { console.log("Exception in jsonToObjList"); console.log(e); eval(jsonStr); return ''; }
 }
 
 function clone(obj) {
@@ -335,6 +352,15 @@ function getImageFileFromInput(inputID, folder, prodName)
             fileObj.imageFile = imagesList[i];
             filesList.push(fileObj);
         }
+    }
+    else if ($("#uploadedImagesList li").size() > 1)
+    {
+        var imgsStr = '';
+        for (var i = 0 ; i < $("#uploadedImagesList li a").size() ; i++)
+        {
+            imgsStr += $($("#uploadedImagesList li a")[i]).attr('href');
+        }
+        filesList.push(imgsStr);
     }
     else
     {

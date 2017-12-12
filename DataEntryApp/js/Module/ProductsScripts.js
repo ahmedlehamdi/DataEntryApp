@@ -2,6 +2,7 @@
 var productList = new Array(), productINDEX = 0;
 var imagesList = new Array();
 var bundleProduct = null;
+var selectedProductToEdit = null, selectedProductIndex = null;
 
 /*****************************************Retrieveing Required Data  To Add Product **************************************/
 
@@ -226,7 +227,9 @@ function loadProductOfferTypeFields(obj) {
         $(prodWidget).find("#prodOfferTypeDiv").html(temp);
         bundleProdCount = 0;
         bundleProducts = {};
-        var tableTemp = '<div class="form-body"> <table class="table table-striped table-bordered bootstrap-datatable datatable"> <thead> <tr><th>Product Name</th> <th>Category</th> <th>Type</th> <th>Provider</th> <th>Price</th> <th>Remove</th> <th>Edit</th> </tr></thead> <tbody id="productBundleTBody"></tbody> </table> </div>';
+        
+        var actionType = localStorage.getItem('actionType');
+        var tableTemp = '<div class="form-body"> <table class="table table-striped table-bordered bootstrap-datatable datatable"> <thead> <tr><th>Product Name</th> <th>Category</th> <th>Type</th> <th>Provider</th> <th>Price</th> <th>Remove</th>' + ((actionType == 'edit') ? ('<th>Edit</th>') : ('')) + '</tr></thead> <tbody id="productBundleTBody"></tbody> </table> </div>';
         $(prodWidget).find("#prodOfferTypeDiv").append(tableTemp);
         $("#productBundleTBody").html('');
     }
@@ -284,13 +287,16 @@ function openAddBundleProductsModal(obj) {
 
 function saveProductsInBundle() {
     parent.bundleINDEX++;
+
+    var actionType = localStorage.getItem('actionType');
     var productObject = createProductObject("#product_0", parent.bundleINDEX);
     if (productObject != null) {
         
         productObject.PRODUCT_ID = parent.bundleINDEX;
         parent.bundleList.push(productObject);
         
-        var temp = "<tr><td>#NAME#</td><td>#CATEGORY#</td><td>#TYPE#</td><td>#MANUFACTURE#</td><td>#PRICE#</td><td onclick='deleteFromBundle($(this), " + parent.bundleINDEX + ")'><i class='fa fa-trash-o' aria-hidden='true'></i></td></tr>"
+        var temp = "<tr><td>#NAME#</td><td>#CATEGORY#</td><td>#TYPE#</td><td>#MANUFACTURE#</td><td>#PRICE#</td><td onclick='deleteFromBundle($(this), " + parent.bundleINDEX + ")'><i class='fa fa-trash-o' aria-hidden='true'></i></td>" 
+            + ((actionType == 'edit') ? "<td onclick='editFromBundle($(this), " + parent.bundleINDEX + ")'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></td></tr>" : "</tr>");
 
         temp = temp.replace('#NAME#', $("#product_0 #productNameEn").val());
         temp = temp.replace('#CATEGORY#', $("#product_0 #categoryDD option:selected").text());
@@ -405,14 +411,22 @@ function SaveProduct()
         return false;
     }
     productINDEX++;
+    if (selectedProductIndex != null) {
+        productList = productList.filter(function (el) {
+            return el.PRODUCT_ID !== selectedProductIndex;
+        });
+        console.log($("#productTBody tr[data-index='" + selectedProductIndex + "']"));
+        $("#productTBody tr[data-index='" + selectedProductIndex + "']").remove();
+    }
     var productObject = createProductObject("#product_0", productINDEX);
+    var actionType = localStorage.getItem('actionType');
     if (productObject != null) {
 
         productObject.PRODUCT_ID = productINDEX;
 
         productList.push(productObject);
 
-        var temp = "<tr><td>#ProductName#</td><td>#Price#</td><td>#Manufacture#</td><td>#Category#</td><td>#Type#</td><td>#Branch#</td><td>#OfferType#</td><td>#OfferSpecs#</td><td onclick='deleteFromProducts($(this), " + productINDEX + ")'><i class='fa fa-trash-o' aria-hidden='true'></i></td></tr>";
+        var temp = "<tr data-index='" + productINDEX + "'><td>#ProductName#</td><td>#Price#</td><td>#Manufacture#</td><td>#Category#</td><td>#Type#</td><td>#Branch#</td><td>#OfferType#</td><td>#OfferSpecs#</td><td onclick='deleteFromProducts($(this), " + productINDEX + ")'><i class='fa fa-trash-o' aria-hidden='true'></i></td>" + (actionType == 'edit' ? "<td onclick='loadProductToEdit($(this), " + productINDEX + ")'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></td></tr>" : '</tr>') + "</tr>";
 
         temp = temp.replace('#ProductName#', $("#product_0 #productNameEn").val());
         temp = temp.replace('#Price#', $("#product_0 #productPrice").val());
@@ -557,11 +571,13 @@ function loadFlyerProductsForEdit() {
     AjaxCall("../Pages/EditFlyerDetails_Step2.aspx?fnID=13&flyerID=" + getUrlQString().FlyerID
        , function (data) {
            flyerProducts = '';
+           
            flyerProducts = jsonToObjList(data, new PRODUCT());
+           console.log(flyerProducts);
            if (flyerProducts != '') {
                for (var i = 0 ; i < flyerProducts.length ; i++) {
                    var product = flyerProducts[i];
-                   var temp = "<tr><td>#ProductName#</td><td>#Price#</td><td>#Manufacture#</td><td>#Category#</td><td>#Type#</td><td>#Branch#</td><td>#OfferType#</td><td>#OfferSpecs#</td><td onclick='deleteFromProducts($(this), " + i + ")'><i class='fa fa-trash-o' aria-hidden='true'></i></td>"
+                   var temp = "<tr data-index='" + i + "'><td>#ProductName#</td><td>#Price#</td><td>#Manufacture#</td><td>#Category#</td><td>#Type#</td><td>#Branch#</td><td>#OfferType#</td><td>#OfferSpecs#</td><td onclick='deleteFromProducts($(this), " + i + ")'><i class='fa fa-trash-o' aria-hidden='true'></i></td>"
                        + "<td onclick='loadProductToEdit($(this), " + i + ")'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></td></tr>";
 
                    temp = temp.replace('#ProductName#', product.PRODUCT_NAME_EN);
@@ -586,12 +602,12 @@ function loadFlyerProductsForEdit() {
 
                    $("#productTBody").append(temp);
                }
-               getAllProductManufactures();
-               loadProductCategoriesData();
-               getAllProductBranches();
-               getAllProductOfferTypes(false);
            }
        });
+        getAllProductManufactures();
+        loadProductCategoriesData();
+        getAllProductBranches();
+        getAllProductOfferTypes(false);
 }
 
 
@@ -599,7 +615,8 @@ function loadProductToEdit(obj, index, selectedProd)
 {
     resetProductForm("product_0");
     var p = (selectedProd) ? selectedProd : flyerProducts[index];
-    console.log(p);
+    if (!selectedProd) {selectedProductIndex = index;}
+    //console.log(p);
     $("#productNameEn").val(p.PRODUCT_NAME_EN);
     $("#productNameAr").val(p.PRODUCT_NAME_AR);
     $("#productPrice").val(p.PRODUCT_PRICE);
@@ -624,7 +641,6 @@ function loadProductToEdit(obj, index, selectedProd)
             }
         });
     });
-    
     var imgURLs = p.PRODUCT_IMAGE.split("&&");
     for (var i = 0 ; i < imgURLs.length; i++)
     {

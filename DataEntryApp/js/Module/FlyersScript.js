@@ -179,14 +179,14 @@ function loadFlyerDetails() {
            eval(data);
            console.log(flyerProducts);
            if (flyerProducts != '') {
-               var template = '<tr> <td>#ID#</td><td>#ProductName#</td><td>#Category#</td><td>#Type#</td><td>#Provider#</td><td>#Image#</td><td>#Specs#</td></tr>';
+               var template = '<tr> <td>#ID#</td><td>#ProductName#</td><td>#Category#</td><td>#Type#</td><td>#MANUFACTURE#</td><td>#Image#</td><td>#Specs#</td></tr>';
                for (var i = 0 ; i < flyerProducts.length ; i++) {
                    var temp = template;
                    temp = temp.replace("#ID#", i);
                    temp = temp.replace("#ProductName#", flyerProducts[i].PRODUCT_NAME_EN);
                    temp = temp.replace("#Category#", flyerProducts[i].CATEGORY_NAME_EN);
                    temp = temp.replace("#Type#", flyerProducts[i].TYPE_NAME_EN);
-                   temp = temp.replace("#Provider#", flyerProducts[i].PROVIDER_NAME_EN);
+                   temp = temp.replace("#MANUFACTURE#", flyerProducts[i].MANUFACTURE_NAME_EN);
                    temp = temp.replace("#Image#", "<a target='_blank' href='" + flyerProducts[i].PRODUCT_IMAGE + "' download='" + flyerProducts[i].PRODUCT_IMAGE.split('/')[3] + "' > " + flyerProducts[i].PRODUCT_IMAGE.split('/')[3] + "</a>");
                    var specs = (flyerProducts[i].SPECS_ATTR_1 != '' && flyerProducts[i].SPECS_ATTR_1 != null) ? ("- " + flyerProducts[i].SPECS_ATTR_1) : ("");
                    specs += (flyerProducts[i].SPECS_ATTR_2 != '' && flyerProducts[i].SPECS_ATTR_1 != null) ? ("<br/> - " + flyerProducts[i].SPECS_ATTR_2) : ("");
