@@ -412,8 +412,8 @@ function SaveProduct()
     }
     productINDEX++;
     if (selectedProductIndex != null) {
-        productList = productList.filter(function (el) {
-            return el.PRODUCT_ID !== selectedProductIndex;
+        productList = productList.filter(function (el, i) {
+            return i !== selectedProductIndex;
         });
         console.log($("#productTBody tr[data-index='" + selectedProductIndex + "']"));
         $("#productTBody tr[data-index='" + selectedProductIndex + "']").remove();
@@ -476,11 +476,12 @@ function resetProductForm(div) {
     $("#" + div + " #uploadedImagesList").html('<li>Pasted Files : </li>');
 }
 
-function deleteFromProducts(tdObj, index)
+function deleteFromProducts(tdObj, index, editFlag)
 {
-    productList = productList.filter(function (el) {
-        return el.PRODUCT_ID !== index;
+    productList = productList.filter(function (el, i) {
+        return (!editFlag) ? el.PRODUCT_ID !== index : i !== index;
     });
+    
     $(tdObj).parent().remove();
 }
 
@@ -494,21 +495,26 @@ function submitProducts()
         var imagesCount = 0;
         for (var i = 0 ; i < prodList.length ; i++)
         {
-            var imageObj = (prodList[i].PRODUCT_IMAGE)[0];
-            imageFD.append("_file_" + imagesCount, imageObj.imageFile);
-            imageFD.append("_file_Name_" + imagesCount, imageObj.fileName);
-            prodList[i].PRODUCT_IMAGE = imageObj.fileName;
-
-            imagesCount++;
-            if (prodList[i].bundleList.length > 0)
+            if (prodList[i].PRODUCT_IMAGE instanceof Array) {
+                var imageObj = (prodList[i].PRODUCT_IMAGE)[0];
+                imageFD.append("_file_" + imagesCount, imageObj.imageFile);
+                imageFD.append("_file_Name_" + imagesCount, imageObj.fileName);
+                prodList[i].PRODUCT_IMAGE = imageObj.fileName;
+                imagesCount++;
+            }
+            
+            if (prodList[i].bundleList != null && prodList[i].bundleList.length > 0)
             {
                 for (var u = 0 ; u < prodList[i].bundleList.length ; u++)
                 {
-                    var bndlImgObj = (prodList[i].bundleList[u].PRODUCT_IMAGE)[0];
-                    imageFD.append("_file_bundle_" + imagesCount, bndlImgObj.imageFile);
-                    imageFD.append("_file_bundle_Name_" + imagesCount, bndlImgObj.fileName);
-                    prodList[i].bundleList[u].PRODUCT_IMAGE = bndlImgObj.fileName;
-                    imagesCount++;
+                    if (prodList[i].bundleList[u].PRODUCT_IMAGE instanceof Array)
+                    {
+                        var bndlImgObj = (prodList[i].bundleList[u].PRODUCT_IMAGE)[0];
+                        imageFD.append("_file_bundle_" + imagesCount, bndlImgObj.imageFile);
+                        imageFD.append("_file_bundle_Name_" + imagesCount, bndlImgObj.fileName);
+                        prodList[i].bundleList[u].PRODUCT_IMAGE = bndlImgObj.fileName;
+                        imagesCount++;
+                    }
                 }
             }
         }
@@ -574,10 +580,11 @@ function loadFlyerProductsForEdit() {
            
            flyerProducts = jsonToObjList(data, new PRODUCT());
            console.log(flyerProducts);
+           productList = flyerProducts;
            if (flyerProducts != '') {
                for (var i = 0 ; i < flyerProducts.length ; i++) {
                    var product = flyerProducts[i];
-                   var temp = "<tr data-index='" + i + "'><td>#ProductName#</td><td>#Price#</td><td>#Manufacture#</td><td>#Category#</td><td>#Type#</td><td>#Branch#</td><td>#OfferType#</td><td>#OfferSpecs#</td><td onclick='deleteFromProducts($(this), " + i + ")'><i class='fa fa-trash-o' aria-hidden='true'></i></td>"
+                   var temp = "<tr data-index='" + i + "'><td>#ProductName#</td><td>#Price#</td><td>#Manufacture#</td><td>#Category#</td><td>#Type#</td><td>#Branch#</td><td>#OfferType#</td><td>#OfferSpecs#</td><td onclick='deleteFromProducts($(this), " + i + ", true)'><i class='fa fa-trash-o' aria-hidden='true'></i></td>"
                        + "<td onclick='loadProductToEdit($(this), " + i + ")'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></td></tr>";
 
                    temp = temp.replace('#ProductName#', product.PRODUCT_NAME_EN);

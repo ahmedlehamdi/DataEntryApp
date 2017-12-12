@@ -1,0 +1,84 @@
+********** 12/12/2017 9:45:10 PM **********
+Inner Exception Type: System.TimeoutException
+Inner Exception: The HTTP request to 'http://localhost:1876/Service1.svc' has exceeded the allotted timeout of 00:01:00. The time allotted to this operation may have been a portion of a longer timeout.
+Inner Source: System.ServiceModel
+Inner Stack Trace: 
+   at System.ServiceModel.Channels.HttpChannelUtilities.ProcessGetResponseWebException(WebException webException, HttpWebRequest request, HttpAbortReason abortReason)
+   at System.ServiceModel.Channels.HttpChannelFactory`1.HttpRequestChannel.HttpChannelRequest.WaitForReply(TimeSpan timeout)
+   at System.ServiceModel.Channels.RequestChannel.Request(Message message, TimeSpan timeout)
+Exception Type: System.TimeoutException
+Exception: The request channel timed out while waiting for a reply after 00:01:00. Increase the timeout value passed to the call to Request or increase the SendTimeout value on the Binding. The time allotted to this operation may have been a portion of a longer timeout.
+Source: AddNewFlyer_Step2.aspx/submitProductsObjects
+Stack Trace: 
+
+Server stack trace: 
+   at System.ServiceModel.Channels.RequestChannel.Request(Message message, TimeSpan timeout)
+   at System.ServiceModel.Dispatcher.RequestChannelBinder.Request(Message message, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   at System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   at System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   at DataEntryApp.ServiceReference1.IService1.submitAllProducts(String productsListSTR)
+   at DataEntryApp.ServiceReference1.Service1Client.submitAllProducts(String productsListSTR) in C:\Users\ahmed\Desktop\Work\Best Offer\DataEntryApp\DataEntryApp\Service References\ServiceReference1\Reference.cs:line 1444
+   at DataEntryApp.Pages.AddNewFlyer_Step2.submitProductsObjects(List`1 obj) in C:\Users\ahmed\Desktop\Work\Best Offer\DataEntryApp\DataEntryApp\Pages\AddNewFlyer_Step2.aspx.cs:line 432
+
+********** 12/12/2017 9:46:14 PM **********
+Inner Exception Type: System.TimeoutException
+Inner Exception: The HTTP request to 'http://localhost:1876/Service1.svc' has exceeded the allotted timeout of 00:01:00. The time allotted to this operation may have been a portion of a longer timeout.
+Inner Source: System.ServiceModel
+Inner Stack Trace: 
+   at System.ServiceModel.Channels.HttpChannelUtilities.ProcessGetResponseWebException(WebException webException, HttpWebRequest request, HttpAbortReason abortReason)
+   at System.ServiceModel.Channels.HttpChannelFactory`1.HttpRequestChannel.HttpChannelRequest.WaitForReply(TimeSpan timeout)
+   at System.ServiceModel.Channels.RequestChannel.Request(Message message, TimeSpan timeout)
+Exception Type: System.TimeoutException
+Exception: The request channel timed out while waiting for a reply after 00:00:59.9971006. Increase the timeout value passed to the call to Request or increase the SendTimeout value on the Binding. The time allotted to this operation may have been a portion of a longer timeout.
+Source: Home.aspx/retrieveAllFlyersData
+Stack Trace: 
+
+Server stack trace: 
+   at System.ServiceModel.Channels.RequestChannel.Request(Message message, TimeSpan timeout)
+   at System.ServiceModel.Dispatcher.RequestChannelBinder.Request(Message message, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   at System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   at System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   at DataEntryApp.ServiceReference1.IService1.getAllFlyers(Int32 userID)
+   at DataEntryApp.ServiceReference1.Service1Client.getAllFlyers(Int32 userID) in C:\Users\ahmed\Desktop\Work\Best Offer\DataEntryApp\DataEntryApp\Service References\ServiceReference1\Reference.cs:line 1284
+   at DataEntryApp.Pages.Home.retrieveAllFlyersData() in C:\Users\ahmed\Desktop\Work\Best Offer\DataEntryApp\DataEntryApp\Pages\Home.aspx.cs:line 54
+
+********** 12/12/2017 10:04:17 PM **********
+Inner Exception Type: System.Net.WebException
+Inner Exception: Unable to connect to the remote server
+Inner Source: System
+Inner Stack Trace: 
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at System.ServiceModel.Channels.HttpOutput.WebRequestHttpOutput.GetOutputStream()
+Exception Type: System.ServiceModel.EndpointNotFoundException
+Exception: There was no endpoint listening at http://localhost:1876/Service1.svc that could accept the message. This is often caused by an incorrect address or SOAP action. See InnerException, if present, for more details.
+Source: Home.aspx/retrieveAllFlyersData
+Stack Trace: 
+
+Server stack trace: 
+   at System.ServiceModel.Channels.HttpOutput.WebRequestHttpOutput.GetOutputStream()
+   at System.ServiceModel.Channels.HttpOutput.Send(TimeSpan timeout)
+   at System.ServiceModel.Channels.HttpChannelFactory`1.HttpRequestChannel.HttpChannelRequest.SendRequest(Message message, TimeSpan timeout)
+   at System.ServiceModel.Channels.RequestChannel.Request(Message message, TimeSpan timeout)
+   at System.ServiceModel.Dispatcher.RequestChannelBinder.Request(Message message, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   at System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   at System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   at DataEntryApp.ServiceReference1.IService1.getAllFlyers(Int32 userID)
+   at DataEntryApp.ServiceReference1.Service1Client.getAllFlyers(Int32 userID) in C:\Users\ahmed\Desktop\Work\Best Offer\DataEntryApp\DataEntryApp\Service References\ServiceReference1\Reference.cs:line 1284
+   at DataEntryApp.Pages.Home.retrieveAllFlyersData() in C:\Users\ahmed\Desktop\Work\Best Offer\DataEntryApp\DataEntryApp\Pages\Home.aspx.cs:line 54
+
