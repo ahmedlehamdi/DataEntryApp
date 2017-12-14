@@ -223,7 +223,7 @@ function loadProductOfferTypeFields(obj) {
         $(prodWidget).find("#prodOfferTypeDiv").append(xtemp);
     }
     else if (ddElem.val() == '5') {     // Bundle Multiple Products 
-        var temp = '<div class="form-group"><a href="#" onclick="openAddBundleProductsModal(this);">Add Products in Bundle</a></div>';
+        var temp = '<div class="form-group"><a href="javascript:void(0)" onclick="openAddBundleProductsModal(this);">Add Products in Bundle</a></div>';
         $(prodWidget).find("#prodOfferTypeDiv").html(temp);
         bundleProdCount = 0;
         bundleProducts = {};
@@ -276,7 +276,7 @@ function loadProductOfferTypeFields(obj) {
 
 // Open Bundle Modal
 function openAddBundleProductsModal(obj) {
-    var body = "<iframe id='bundleProdFrame' class='' src='/Pages/AddProductsInBundle.aspx'></iframe>";
+    var body = "<iframe id='bundleProdFrame' class='' src='/Pages/AddProductsInBundle.aspx?FlyerID=" + getUrlQString().FlyerID + "'></iframe>";
     var productsBundleCount = $(obj).parent().parent().find('table #productBundleTBody tr').size();
     //console.log(productTBody);
     bundleProdCount = productsBundleCount;
@@ -474,6 +474,9 @@ function resetProductForm(div) {
     
     $("#" + div + " #prodOfferTypeDiv").html('');
     $("#" + div + " #uploadedImagesList").html('<li>Pasted Files : </li>');
+    $("#" + div + " #pasteTarget").html('Click and Paste Image Here');
+    filesCount = 0;
+    imagesList = new Array();
 }
 
 function deleteFromProducts(tdObj, index, editFlag)
@@ -495,7 +498,7 @@ function submitProducts()
         var imagesCount = 0;
         for (var i = 0 ; i < prodList.length ; i++)
         {
-            if (prodList[i].PRODUCT_IMAGE instanceof Array) {
+            if (Array.isArray(prodList[i].PRODUCT_IMAGE)) {
                 var imageObj = (prodList[i].PRODUCT_IMAGE)[0];
                 imageFD.append("_file_" + imagesCount, imageObj.imageFile);
                 imageFD.append("_file_Name_" + imagesCount, imageObj.fileName);
@@ -507,7 +510,7 @@ function submitProducts()
             {
                 for (var u = 0 ; u < prodList[i].bundleList.length ; u++)
                 {
-                    if (prodList[i].bundleList[u].PRODUCT_IMAGE instanceof Array)
+                    if (Array.isArray(prodList[i].bundleList[u].PRODUCT_IMAGE))
                     {
                         var bndlImgObj = (prodList[i].bundleList[u].PRODUCT_IMAGE)[0];
                         imageFD.append("_file_bundle_" + imagesCount, bndlImgObj.imageFile);
@@ -550,7 +553,7 @@ function submitProducts()
                         },
                         error: function () {
                             HideMyLoginSpinner();
-                            alert('Error Saving Products');
+                            alert('Error Saving Products - Request');
                         },
                         failure: function () {
                             HideMyLoginSpinner();
